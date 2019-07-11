@@ -25,8 +25,7 @@ public class Process {
 	/**
 	 * 
 	 * @param CartItems
-	 *            which is a arraylist of cart type. 
-	 *            it display the item in the
+	 *            which is a arraylist of cart type. it display the item in the
 	 *            cart,their price and quantity .
 	 */
 	public void showCartItems(ArrayList<Cart> CartItems) {
@@ -42,13 +41,13 @@ public class Process {
 		System.out.println("Items In Cart Are:");
 		System.out.println("SN\tItem\tPrice\tQuantity\tAmount");
 		for (int i = 0; i < CartItems.size(); i++) {
-			String currentItemName = CartItems.get(i).getItemName();
-			double currentItemPrice = CartItems.get(i).getItemPrice();
-			int currentItemQuantity = CartItems.get(i).getItemQuantity();
+			String currentItemName = CartItems.get(i).getItemName();                      // To get item name to display using index i
+			double currentItemPrice = CartItems.get(i).getItemPrice();                    // To get item price to display using index i
+			int currentItemQuantity = CartItems.get(i).getItemQuantity();                 // To get item quantity to display using index i
 			double currentItemAmount = currentItemPrice * currentItemQuantity;
 			System.out.println(i + 1 + "\t" + currentItemName + "\t"
-					+ currentItemPrice + "\t" + currentItemQuantity + "\t"
-					+ currentItemAmount);
+					+ currentItemPrice + "\t" + " " + currentItemQuantity
+					+ "\t" + "        " + currentItemAmount);
 		}
 	}
 
@@ -72,16 +71,16 @@ public class Process {
 		System.out.println("----------------------------------");
 		int totalAmount = 0;
 		for (int i = 0; i < CartItems.size(); i++) {
-			String currentItemName = CartItems.get(i).getItemName();
-			double currentItemPrice = CartItems.get(i).getItemPrice();
-			int currentItemQuantity = CartItems.get(i).getItemQuantity();
-			double currentItemAmount = currentItemPrice * currentItemQuantity;
+			String currentItemName = CartItems.get(i).getItemName();                        // To get item name to display using index i
+			double currentItemPrice = CartItems.get(i).getItemPrice();                      // To get item price to display using index i
+			int currentItemQuantity = CartItems.get(i).getItemQuantity();                   // To get item quantity to display using index i
+			double currentItemAmount = currentItemPrice * currentItemQuantity;              // to generate the total amount of items
 			totalAmount += currentItemAmount;
 			System.out.println(i + 1 + "\t" + currentItemName + "\t"
-					+ currentItemPrice + "\t" + currentItemQuantity + "\t"
-					+ currentItemAmount);
+					+ currentItemPrice + "\t" + " " + currentItemQuantity
+					+ "\t" + "         " + currentItemAmount);
 		}
 		System.out.println("----------------------------------");
-		System.out.println("\t\t\tTotal Amount\t" + totalAmount);
+		System.out.println("\t\t\tTotal Amount\t" + " " + totalAmount);
 	}
 }

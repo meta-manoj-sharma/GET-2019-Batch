@@ -13,7 +13,9 @@ public class Shopcart {
 
 	public static void main(String[] args) {
 
-		Scanner input = new Scanner(System.in); // to get input from the user.
+		// to get input from the user.
+		Scanner input = new Scanner(System.in);
+
 		Process process = new Process();
 		// this the array list initialization and put products into it
 		ArrayList<Item> item = new ArrayList<Item>();
@@ -35,15 +37,34 @@ public class Shopcart {
 			System.out.println("Press 3 for Update Cart Item");
 			System.out.println("Press 4 for delete Cart Item");
 			System.out.println("Press 5 for generating Bill");
+			System.out.println("Press 6 for exit");
 			int choice = 0;
-			choice = input.nextInt(); // the choice variable store the user
-										// choice given by keyboard
+			try {
+				choice = input.nextInt(); // the choice variable store the user
+				// choice given by keyboard
+
+			} catch (Exception e) {
+				System.out.println("Invalid Entry!");
+				break;
+			}
+
 			switch (choice) {
 			case 1:
 				process.showProducts(item); // this is used to display product
 											// list which are available to buy.
 				System.out.println("\nEnter Product No. To ADD to Cart");
-				int productNumber = input.nextInt();
+				int productNumber = 0;
+				try {
+					productNumber = input.nextInt(); // the choice variable
+														// store the user
+					// choice given by keyboard
+
+				} catch (Exception e) {
+					System.out.println("Invalid Entry!");
+
+					System.exit(0);
+				}
+
 				if (productNumber > 0 && productNumber <= item.size()) {
 					String cartProductName = item.get(productNumber - 1)
 							.getItemName();
@@ -51,6 +72,12 @@ public class Shopcart {
 							.getPrice();
 					System.out.println("Enter Item Quantity :");
 					int productQuantity = input.nextInt();
+					if (productQuantity < 0) { // To get only positive value of
+												// quantity
+						System.out.println("Wrong Quantity value :");
+						break;
+					}
+
 					cartItem = new Cart(cartProductName, cartProductPrice,
 							productQuantity);
 					CartItems.add(cartItem);
@@ -63,7 +90,11 @@ public class Shopcart {
 				process.showCartItems(CartItems);
 				break;
 			case 3:
-				if (CartItems == null || CartItems.size() == 0) {
+				if (CartItems == null || CartItems.size() == 0) { // To check
+																	// wheather
+																	// the cart
+																	// is empty
+																	// or not
 					System.out.println("Card Is Empty !!");
 					break;
 				}
@@ -75,33 +106,50 @@ public class Shopcart {
 				if (productUpdatedQuantity == 0)
 					CartItems.remove(productId - 1);
 				else
-					CartItems.get(productId - 1).setItemQuantity(
+					CartItems.get(productId - 1).setItemQuantity( // to trace
+																	// item and
+																	// set the
+																	// quantity
 							productUpdatedQuantity);
 				System.out.println("Updated Successful !!!");
 				break;
 			case 4:
-				if (CartItems == null || CartItems.size() == 0) {
+				if (CartItems == null || CartItems.size() == 0) { // To check
+																	// wheather
+																	// the cart
+																	// is empty
+																	// or not
 					System.out.println("Card Is Empty !!");
 					break;
 				}
 				process.showCartItems(CartItems);
-				System.out.println("\nEnter Product No. To Update Quantity");
+				System.out.println("\nEnter Product No.to delete ");
 				int deleteProductId = input.nextInt();
-				if (CartItems != null || CartItems.size() != 0) {
-					System.out.println("Card Is Empty !!");
-					break;
-				}
-				CartItems.remove(deleteProductId - 1);
+				CartItems.remove(deleteProductId - 1); // to remove item from
+														// the cart
 				System.out.println("Deleted Successful !!!");
 				break;
 			case 5:
 				process.printBill(CartItems);
 				break;
+			case 6:
+				System.exit(0);
+				break;
 			default:
 				System.out.println("Please Enter A Valid Choice");
 			}
-			System.out.println("Press 1 to Conti..");
-			flag = input.nextInt();
+			System.out.println("Press any number to Continue..");
+
+			try {
+				flag = input.nextInt(); // the choice variable store the user
+				// choice given by keyboard
+
+			} catch (Exception e) {
+				System.out.println("Invalid Entry!");
+
+				System.exit(0);
+			}
+			flag = 1;
 		} while (flag == 1);
 
 	}
