@@ -6,14 +6,10 @@ public class Cart {
 	private int quantity;
 
 	/**
-	 * 
-	 * @param name
-	 *            is string type which is product name .
-	 * @param price
-	 *            is string type which is product price
-	 * @param quantity
-	 *            is string type which is product quantity it will assign values
-	 *            to respective variables.
+	 *  @param name is string type which is product name .
+	 * @param price is string type which is product price
+	 * @param quantity is string type which is product quantity
+	 * it will assign values to respective variables.
 	 */
 	public Cart(String name, double price, int quantity) {
 

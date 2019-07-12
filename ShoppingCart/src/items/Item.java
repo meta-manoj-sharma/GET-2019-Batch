@@ -6,11 +6,9 @@ public class Item {
 
 	/**
 	 * 
-	 * @param name
-	 *            is string type which is product name .
-	 * @param price
-	 *            is string type which is product price. it will assign values
-	 *            to respective variables.
+	 * @param name is string type which is product name .
+	 * @param price is string type which is product price. 
+	 * it will assign value to respective variables.
 	 */
 
 	public Item(String ItemName, double Price) {
