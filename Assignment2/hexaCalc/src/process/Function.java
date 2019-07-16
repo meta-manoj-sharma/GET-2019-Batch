@@ -19,7 +19,7 @@ public class Function implements Methods {
 	 * @return non zero contain num in front
 	 */
 	public String removeZeros(String first) {
-		first = first.replaceAll("^(\\s*0\\s*0\\s*)+", "");
+		first = first.replaceAll("^(\\s*0\\s*)+", ""); // remove all front zeros in number
 		return first;
 	}
 
@@ -52,8 +52,7 @@ public class Function implements Methods {
 		if (first > second) {
 			return (first - second);
 		} else {
-			System.out
-					.println("number 1 cant be less than number 2.....program exit");
+			System.out.println("number 1 cant be less than number 2.....program exit");
 			return 0;
 		}
 	}
@@ -72,11 +71,10 @@ public class Function implements Methods {
 	 * @return integer division of number
 	 */
 	public int divide(int first, int second) {
-		if (first > second) {
+		if (first >= second) {
 			return (first / second);
 		} else {
-			System.out
-					.println("number 1 cant be less than number 2.....program exit");
+			System.out.println("number 1 cant be less than number 2.....program exit");
 			return 0;
 		}
 
@@ -101,7 +99,6 @@ public class Function implements Methods {
 		}
 		// if here, means both strings are equal
 		return true;
-
 	}
 
 	/**
@@ -111,56 +108,44 @@ public class Function implements Methods {
 	public boolean greaterThen(String first, String second) {
 		int counter1 = 0;
 		int counter2 = 0;
-
-		if (first.length() == second.length()) {
+         if (first.length() == second.length()) { //comparing lengths of string for equality 
 			for (int i = 0; i < first.length(); i++) {
-				if (first.charAt(i) > second.charAt(i)) {
+				if (first.charAt(i) > second.charAt(i)) { //comparing string character by character
 					counter1++;
 				}
 			}
-
-			if (counter1 > 0) {
+            if (counter1 > 0) {
 				return true;
 			} else {
 				return false;
-
-			}
-
-		} else {
+             }
+           } else {
 			/*
 			 * This regular expression removes all the leading 0's from
 			 * Hexadecimal number for unequal length comparision
 			 */
-
-			if (first.length() > second.length()) {
+            if (first.length() > second.length()) {
 				counter2++;
 			}
-
-		}
+           }
 		if (counter2 > 0) {
 			return true;
 		} else {
 			return false;
-
-		}
-
-	}
-
-	/**
+        }
+     }
+    /**
 	 * @param character array and length of the number string
 	 * @return integer decimal number
 	 */
-
-	public int convertToDecimal(String hexNumber, int base) {
+     public int convertToDecimal(String hexNumber, int base) {
 		int decimal = 0;
 		for (int i = hexNumber.length() - 1; i >= 0; i--) {
-			decimal += (int) (integerEquivalent(hexNumber.charAt(i)) * pow(
-					base, hexNumber.length() - 1 - i));
-		}
+			decimal += (int) (integerEquivalent(hexNumber.charAt(i)) * pow(base, hexNumber.length() - 1 - i)); //converting hexadecimal number into decimal number by converting them into number
+		}                                                                                                      //like 16^2*B+16^1*A+16^0*2
 		return decimal;
 	}
-
-	/**
+    /**
 	 * @param integer number
 	 * @return hexadecimal number string
 	 */
@@ -169,13 +154,11 @@ public class Function implements Methods {
 		String hexadecimal = "";
 		char hex[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A',
 				'B', 'C', 'D', 'E', 'F' };
-
-		while (number > 0) {
+        while (number > 0) {
 			remainder = number % 16;
 			hexadecimal = hex[remainder] + hexadecimal;
 			number = number / 16;
 		}
 		return hexadecimal;
 	}
-
 }

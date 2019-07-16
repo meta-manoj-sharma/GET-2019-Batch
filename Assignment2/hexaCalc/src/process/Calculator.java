@@ -11,23 +11,31 @@ public class Calculator {
 
 	public static void main(String[] args) {
 		try {
+			String in1;
+			String in2;
+			String input1;
+			String input2;
+			int number1;
+			int number2;
+			int result;
+			boolean res;
+			String hexaDecimal = new String();
 			Scanner scan = new Scanner(System.in);
-			int flag = 1;           //for repetition of loop to get always true condition
+			int flag = 1; // for repetition of loop to get always true condition
 			do {
-
-				System.out.println("Enter first hexadecimal no. ");
-				String in1 = scan.next();
+                System.out.println("Enter first hexadecimal no. ");
+				in1 = scan.next();
 				System.out.println("Enter second hexadecimal no. ");
-				String in2 = scan.next();
-				String input1 = in1.toUpperCase();         //to chnge hexadecimal number into uppercase letter only
-				String input2 = in2.toUpperCase();
-				
-				String hexadecimal = new String();
-				Function object = new Function();
+				in2 = scan.next();
+				input1 = in1.toUpperCase(); // to chnge hexadecimal number into uppercase letter only
+				input2 = in2.toUpperCase();
+                Function object = new Function();
 				input1 = object.removeZeros(input1);
 				input2 = object.removeZeros(input2);
-				int num1 = object.convertToDecimal(input1, 16);
-				int num2 = object.convertToDecimal(input2,16);
+				System.out.println("INput 1  " + input1);
+                System.out.println("INput 2  " + input2);
+				number1 = object.convertToDecimal(input1, 16);
+				number2 = object.convertToDecimal(input2, 16);
 				System.out.println("press 1 add ");
 				System.out.println("press 2 subtract ");
 				System.out.println("perss 3 multiply");
@@ -37,36 +45,34 @@ public class Calculator {
 				System.out.println("press 7 Exit");
 				System.out.println("Enter your choice..... ");
 				int choice = scan.nextInt();
-
 				switch (choice) {
 				case 1:
-
-					int result = object.add(num1, num2);            //calling addition methods to get additon of number
-					hexadecimal = object.convertFromDecimal(result);//converting to hexadecimal number 
-					System.out.println("additon is = " + hexadecimal);
+                    result = object.add(number1, number2); // calling addition methods to get additon of number
+					hexaDecimal = object.convertFromDecimal(result);// converting to hexadecimal number
+					System.out.println("additon is = " + hexaDecimal);
 					break;
 				case 2:
-					result = object.subtract(num1, num2);             //calling subtraction methods to get subtract of number
-					hexadecimal = object.convertFromDecimal(result);
-					System.out.println("subtraction is = " + hexadecimal);
+					result = object.subtract(number1, number2); // calling subtraction methods to get subtract of number
+					hexaDecimal = object.convertFromDecimal(result);
+					System.out.println("subtraction is = " + hexaDecimal);
 					break;
 				case 3:
-					result = object.multiply(num1, num2);
-					hexadecimal = object.convertFromDecimal(result);
-					System.out.println("multiplication is = " + hexadecimal);
+					result = object.multiply(number1, number2);
+					hexaDecimal = object.convertFromDecimal(result);
+					System.out.println("multiplication is = " + hexaDecimal);
 					break;
 				case 4:
-					result = object.divide(num1, num2);
-					if (num2 == 0) {
+					result = object.divide(number1, number2);
+					if (number2 == 0) {
 						System.out.println("can't divide by 0");
 						break;
 					} else {
-						hexadecimal = object.convertFromDecimal(result);
-						System.out.println("division is = " + hexadecimal);
+						hexaDecimal = object.convertFromDecimal(result);
+						System.out.println("division is = " + hexaDecimal);
 						break;
 					}
 				case 5:
-					boolean res = object.equalsTo(input1, input2);     //for comparing == between two number
+					res = object.equalsTo(input1, input2); // for comparing == between two number
 					if (res == true) {
 						System.out.println("number1==number2");
 						break;
@@ -83,8 +89,7 @@ public class Calculator {
 						System.out.println("number1<number2");
 						break;
 					}
-
-				case 7:
+                 case 7:
 					System.out.print("Thank you....");
 					System.exit(0);
 				}
