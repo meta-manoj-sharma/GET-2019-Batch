@@ -46,12 +46,13 @@ public class CalculateArea {
 	 * @param height dimension
 	 * @param width dimension
 	 * @return true and false for validity
+	 * @throws Exception 
 	 */
-	public static boolean checkValidation(double height, double width) {
-		if (width <= 0 || height <= 0) {
-			return true;
-		} else
-			return false;
+	public static void checkValidation(double value) throws Exception {
+		if (value <= 0 ) {
+			System.out.println("Dimensions cannot be negative or zero!! ");
+			throw new Exception("Invalid Input ");
+		}
 	}
 
 	public static void main(String[] args) {
@@ -76,11 +77,8 @@ public class CalculateArea {
 					width = input.nextDouble();
 					System.out.println("Enter the height ");
 					height = input.nextDouble();
-					if (checkValidation(height, width)) /* Custom Exception thrown */
-					{
-						System.out.println("Dimensions cannot be negative or zero!! ");
-						throw new Exception("Invalid Input ");
-					}
+					checkValidation(height); /* Custom Exception thrown */
+					checkValidation(width);
 					System.out.println("The area of the triangle is "
 							+ areaOfTriange(width, height) + " units");
 					break;
@@ -89,29 +87,20 @@ public class CalculateArea {
 					width = input.nextDouble();
 					System.out.println("Enter the length ");
 					height = input.nextDouble();
-					if (checkValidation(height, width))
-					{
-						System.out.println("Dimensions cannot be negative or zero!! ");
-						throw new Exception("Invalid Input ");
-					}
+					checkValidation(height); /* Custom Exception thrown */
+					checkValidation(width);
 					System.out.println("The area of the rectangle is " + areaOfRectangle(width, height) + " units");
 					break;
 				case 3:
 					System.out.println("Enter the side ");
 					width = input.nextDouble();
-					if (checkValidation(width, width)) {
-						System.out.println("Height cannot be negative or zero!! ");
-						throw new Exception("Invalid Input ");
-					}
+					checkValidation(width);
 					System.out.println("The area of the square is " + areaOfSquare(width) + " units");
 					break;
 				case 4:
 					System.out.println("Enter the radius ");
 					radius = input.nextDouble();
-					if (checkValidation(radius, radius)) {
-						System.out.println("Radius cannot be negative or zero!! ");
-						throw new Exception("Invalid Input ");
-					}
+					checkValidation(radius);
 					System.out.println("The area of the circle is " + areaOfCircle(radius) + " units");
 					break;
 				case 5:
@@ -125,4 +114,3 @@ public class CalculateArea {
 		}
 	}
 }
-s
