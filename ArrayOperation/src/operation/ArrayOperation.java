@@ -10,7 +10,7 @@ public class ArrayOperation {
 	 * @param inputArray which is given by test cases
 	 * @throws AssertionError throw when array is empty
 	 */
-	public static void checkNull(int inputArray[]) throws AssertionError {
+	private static void checkNull(int inputArray[]) throws AssertionError {
 		if (inputArray == null || inputArray.length == 0) {
 			throw new AssertionError("Array is empty");
 		}
