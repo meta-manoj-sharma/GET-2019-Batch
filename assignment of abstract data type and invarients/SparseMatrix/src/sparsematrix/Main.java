@@ -59,7 +59,11 @@ public class Main {
 					System.out.println("enter data for second sparse matrix");
 					SparseMatrix object3 = new SparseMatrix(getInput());
 					System.out.println("multiplication is.. ");
+<<<<<<< HEAD
 					object.display(object3. multiplySparseMatrix(object, object3));//multiplying two matrixes and displaying them
+=======
+					object4.display(object4. multiplySparseMatrix(object4, object5));//multiplying two matrixes and displaying them
+>>>>>>> 64f7c4a178f36e8fadff2b008f7cea41531e4f13
 					break;
 				case 5:
 					System.exit(0);
