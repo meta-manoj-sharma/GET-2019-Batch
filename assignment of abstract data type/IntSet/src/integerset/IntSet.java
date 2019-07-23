@@ -3,20 +3,32 @@ package integerset;
 import java.util.*;
 /**
  * this class perform various integer set operation
- * @author Manoj
+ * @author Manoj 
  * Dated 18 july 2019
  */
-public class IntSet {
-	private int set[];
+interface Set {
+	int size();
+
+	boolean isMember(int element);
+
+	boolean isSubSet(IntSet s);
+
+	int[] union(IntSet object1, IntSet object2);
+
+	int[] getComplement();
+}
+
+public final class IntSet implements Set {
+	private final int set[];
 
 	// parameterized constructor to initialize the data member
 	IntSet(int input[]) {
-		set = new int[input.length];
+		// set = new int[input.length];
 		set = input;
 	}
 
 	// private helper method to return the private data member
-	private int[] getSet() {
+	public int[] getSet() {
 		return this.set;
 	}
 
@@ -47,8 +59,7 @@ public class IntSet {
 		int index2 = 0;
 		for (index1 = 0; index1 < s.size(); index1++) {
 			for (index2 = 0; index2 < set.length; index2++) {
-				if (subset[index1] == set[index2]) // comparing element one by
-													// one
+				if (subset[index1] == set[index2]) // comparing element one by one
 					break;
 			}
 			if (index2 == set.length)
@@ -63,36 +74,33 @@ public class IntSet {
 	 * @return the array of integer as the union set of two give set
 	 */
 
-	public static int[] union(IntSet object1, IntSet object2) {
-		int index1, index2, length1, length2, maxLength;
-		int set1[] = object1.getSet();
+	public int[] union(IntSet object1, IntSet object2) {
+		int index1, index2, index3;
+		boolean flag = false;
+		int sum[] = new int[object1.size() + object2.size()];
+		index3 = object1.size();
 		int set2[] = object2.getSet();
-		length1 = object1.size();
-		length2 = object2.size();
-
-		List<Integer> newList = new ArrayList<Integer>(); // for storing union
-
-		for (index1 = 0; index1 < length1; index1++) {
-			for (index2 = 0; index2 < length2; index2++) {
-				if (set1[index1] == set2[index2]) // Storing common elements between two sets into a array list
-					newList.add(set1[index1]);
+		int set1[] = object1.getSet();
+		for (index1 = 0; index1 < object1.size(); index1++) {
+			sum[index1] = set1[index1];
+		}
+		for (index1 = 0; index1 < object2.size(); index1++) {
+			flag = false;
+			for (index2 = 0; index2 < object1.size(); index2++) {
+				if (set2[index1] == sum[index2]) { // Storing common elements between two sets into a array list
+					flag = true;
+				}
+			}
+			if (flag == false) {
+				sum[index3] = set2[index1];
+				index3++;
 			}
 		}
-		int[] unionSet = new int[(length1 + length2) - newList.size()];
-		int indexUnion = 0;
-		for (int index = 0; index < length1; index++) {
-			if (!newList.contains(set1[index])) {
-				unionSet[indexUnion++] = set1[index]; // storing rest elements of set 1 in union array
-			}
+		int[] union = new int[index3];
+		for (index1 = 0; index1 < index3; index1++) {
+			union[index1] = sum[index1];
 		}
-		for (int index = 0; index < length2; index++) {
-			if (!newList.contains(set2[index])) {
-				unionSet[indexUnion++] = set2[index]; // storing rest elements of set 1 in union array
-			}
-		}
-		for (int index = 0; index < newList.size(); index++)
-			unionSet[indexUnion++] = newList.get(index); // storing common elements to the array
-		return unionSet;
+		return union;
 	}
 
 	/**

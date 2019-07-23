@@ -2,20 +2,34 @@ package polynomial;
 
 import java.util.ArrayList;
 import java.util.Collections;
+
 /**
- * Polynomial class store the coefficients of polynomial equation 
- * It requires the array of integer in constructor which contains the coefficients with index as their degree
- * @author Manoj
+ * Polynomial class store the coefficients of polynomial equation It requires
+ * the array of integer in constructor which contains the coefficients with
+ * index as their degree
+ * @author Manoj 
  * Dated 18 july 2019
  */
+interface Poly {
+	void display(int[] polynomial);
+
+	public int degree();
+
+	float evaluate(float value);
+
+	int[] addPoly(Polynomial p1, Polynomial p2);
+
+	int[] mulPoly(Polynomial p1, Polynomial p2);
+}
+
 public final class Polynomial {
 
-	private int poly[][];
+	private final int poly[][];
 
 	// parameterized constructor which store non zero coefficients
 	Polynomial(int inputPoly[]) {
 		int index, count = 0, row = 0, column = 0;
-	// loop to count number of zeroes in the polynomial
+		// loop to count number of zeroes in the polynomial
 		for (index = 0; index < inputPoly.length; index++) {
 			if (inputPoly[index] == 0) {
 				count++;
@@ -30,16 +44,18 @@ public final class Polynomial {
 				poly[row++][column + 1] = index;
 			}
 	}
+
 	/**
-	 * this is display the polynomial
-	 * @param polynomial 
+	 * this is display the polynomial 
+	 * @param polynomial
 	 */
-	public static void display(int[] polynomial) {
+	public void display(int[] polynomial) {
 		int i = 0;
 		for (i = 0; i < polynomial.length; i++) {
 			System.out.print(polynomial[i] + " ");
 		}
 	}
+
 	/**
 	 * @return the maximum degree of the polynomial
 	 */
@@ -70,25 +86,31 @@ public final class Polynomial {
 		}
 		return result;
 	}
-	static int[] convertArray(int[] poly, ArrayList<Integer> coefficient,
-			ArrayList<Integer> degree) {
+	/**
+	 * @param poly polynomial array
+	 * @param coefficient array list of coefficient
+	 * @param degree array list of degree
+	 * @return array of polynomial
+	 */
+
+	private static int[] convertArray(int[] poly, ArrayList<Integer> coefficient, ArrayList<Integer> degree) {
 		for (int index = 0; index < poly.length; index++) {
 			if (degree.contains(index)) {
 				int pos = degree.indexOf(index);
 				poly[index] = coefficient.get(pos);
-			}
-			else {
+			} else {
 				poly[index] = 0;
 			}
 		}
 		return poly;
 	}
+
 	/**
-	 * addPoly method to add two polynomial
+	 * addPoly method to add two polynomial 
 	 * @param P1 and P2 to store polynomial
 	 * @return an integer array which contain result of addition polynomial
 	 */
-	static int[] addPoly(Polynomial p1, Polynomial p2) {
+	public int[] addPoly(Polynomial p1, Polynomial p2) {
 		ArrayList<Integer> coefficient = new ArrayList<Integer>();
 		ArrayList<Integer> degree = new ArrayList<Integer>();
 		int index, column = 0;
@@ -97,7 +119,8 @@ public final class Polynomial {
 		for (index = 0; index < p1.poly.length; index++) {
 			for (int j = 0; j < p2.poly.length; j++) {
 				if (p1.poly[index][column + 1] == p2.poly[j][column + 1]) {
-					coefficient.add(p1.poly[index][column] + p2.poly[j][column]);
+					coefficient
+							.add(p1.poly[index][column] + p2.poly[j][column]);
 					degree.add(p1.poly[index][column + 1]);
 					break;
 				}
@@ -105,7 +128,7 @@ public final class Polynomial {
 		}
 
 		// checks for remaining elements in polynomial 1 which are not added in
-		// coefficients arraylist
+		// coefficients array list
 		for (index = 0; index < p1.poly.length; index++) {
 			if (!degree.contains(p1.poly[index][column + 1])) {
 				coefficient.add(p1.poly[index][column]);
@@ -129,12 +152,11 @@ public final class Polynomial {
 
 	/**
 	 * multiply the two polynomial
-	 * @param requires the two object of polynomial class which contains the
-	 * polynomial coefficients
-	 * @return the integer array which contains the coefficients if multiplied
-	 * polynomial
+	 * 
+	 * @param requires the two object of polynomial class which contains the polynomial coefficients
+	 * @return the integer array which contains the coefficients if multiplied polynomial
 	 */
-	static int[] mulPoly(Polynomial p1, Polynomial p2) {
+	public int[] mulPoly(Polynomial p1, Polynomial p2) {
 
 		ArrayList<Integer> coefficient = new ArrayList<Integer>();
 		ArrayList<Integer> degree = new ArrayList<Integer>();

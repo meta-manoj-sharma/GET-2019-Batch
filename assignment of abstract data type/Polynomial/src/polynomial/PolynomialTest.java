@@ -68,15 +68,4 @@ public class PolynomialTest {
 		assertEquals(expected, p1.evaluate(value), 0);
 	}
 
-	/*
-	 * test case for failure of mulPoly method
-	 */
-	@Test
-	public void mulPolyFailTest2() {
-		Polynomial p1 = new Polynomial(new int[] { 5, 8, 3 });
-		Polynomial p2 = new Polynomial(new int[] { 1, 0, 3, 6 });
-		int result[] = { 5, 8, 18, 54, 57, 18 };
-		assertArrayEquals(result, Polynomial.mulPoly(p1, p2));
-	}
-
 }

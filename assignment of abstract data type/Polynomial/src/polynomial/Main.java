@@ -10,24 +10,24 @@ public class Main {
 	private static int[] getInput() throws Exception {
 		Scanner input = new Scanner(System.in);
 		int length = 0, i;
-		System.out.println("enter length of array");
+		System.out.println("enter degree of polynomial");
 		length = input.nextInt();
 		if (length == 0) { //checking length of array
 			throw new Exception();
 		}
-		int[] set = new int[length];
-		System.out.println("enter elements of polynomial in form of array");
+		int[] poly = new int[length];
+		System.out.println("enter coeffiecient of polynomial in increasing order of degree");
 		for (i = 0; i < length; i++) {
-			set[i] = input.nextInt();
+			poly[i] = input.nextInt();
 		}
-		return set;
-
+		return poly;
 	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
 		try {
+			Polynomial object = new Polynomial(getInput());
 			while (true) {
 				int choice, value, i;
 				Scanner input = new Scanner(System.in);
@@ -40,33 +40,25 @@ public class Main {
 				choice = input.nextInt();
 				switch (choice) {
 				case 1:
-					Polynomial object5 = new Polynomial(getInput());
-					System.out
-							.println("enter value at which polynomial to be evaluate");
+					
+					System.out.println("enter variable value");
 					value = input.nextInt();
-					System.out.println("polynomial solution is "
-							+ object5.evaluate(value));
+					System.out.println("polynomial solution is " + object.evaluate(value));
 					break;
 				case 2:
-					Polynomial object6 = new Polynomial(getInput());
-					System.out.println("polynomial degree is "
-							+ object6.degree());
+					System.out.println("polynomial degree is " + object.degree());
 					break;
 				case 3:
-					System.out.println("enter data fo first polynomial");
-					Polynomial object1 = new Polynomial(getInput());
 					System.out.println("enter data for second polynomial");
-					Polynomial object2 = new Polynomial(getInput());
+					Polynomial object1 = new Polynomial(getInput());
 					System.out.println("addition of polynomial is ");
-					Polynomial.display(object1.addPoly(object1, object1)); // to add two polynomial and display the result
+					object.display(object.addPoly(object, object1)); // to add two polynomial and display the result
 					break;
 				case 4:
-					System.out.println("enter data fo first polynomial");
-					Polynomial object3 = new Polynomial(getInput());
 					System.out.println("enter data for second polynomial");
-					Polynomial object4 = new Polynomial(getInput());
+					Polynomial object2 = new Polynomial(getInput());
 					System.out.println("multiplication of polynomial is ");
-					Polynomial.display(object3.mulPoly(object3, object4));  // to multiply two polynomial and display their result
+					object.display(object.mulPoly(object, object2));  // to multiply two polynomial and display their result
 					break;
 				case 5:
 					System.exit(0);
