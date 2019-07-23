@@ -1,21 +1,35 @@
 package sparsematrix;
 
+import java.util.Arrays;
+
 /**
  * this class is used to perform various sparse matrix operations
  * @author Manoj 
  * Dated 19 july 2019
  */
-public class SparseMatrix {
-	int sparseMatrix[][];
-	final int rows;
-	final int columns;
+interface Sparse {
+	void display(int[][] sparseMatrix);
+
+	int[][] transpose();
+
+	boolean isSymmetricalMatrix();
+
+	int[][] addSparseMatrix(SparseMatrix matrix1, SparseMatrix matrix2);
+
+	int[][] multiplySparseMatrix(SparseMatrix matrix1, SparseMatrix matrix2);
+}
+
+public final class SparseMatrix {
+	private final int sparseMatrix[][];
+	private final int rows;
+	private final int columns;
 
 	/**
 	 * this the constructor of sparse matrix
 	 * @param inputMatrix matrix input by user
 	 * @throws AssertionError
 	 */
-	public SparseMatrix(int inputMatrix[][]) throws AssertionError {
+	 SparseMatrix(int inputMatrix[][]) throws AssertionError {
 		int lengthOfElements = 0;
 		int index = 0;
 		if (inputMatrix == null) {
@@ -54,7 +68,7 @@ public class SparseMatrix {
 
 		for (int i = 0; i < sparseMatrix.length; i++) {
 			System.out.println("");
-			for (int j = 0; j < sparseMatrix[0].length; j++) {
+			for (int j = 0; j < sparseMatrix[0].length; j++) { // complexity O(n^2)
 				System.out.print(sparseMatrix[i][j] + " ");
 			}
 		}
@@ -64,7 +78,7 @@ public class SparseMatrix {
 	/**
 	 * @return transpose of matrix
 	 */
-	public int[][] transpose() {
+	public int[][] transpose() { // complexity O(n)
 		int transposeMatrix[][] = new int[columns][rows];
 		transposeMatrix[0][0] = 0;
 		for (int i = 0; i < sparseMatrix.length; i++) {
@@ -82,20 +96,10 @@ public class SparseMatrix {
 		if (rows != columns) {
 			throw new AssertionError("Matrix row and should be equal");
 		}
-		for (int i = 0; i < sparseMatrix.length; i++) {
-			boolean flag = false;
-			for (int j = 0; j < sparseMatrix.length; j++) {
-				if (sparseMatrix[i][0] == sparseMatrix[j][1]
-						&& sparseMatrix[i][1] == sparseMatrix[j][0]) {
-					flag = true;
-					break;
-				}
+			if (Arrays.deepEquals(sparseMatrix, transpose())) {   // complexity O(n^2)
+				return true;
 			}
-			if (!flag) {
-				return false;
-			}
-		}
-		return true;
+		return false;
 	}
 
 	/**
@@ -104,8 +108,8 @@ public class SparseMatrix {
 	 * @return resultant matrix of addition
 	 * @throws AssertionError
 	 */
-	public static int[][] addSparseMatrix(SparseMatrix matrix1,
-			SparseMatrix matrix2) throws AssertionError {
+	public int[][] addSparseMatrix(SparseMatrix matrix1,
+			SparseMatrix matrix2) throws AssertionError {  // complexity O(n^2)
 		if (matrix1.rows != matrix2.rows || matrix1.columns != matrix2.columns) {
 			throw new AssertionError("Row and column not same");
 		}
@@ -166,8 +170,8 @@ public class SparseMatrix {
 	 * @return multiplication of two matrix
 	 * @throws AssertionError
 	 */
-	public static int[][] multiplySparseMatrix(SparseMatrix matrix1,
-			SparseMatrix matrix2) throws AssertionError {
+	public int[][] multiplySparseMatrix(SparseMatrix matrix1,
+			SparseMatrix matrix2) throws AssertionError {  // complexity O(n^2)
 		if (matrix1.columns != matrix2.rows) { // comparing dimension of both matrix for multiplication
 			throw new AssertionError("multiplication condition not matched");
 		}
