@@ -63,7 +63,7 @@ public class Main {
 					System.out.println("enter data for second matrix");
 					SparseMatrix object5 = new SparseMatrix(getInput());
 					System.out.println("multiplication is.. ");
-					object4.display(object4.addSparseMatrix(object4, object5));//multiplying two matrixes and displaying them
+					object4.display(object4. multiplySparseMatrix(object4, object5));//multiplying two matrixes and displaying them
 					break;
 				case 5:
 					System.exit(0);
