@@ -88,7 +88,8 @@ public class Zoo {
 			if (zone.categoryOfAnimal.equals(animal.getAnimalCategory())) {//checking for animal category
 				for (int j = 0; j < zone.cageList.size(); j++) {
 					Cage cage = zone.cageList.get(j);
-					if (cage.typeOfAnimal.equals(animal.getAnimalType())) {//checking animal type which has to b remove
+					if (cage.typeOfAnimal.equals(animal.getAnimalType())) {
+						//checking animal type which has to b remove
 						return zone.cageList.get(j).deathAnimal(animal);
 					}
 				}
@@ -97,6 +98,16 @@ public class Zoo {
 		return false;
 	}
 
+	public void showAnimalNo(){
+	
+	for (int i = 0; i < zoneList.size(); i++) {
+		Zone zone = zoneList.get(i);
+			for (int j = 0; j < zone.cageList.size(); j++) {
+				Cage cage = zone.cageList.get(j);
+	System.out.println("Animal in zone " + (i + 1) + " " + "cage " + (j + 1) + " is " + cage.presentAnimal);			}
+			}		
+	}
+	
 	/**
 	 * getter method
 	 * @return list of zone

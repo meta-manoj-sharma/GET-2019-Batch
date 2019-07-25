@@ -18,7 +18,7 @@ public class Main {
 									+ current.getAnimalName() + ", Age:"
 									+ current.getAnimalAge());
 							System.out.println(" Weight: "
-									+ current.getAnimalWeight() + ", Age:"
+									+ current.getAnimalWeight() + ", Sound:"
 									+ current.getAnimalSound());
 							i++;
 						}
@@ -36,23 +36,25 @@ public class Main {
  */
 	public static void delete(String name, Zoo z, List<Zone> zones)
 			throws Exception {
-
+	
 		for (Zone zone : zones) {
 			if (zone.getListOfCages().size() > 0) {
 				for (Cage cage : zone.getListOfCages()) {
 					if (cage.getListOfAnimals().size() > 0) {
 						int i = 1;
 						for (Animal current : cage.getListOfAnimals()) {
+							
 							if (current.getAnimalName().equals(name)) { //checking animal for present list
 								z.deathOfAnimal(current); //remove dead animal from zoo
 								System.out.println("delete animal");
+								break;
 							}
 						}
 					}
 				}
 			}
-		}
-	}
+		}}
+	
 
 	public static void main(String[] args) {
 		try {
@@ -94,20 +96,16 @@ public class Main {
 			if (z.addAnimal(new Lion("lion-6", 89, 45))) {
 				System.out.println("added animal lion 6");
 			}
-			if (z.addAnimal(new Peacock("peacock 1", 89, 45))) {
+			if (z.addAnimal(new Peacock("peacock-1", 89, 45))) {
 				System.out.println("added animal peacock 1");
 			}
 			if (z.addAnimal(new Crocodile("crocodile", 89, 45))) {
 				System.out.println("added animal crocodile");
 			}
 			display(zones);
-			delete("lion-3", z, zones);
-			System.out.println("No of zone " + z.presentZone);
-			System.out.println("Cages in zone 1 =" + zones.get(0).presentCages);
-			System.out.println("Cages in zone 2 =" + zones.get(1).presentCages);
-			System.out.println("Cages in zone 3 =" + zones.get(2).presentCages);
+			delete("crocodile", z, zones);
 			display(zones);
-
+			z.showAnimalNo();
 		} catch (Exception e) {
 			System.out.println("Invalid input");
 		}
