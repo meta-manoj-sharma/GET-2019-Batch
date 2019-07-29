@@ -4,8 +4,10 @@ import java.util.*;
 
 public class Main {
 	/*
-	 * @param shape type List 
+	 * @param shape type List
+	 * 
 	 * @return boolean true if screen is displayed
+	 * 
 	 * @return boolean false if screen is not displayed
 	 */
 	public static boolean display(List<Shape> sorted) {
@@ -225,6 +227,7 @@ public class Main {
 
 	/*
 	 * @param Scanner object
+	 * 
 	 * @return int type user input
 	 */
 	public static int inputShape(Scanner in) {

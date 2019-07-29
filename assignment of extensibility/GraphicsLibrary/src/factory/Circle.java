@@ -97,13 +97,12 @@ public class Circle implements Shape {
 
 	}
 
-	List<Point> getAllPoint() {
+	public List<Point> getAllPoint() {
 		return listOfCirclePoint;
 	}
 
 	/*
 	 * method to calculate the other point of the shape
-	 * 
 	 * @return list of the point of the shape
 	 */
 	List<Point> calculatePoint() {
@@ -115,7 +114,8 @@ public class Circle implements Shape {
 		double height = this.radius * Math.sin(angle);
 		double base = this.radius * Math.cos(angle);
 		listOfCirclePoint.add(new Point(x + base, y + height));
-
+		listOfCirclePoint.add(new Point(x - base, y - height));
 		return listOfCirclePoint;
 	}
+	
 }

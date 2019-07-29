@@ -19,9 +19,14 @@ public class Triangle implements Shape {
 		this.sideA = parameter.get(0);
 		this.sideB = parameter.get(1);
 		this.sideC = parameter.get(2);
+		if(isCheckSide(this.sideA, this.sideB, this.sideC)){
 		listOfTrianglePoint = new ArrayList<Point>();
 		listOfTrianglePoint = calculatePoint();
 		timeStamp = new Date();
+		}
+		else {
+			throw new AssertionError("Invalid parameters of triangle. sum of two sides should be greater than third side");
+			}
 	}
 
 	/*
@@ -121,7 +126,7 @@ public class Triangle implements Shape {
 		return ((x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2)) / 2);
 	}
 
-	List<Point> getAllPoint() {
+	public List<Point> getAllPoint() {
 		return listOfTrianglePoint;
 	}
 
@@ -149,4 +154,12 @@ public class Triangle implements Shape {
 		listOfTrianglePoint.add(new Point(totalX / 3, totalY / 3));
 		return listOfTrianglePoint;
 	}
+	public boolean isCheckSide(double sideA, double sideB, double sideC){
+		double max[] ={sideA, sideB, sideC};
+		Arrays.sort(max);
+		if((max[0] + max[1]) > max[2])
+			return true;
+		else 
+			return false;
+}
 }

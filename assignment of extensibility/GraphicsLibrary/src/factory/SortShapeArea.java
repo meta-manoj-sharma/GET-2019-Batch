@@ -1,6 +1,7 @@
 package factory;
 
 import java.util.*;
+
 // comparator to compare areas of two shapes 
 public class SortShapeArea implements Comparator<Shape> {
 
@@ -15,7 +16,8 @@ public class SortShapeArea implements Comparator<Shape> {
 		return 0;
 	}
 }
-//comparator to compare perimeter of two shapes 
+
+// comparator to compare perimeter of two shapes
 class SortShapePerimeter implements Comparator<Shape> {
 
 	public int compare(Shape s1, Shape s2) {
@@ -29,7 +31,8 @@ class SortShapePerimeter implements Comparator<Shape> {
 		return 0;
 	}
 }
-//comparator to compare origin distance of two shapes 
+
+// comparator to compare origin distance of two shapes
 class SortShapeDistance implements Comparator<Shape> {
 
 	public int compare(Shape s1, Shape s2) {
@@ -43,7 +46,8 @@ class SortShapeDistance implements Comparator<Shape> {
 		return 0;
 	}
 }
-//comparator to compare timestamp of two shapes 
+
+// comparator to compare timestamp of two shapes
 class SortShapeTimeStamp implements Comparator<Shape> {
 
 	public int compare(Shape s1, Shape s2) {

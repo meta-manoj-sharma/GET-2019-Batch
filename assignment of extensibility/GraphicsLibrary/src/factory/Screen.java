@@ -18,10 +18,28 @@ public class Screen {
 
 	/**
 	 * private method to check that a point is inside or outside the screen
+	 * 
 	 * @return true id point inside the screen
 	 */
 	private boolean isValidPoint(Point point) {
-		if (point.getXPoint() < XMAX && point.getYPoint() < YMAX) {
+		if (point.getXPoint() < XMAX && point.getYPoint() < YMAX
+				&& point.getXPoint() >= 0 && point.getYPoint() >= 0) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean isValidDimension(Point point, List<Point> listOfShapePoints) {
+		for (int i = 0; i < listOfShapePoints.size(); i++) {
+			if (!(listOfShapePoints.get(i).getXPoint() <= XMAX
+					&& listOfShapePoints.get(i).getYPoint() <= YMAX
+					&& listOfShapePoints.get(i).getXPoint() >= 0 && listOfShapePoints
+					.get(i).getYPoint() >= 0)) {
+				return false;
+			}
+		}
+		if (point.getXPoint() < XMAX && point.getYPoint() < YMAX
+				&& point.getXPoint() >= 0 && point.getYPoint() >= 0) {
 			return true;
 		}
 		return false;
@@ -29,6 +47,7 @@ public class Screen {
 
 	/**
 	 * method to add a shape to shape list
+	 * 
 	 * @return true is shape is successfully added to the screen
 	 */
 	boolean addShape(Shape.ShapeType shape, Point originPoint,
@@ -36,6 +55,10 @@ public class Screen {
 		if (isValidPoint(originPoint)) {
 			Shape typeOfShape = ShapeFactory.createShape(shape, originPoint,
 					parameterList);
+			if (!isValidDimension(originPoint, typeOfShape.getAllPoint())) {
+				throw new AssertionError("Dimension out of bound");
+			}
+
 			listOfShape.add(typeOfShape);
 			return true;
 		}
@@ -44,6 +67,7 @@ public class Screen {
 
 	/**
 	 * method to delete a shape from the list according to origin point
+	 * 
 	 * @return true id shape is deleted successfully
 	 */
 	boolean deleteShape(Shape.ShapeType shape, Point originPoint) {
@@ -60,6 +84,7 @@ public class Screen {
 
 	/**
 	 * method to delete all shape of same type
+	 * 
 	 * @return true id all shape deleted
 	 */
 	boolean deleteAllShape(Shape.ShapeType shape) {
@@ -78,7 +103,9 @@ public class Screen {
 
 	/**
 	 * method to sort the shape object according to input choice
-	 * @param choice is a string as choice
+	 * 
+	 * @param choice
+	 *            is a string as choice
 	 * @return sorted list according to choice
 	 */
 	public List<Shape> sortShape(String choice) {
@@ -86,7 +113,6 @@ public class Screen {
 		switch (choice) {
 		case "area":
 			Collections.sort(listOfShape, new SortShapeArea());
-			System.out.println("here" + listOfShape);
 			return listOfShape;
 		case "perimeter":
 			Collections.sort(listOfShape, new SortShapePerimeter());
@@ -105,6 +131,7 @@ public class Screen {
 
 	/**
 	 * method to return all the shape which are enclosing a point
+	 * 
 	 * @para point
 	 * @return all the shape that enclose this point
 	 */

@@ -95,7 +95,7 @@ public class Square implements Shape {
 		return Shape.ShapeType.Square;
 	}
 
-	List<Point> getAllPoint() {
+	public List<Point> getAllPoint() {
 		return listOfSquarePoint;
 	}
 

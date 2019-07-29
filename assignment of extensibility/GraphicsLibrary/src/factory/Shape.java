@@ -19,6 +19,7 @@ public interface Shape {
 	enum ShapeType {
 		Square, Rectangle, Circle, Triangle, RegularPolygon;
 	}
-
+		public List<Point> getAllPoint(); 
+		
 	ShapeType getShapeType();
 }

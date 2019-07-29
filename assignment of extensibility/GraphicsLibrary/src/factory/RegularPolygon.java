@@ -81,7 +81,7 @@ public class RegularPolygon implements Shape {
 		return distance;
 	}
 
-	List<Point> getAllPoint() {
+	public List<Point> getAllPoint() {
 		return listOfPolygonPoint;
 	}
 

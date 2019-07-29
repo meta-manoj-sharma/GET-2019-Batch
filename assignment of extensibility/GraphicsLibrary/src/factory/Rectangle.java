@@ -98,7 +98,7 @@ public class Rectangle implements Shape {
 		return Shape.ShapeType.Rectangle;
 	}
 
-	List<Point> getAllPoint() {
+	public List<Point> getAllPoint() {
 		return listOfRectanglePoint;
 	}
 
