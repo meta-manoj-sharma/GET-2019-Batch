@@ -30,37 +30,35 @@ public class LinkedList {
 	 * @param end
 	 * @return
 	 */
-	public void rotateSubList(int start, int end, int rotateIndex) {
+	public void rotateSubList(int startOfSubList, int endOfSubList, int noOfRotation) {
 		Node currentNode = headNode;
 		int nodeCount = 1;
 		int opeartionCount = 0;
-		validate(start, end, rotateIndex);
+		validate(startOfSubList, endOfSubList, noOfRotation);
 		Node startCurrent = null;
-		Node startLast = null;
+		Node startPerivous = null;
 		Node endCurrent = null;
-		Node endLast = null;
-		int currentStart = start;
-		int currentEnd = end;
+		Node endPerivous = null;
 		while (true) {
-			if (opeartionCount >= rotateIndex || currentStart == currentEnd) {
+			if (opeartionCount >= noOfRotation ||  startOfSubList  == endOfSubList) {
 				currentNode = headNode;
 				break;
 			}
-			if (nodeCount == currentStart) {
+			if (nodeCount ==  startOfSubList ) {
 				startCurrent = currentNode;
 				currentNode = currentNode.next;
 				nodeCount++;
 			}
 
-			else if (nodeCount < currentStart) {
-				startLast = currentNode;
+			else if (nodeCount <  startOfSubList ) {
+				startPerivous = currentNode;
 				currentNode = currentNode.next;
 				nodeCount++;
 			}
 			// rotating sublist for lower limit is equal1
-			else if (nodeCount == currentEnd && currentStart == 1) {
+			else if (nodeCount == endOfSubList &&  startOfSubList  == 1) {
 				endCurrent = currentNode;
-				endLast.next = endCurrent.next;
+				endPerivous.next = endCurrent.next;
 				headNode = endCurrent;
 				endCurrent.next = startCurrent;
 				currentNode = headNode;
@@ -69,11 +67,11 @@ public class LinkedList {
 
 			}
 			// rotating sublist for lower limit and higher limit to be adjacent
-			else if (nodeCount == currentEnd
-					&& (currentEnd - currentStart) == 1) {
+			else if (nodeCount == endOfSubList
+					&& (endOfSubList -  startOfSubList ) == 1) {
 				endCurrent = currentNode;
 				startCurrent.next = endCurrent.next;
-				startLast.next = endCurrent;
+				startPerivous.next = endCurrent;
 				endCurrent.next = startCurrent;
 				currentNode = headNode;
 				nodeCount = 1;
@@ -81,10 +79,10 @@ public class LinkedList {
 
 			}
 			// rotating sublist
-			else if (nodeCount == currentEnd) {
+			else if (nodeCount == endOfSubList) {
 				endCurrent = currentNode;
-				endLast.next = endCurrent.next;
-				startLast.next = endCurrent;
+				endPerivous.next = endCurrent.next;
+				startPerivous.next = endCurrent;
 				endCurrent.next = startCurrent;
 				currentNode = headNode;
 				nodeCount = 1;
@@ -93,7 +91,7 @@ public class LinkedList {
 			}
 
 			else {
-				endLast = currentNode;
+				endPerivous = currentNode;
 				currentNode = currentNode.next;
 				nodeCount++;
 			}
@@ -106,15 +104,15 @@ public class LinkedList {
 	 * @param end
 	 * @param rotateIndex
 	 */
-	private void validate(int start, int end, int rotateIndex) {
+	private void validate(int startOfSubList, int endOfSubList, int noOfRotation) {
 
-		if (start <= 0) {
+		if (startOfSubList <= 0) {
 			throw new AssertionError("Start Index Must Be Positive Number");
 		}
-		if (end >= size()) {
+		if (endOfSubList >= size()) {
 			throw new AssertionError("end Index Must Be Less Then Size");
 		}
-		if (end < start) {
+		if (endOfSubList < startOfSubList) {
 			throw new AssertionError("end index can't be less then start index");
 		}
 	}
@@ -165,7 +163,7 @@ public class LinkedList {
 	/**
 	 * @return convert list to Array()
 	 */
-	public int[] toArray() {
+	public int[] convertToArray() {
 		int size = this.size();
 		int resultArray[] = new int[size];
 		int index = 0;

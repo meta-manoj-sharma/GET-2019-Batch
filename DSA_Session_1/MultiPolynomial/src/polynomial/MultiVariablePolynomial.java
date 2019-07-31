@@ -8,11 +8,11 @@ import java.util.*;
  * Dated 31 july 2019
  */
 public class MultiVariablePolynomial {
-	List<Term> MultiVariablePolynomial = new ArrayList<>();
+	List<Term> termList = new ArrayList<>();
 
 	public MultiVariablePolynomial(List<Term> termList) {
 
-		this.MultiVariablePolynomial = termList;
+		this.termList = termList;
 	}
 
 	/**
@@ -22,10 +22,10 @@ public class MultiVariablePolynomial {
 	int polynomialDegree() {
 		int variablePowerSum;
 		int degreeOfPolynomial = 0;
-		for (int i = 0; i < MultiVariablePolynomial.size(); i++) {
+		for (int i = 0; i < termList.size(); i++) {
 			variablePowerSum = 0;
-			for (int j = 0; j < MultiVariablePolynomial.get(i).variableList.size(); j++) {
-				variablePowerSum += MultiVariablePolynomial.get(i).variableList.get(j).getVariablePower();
+			for (int j = 0; j < termList.get(i).variableList.size(); j++) {
+				variablePowerSum += termList.get(i).variableList.get(j).getVariablePower();
 			}
 			if (degreeOfPolynomial < variablePowerSum)
 				degreeOfPolynomial = variablePowerSum;
@@ -39,14 +39,16 @@ public class MultiVariablePolynomial {
 	 */
 	String visualPolynomial() {
 		String polynomialString = "";
-		for (int i = 0; i < MultiVariablePolynomial.size(); i++) {
-			polynomialString = polynomialString+ MultiVariablePolynomial.get(i).termCoefficient;
-			for (int j = 0; j < MultiVariablePolynomial.get(i).variableList.size(); j++) {
-				polynomialString = polynomialString+ "*"+ MultiVariablePolynomial.get(i).variableList.get(j).getVariableName()+ "^"+ MultiVariablePolynomial.get(i).variableList.get(j).getVariablePower();
+		for (int i = 0; i < termList.size(); i++) {
+			if(termList.get(i).termCoefficient != 0){
+				polynomialString = polynomialString+ termList.get(i).termCoefficient;
+			for (int j = 0; j < termList.get(i).variableList.size(); j++) {
+				polynomialString = polynomialString+ "*"+termList.get(i).variableList.get(j).getVariableName()+ "^"+ termList.get(i).variableList.get(j).getVariablePower();
 			}
-			if (MultiVariablePolynomial.get(i) != MultiVariablePolynomial
-					.get(MultiVariablePolynomial.size() - 1))
+			if (termList.get(i) != termList
+					.get(termList.size() - 1))
 				polynomialString = polynomialString + " + ";
+			}
 		}
 		return polynomialString;
 	}

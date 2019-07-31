@@ -18,7 +18,7 @@ public class LinkedListTest {
 		list.insert(list, 23);
 		int expected[] = {8, 74, 22, 47, 57, 99, 23};
 		list.rotateSubList(2, 5, 13);
-		assertArrayEquals(expected, list.toArray());
+		assertArrayEquals(expected, list.convertToArray());
 	}
 	// negative test case
 	@Test(expected = AssertionError.class)
