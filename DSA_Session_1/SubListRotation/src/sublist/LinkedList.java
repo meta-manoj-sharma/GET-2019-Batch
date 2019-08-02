@@ -30,11 +30,11 @@ public class LinkedList {
 	 * @param end
 	 * @return
 	 */
-	public void rotateSubList(int startOfSubList, int endOfSubList) {
+	public void rotateSubList(int startOfSubList, int endOfSubList, int noOfRotation) {
 		Node currentNode = headNode;
 		int nodeCount = 1;
 		int opeartionCount = 0;
-		validate(startOfSubList, endOfSubList, noOfRotation);
+		validate(startOfSubList, endOfSubList);
 		Node startCurrent = null;
 		Node startPerivous = null;
 		Node endCurrent = null;
@@ -124,7 +124,6 @@ public class LinkedList {
 		int size = 0;
 		Node current = headNode;
 		while (current != null) {
-
 			size++;
 			current = current.next;
 		}
@@ -148,14 +147,12 @@ public class LinkedList {
 		Set<Node> referenceSet = new HashSet<Node>();
 		Node traverse = list.headNode;
 		while (traverse != null) {
-			if (referenceSet.contains(traverse)) {// Checking whether the node's
-													// reference is already
-													// present or not
+			// Checking whether the node's reference is already present or not
+			if (referenceSet.contains(traverse)) {
 				return true;
 			}
 			referenceSet.add(traverse);// Otherwise add into the set
 			traverse = traverse.next;
-
 		}
 		return false;
 	}
