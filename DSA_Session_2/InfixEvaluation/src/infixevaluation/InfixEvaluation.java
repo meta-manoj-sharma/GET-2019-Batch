@@ -15,22 +15,14 @@ public class InfixEvaluation {
 	 * @throws NumberFormatException 
 	 */
 	public static int evaluateInfix(String expression) throws Exception {
-		char[] tokens = expression.toCharArray();
+		String[] tokens = expression.split(" ");;
 		StackImplementation values = new StackImplementation();
-		Stack<Character> operator = new Stack<Character>(); // Stack for Operators
+		Stack<String> operator = new Stack<String>(); // Stack for Operators
 		for (int i = 0; i < tokens.length; i++) {
-			if (tokens[i] == ' ') // Current token is a whitespace, skip it
-				continue;
-			if (tokens[i] >= '0' && tokens[i] <= '9') {
-				StringBuffer digit = new StringBuffer();
-				while (i < tokens.length && tokens[i] >= '0'// There may be more than one digits in number
-						&& tokens[i] <= '9')
-					digit.append(tokens[i++]);
-				values.push(Integer.parseInt(digit.toString()));
-			} else if (tokens[i] == '(')
+		  if (tokens[i].equals("("))
 				operator.push(tokens[i]);
-			else if (tokens[i] == ')') {
-				while (operator.peek() != '(')
+			else if (tokens[i].equals(")")) {
+				while (!operator.peek().equals("("))
 					values.push(operation(operator.pop(), values.pop(),
 							values.pop()));
 				operator.pop();
@@ -40,15 +32,18 @@ public class InfixEvaluation {
 			 * token, which is an operator. Apply operator on top of 'operator'
 			 * to top two elements in values stack
 			 */
-			else if (tokens[i] == '+' || tokens[i] == '-' || tokens[i] == '*'
-					|| tokens[i] == '/' || tokens[i] == '<' || tokens[i] == '>') {
+			else if (tokens[i].equals("+") || tokens[i].equals("-") || tokens[i].equals("*")
+					|| tokens[i].equals("/") ||tokens[i].equals("<") || tokens[i].equals(">") || tokens[i].equals("&") || tokens[i].equals("|")|| tokens[i].equals("==") ||tokens[i].equals("<=") || tokens[i].equals(">=") || tokens[i].equals("&&") || tokens[i].equals("||") || tokens[i].equals("!=") || tokens[i].equals("!") ) {
 				while (!operator.empty()
 						&& hasPrecedence(tokens[i], operator.peek()))
 					values.push(operation(operator.pop(), values.pop(),
 							values.pop()));
 				operator.push(tokens[i]);
 			}
+			else
+				values.push(Integer.parseInt(tokens[i]));
 		}
+		
 		// Entire expression has been parsed at this point, apply remaining operator
 		while (!operator.empty())
 			values.push(operation(operator.pop(), values.pop(), values.pop()));
@@ -60,14 +55,24 @@ public class InfixEvaluation {
 	 * @param operator2 is the second operator
 	 * @return true if operator1 has lesser precedence than operator second otherwise returns false
 	 */
-	public static boolean hasPrecedence(char operator1, char operator2) {
-		if (operator2 == '(' || operator2 == ')')
+	public static boolean hasPrecedence(String operator1, String operator2) {
+		if (operator2 .equals("(") || operator2.equals(")"))
 			return false;
-		if ((operator1 == '*' || operator1 == '/')
-				&& (operator2 == '+' || operator2 == '-'))
+		if ((operator1.equals("*") || operator1.equals("/")) && (operator2.equals("+") || operator2.equals("-")))
 			return false;
-		if ((operator1 == '*' || operator1 == '/' || operator1 == '+' || operator1 == '-')
-				&& (operator2 == '<' || operator2 == '>'))
+		if ((operator1.equals("*") || operator1.equals("/") || operator1.equals("+") || operator1.equals("-")) && (operator2.equals("<") || operator2.equals(">") || operator2.equals("<=") || operator2.equals(">=")))
+			return false;
+		if ((operator1.equals("*") || operator1.equals("/") || operator1.equals("+") || operator1.equals("-") || operator1.equals("<") || operator1.equals(">")|| operator1.equals("<=") || operator1.equals(">=")) && ( operator2.equals("==") || operator2.equals("!=")))
+			return false;
+		if ((operator1.equals("*") || operator1.equals("/") || operator1.equals("+") || operator1.equals("-") || operator1.equals("<") || operator1.equals(">")|| operator1.equals("<=") || operator1.equals(">=") || operator1.equals("==") || operator1.equals("!=")) && ( operator2.equals("&")))
+			return false;
+		if ((operator1.equals("*") || operator1.equals("/") || operator1.equals("+") || operator1.equals("-") || operator1.equals("<") || operator1.equals(">")|| operator1.equals("<=") || operator1.equals(">=") || operator1.equals("==") || operator1.equals("!=") ||  operator1.equals("&")) && ( operator2.equals("^")))
+			return false;
+		if ((operator1.equals("*") || operator1.equals("/") || operator1.equals("+") || operator1.equals("-") || operator1.equals("<") || operator1.equals(">")|| operator1.equals("<=") || operator1.equals(">=") || operator1.equals("==") || operator1.equals("!=") ||  operator1.equals("&") ||  operator1.equals("^")) && ( operator2.equals("|")))
+			return false;
+		if ((operator1.equals("*") || operator1.equals("/") || operator1.equals("+") || operator1.equals("-") || operator1.equals("<") || operator1.equals(">")|| operator1.equals("<=") || operator1.equals(">=") || operator1.equals("==") || operator1.equals("!=") ||  operator1.equals("&") ||  operator1.equals("^") ||  operator1.equals("|")) && ( operator2.equals("&&")))
+			return false;
+		if ((operator1.equals("*") || operator1.equals("/") || operator1.equals("+") || operator1.equals("-") || operator1.equals("<") || operator1.equals(">")|| operator1.equals("<=") || operator1.equals(">=") || operator1.equals("==") || operator1.equals("!=") ||  operator1.equals("&") ||  operator1.equals("^") ||  operator1.equals("|")||  operator1.equals("&&")) && ( operator2.equals("||")))
 			return false;
 		else
 			return true;
@@ -79,27 +84,62 @@ public class InfixEvaluation {
 	 * @param firstNumber is the integer value of first number
 	 * @return the result after applying the operation appropriately
 	 */
-	public static int operation(char operator, int secondNumber, int firstNumber) {
+	public static int operation(String operator, int secondNumber, int firstNumber) {
 		switch (operator) {
-		case '+':
+		case "+":
 			return firstNumber + secondNumber;
-		case '-':
+		case "-":
 			return firstNumber - secondNumber;
 
-		case '<':
+		case "<":
 			if (secondNumber < firstNumber)
-				return 1;
-			else
 				return 0;
-		case '>':
+			else
+				return 1;
+		case ">":
 			if (firstNumber > secondNumber)
-				return 0;
-			else
 				return 1;
-
-		case '*':
+			else
+				return 0;
+		case "==":
+			if (firstNumber == secondNumber)
+				return 1;
+			else
+				return 0;
+		case "!=":
+			if (firstNumber == secondNumber)
+				return 1;
+			else
+				return 0;
+		case ">=":
+			if (firstNumber >= secondNumber)
+				return 1;
+			else
+				return 0;
+		case "<=":
+			if (firstNumber <= secondNumber)
+				return 1;
+			else
+				return 0;
+		case "&&":
+			if (firstNumber > 0 && secondNumber > 0)
+				return 1;
+			else
+				return 0;
+		case "||":
+			if (firstNumber > 0 || secondNumber > 0)
+				return 1;
+			else
+				return 0;
+		case "&":
+			return (firstNumber & secondNumber);
+		case "|":
+			return (firstNumber | secondNumber);
+		case "^":
+			return (firstNumber ^ secondNumber);
+		case "*":
 			return firstNumber * secondNumber;
-		case '/':
+		case "/":
 			try {
 				if (secondNumber == 0)
 					throw new Exception("Cannot divide by zero");
