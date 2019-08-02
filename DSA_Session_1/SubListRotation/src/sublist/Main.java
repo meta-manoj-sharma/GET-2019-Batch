@@ -13,8 +13,8 @@ public class Main {
 				LinkedList list = new LinkedList();
 				System.out.println("Enter size of linked list");
 				size = input.nextInt();
-				if (size == 0) {
-					System.out.println("linked list size can't be null");
+				if (size <= 0) {
+					System.out.println("linked list size can't be null or negative");
 				} else {
 					System.out.println("Enter data into linked list");
 					for (row = 0; row < size; row++) {
