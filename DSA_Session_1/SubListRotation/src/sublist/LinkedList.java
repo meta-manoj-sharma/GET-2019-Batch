@@ -30,7 +30,7 @@ public class LinkedList {
 	 * @param end
 	 * @return
 	 */
-	public void rotateSubList(int startOfSubList, int endOfSubList, int noOfRotation) {
+	public void rotateSubList(int startOfSubList, int endOfSubList) {
 		Node currentNode = headNode;
 		int nodeCount = 1;
 		int opeartionCount = 0;
@@ -104,12 +104,12 @@ public class LinkedList {
 	 * @param end
 	 * @param rotateIndex
 	 */
-	private void validate(int startOfSubList, int endOfSubList, int noOfRotation) {
+	private void validate(int startOfSubList, int endOfSubList) {
 
 		if (startOfSubList <= 0) {
 			throw new AssertionError("Start Index Must Be Positive Number");
 		}
-		if (endOfSubList >= size()) {
+		if (endOfSubList > size()) {
 			throw new AssertionError("end Index Must Be Less Then Size");
 		}
 		if (endOfSubList < startOfSubList) {
