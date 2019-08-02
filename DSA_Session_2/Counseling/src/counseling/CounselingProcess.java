@@ -54,8 +54,7 @@ public class CounselingProcess {
 		for (index = 1; index < sheet.getRows(); index++) {
 			String name = sheet.getCell(0, index).getContents();
 			if (check == 1) {
-				capacity = Integer.parseInt(sheet.getCell(1, index)
-						.getContents());
+				capacity = Integer.parseInt(sheet.getCell(1, index).getContents());
 				programWithCap.put(name, capacity);
 			} else {
 				prefrence = sheet.getCell(1, index).getContents();
@@ -71,8 +70,7 @@ public class CounselingProcess {
  * @param programCapacity path of program list in form of string
  * @throws Exception
  */
-	public void allocation(String path, String studentPrefernce,
-			String programCapacity) throws Exception {
+	public void allocation(String path, String studentPrefernce, String programCapacity) throws Exception {
 		readFile(programCapacity, 1);
 		readFile(studentPrefernce, 2);
 		WritableWorkbook workbook;
@@ -89,8 +87,9 @@ public class CounselingProcess {
 				boolean assign = false;
 
 				for (int index = 0; index < preference.length; index++) {
-					if (assign)
+					if (assign){
 						break;
+					}
 					String subject = preference[index];
 					int capacity = programWithCap.get(subject);
 					if (capacity > 0) {
@@ -107,7 +106,6 @@ public class CounselingProcess {
 			}
 			workbook.write();
 			workbook.close();
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
