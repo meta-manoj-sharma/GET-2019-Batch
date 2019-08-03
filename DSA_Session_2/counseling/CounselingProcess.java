@@ -32,7 +32,7 @@ import jxl.write.biff.RowsExceededException;
  * Dated 1 august 2019
  */
 public class CounselingProcess {
-	private Queue<String> queue = new LinkedList<String>();
+private Queue<String> queueOfStudents = new LinkedList<String>();
 	private Map<String, Integer> programWithCap = new HashMap<String, Integer>();
 	private Map<String, String> studentWithPref = new HashMap<String, String>();
 /**
@@ -59,7 +59,7 @@ public class CounselingProcess {
 			} else {
 				prefrence = sheet.getCell(1, index).getContents();
 				studentWithPref.put(name, prefrence);
-				queue.add(name);
+				queueOfStudents.add(name);
 			}
 		}
 	}
@@ -78,8 +78,8 @@ public class CounselingProcess {
 			workbook = Workbook.createWorkbook(new File(path));
 			WritableSheet sheet = workbook.createSheet("Output", 0);
 			int count = 1;
-			while (!queue.isEmpty()) {
-				String student = queue.remove(); //get first student from queue
+			while (!queueOfStudents.isEmpty()) {
+				String student = queueOfStudents.remove(); //get first student from queue
 				String pref = studentWithPref.get(student);
 				String[] preference = new String[5];
 
