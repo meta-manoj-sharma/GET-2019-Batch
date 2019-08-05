@@ -9,19 +9,19 @@ public class StringOperationTest {
 	@Test
 	public void testCase1() {
 		StringOperation obj = new StringOperation();
-		assertEquals(3, obj.uniqueChar("Hello"));
+		assertEquals(4, obj.uniqueChar("Hello"));
 	}
 
 	@Test
 	public void testCase2() {
 		StringOperation obj = new StringOperation();
-		assertEquals(4, obj.uniqueChar("Testcase"));
+		assertEquals(6, obj.uniqueChar("Testcase"));
 	}
 
 	@Test
 	public void testCase3() {
 		StringOperation obj = new StringOperation();
-		assertEquals(3, obj.uniqueChar("hello"));
+		assertEquals(12, obj.uniqueChar("@man#$ 123Wee"));
 	}
 
 	@Test

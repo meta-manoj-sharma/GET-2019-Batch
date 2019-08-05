@@ -4,8 +4,8 @@ import java.util.*;
 
 /**
  * program to get molecular mass of a organic compound
- * 
- * @author Manoj Sharma Dated 1 august 2019
+ * @author Manoj Sharma
+ * Dated 1 august 2019
  */
 public class MolecularMass {
 	private Map<Character, Integer> element;
@@ -26,8 +26,7 @@ public class MolecularMass {
 	}
 
 	/**
-	 * @param compound
-	 *            is organic compound in string form
+	 * @param compound is organic compound in string form
 	 * @return molecular mass of organic compound
 	 * @throws Exception
 	 */
