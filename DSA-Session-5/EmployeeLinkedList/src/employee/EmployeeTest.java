@@ -19,11 +19,11 @@ public class EmployeeTest {
 		employeeList.insert(employeeList, employeeObject2);
 		employeeList.sortBySalary(employeeList);
 		Node currentNode = employeeList.headNode;
-		assertEquals("B", currentNode.data.getEmployeeName());
-		currentNode = currentNode.next;
-		assertEquals("A", currentNode.data.getEmployeeName());
-		currentNode = currentNode.next;
-		assertEquals("C", currentNode.data.getEmployeeName());
+		assertEquals("B", currentNode.employeeData.getEmployeeName());
+		currentNode = currentNode.nextLink;
+		assertEquals("A", currentNode.employeeData.getEmployeeName());
+		currentNode = currentNode.nextLink;
+		assertEquals("C", currentNode.employeeData.getEmployeeName());
 	}
 // test case for equal salary condition then sort by age
 	@Test
@@ -37,11 +37,11 @@ public class EmployeeTest {
 		employeeList.insert(employeeList, employeeObject2);
 		employeeList.sortBySalary(employeeList);
 		Node currentNode = employeeList.headNode;
-		assertEquals("C", currentNode.data.getEmployeeName());
-		currentNode = currentNode.next;
-		assertEquals("B", currentNode.data.getEmployeeName());
-		currentNode = currentNode.next;
-		assertEquals("A", currentNode.data.getEmployeeName());
+		assertEquals("C", currentNode.employeeData.getEmployeeName());
+		currentNode = currentNode.nextLink;
+		assertEquals("B", currentNode.employeeData.getEmployeeName());
+		currentNode = currentNode.nextLink;
+		assertEquals("A", currentNode.employeeData.getEmployeeName());
 	}
 
 }

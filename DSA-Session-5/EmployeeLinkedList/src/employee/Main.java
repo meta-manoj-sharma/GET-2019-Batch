@@ -7,7 +7,7 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		try {
-			LinkedList employeeList = new LinkedList();
+			LinkedList employeeList; 
 			Employee employeeObject;
 			Scanner input = new Scanner(System.in);
 			String employeeName;
@@ -16,12 +16,17 @@ public class Main {
 			while (true) {
 				System.out.println("enter no. of employee");
 				noOfEmployee = input.nextInt();
+				employeeList = new LinkedList();
 				if (noOfEmployee > 0) {
 
 					while (noOfEmployee != 0) {
 						input.nextLine();
 						System.out.println("enter Name of employee");
 						employeeName = input.nextLine();
+						if(employeeName.charAt(0)==' ')
+						{
+							throw new Exception();
+						}
 						System.out.println("enter Age. of employee");
 						employeeAge = input.nextInt();
 						System.out.println("enter Salary of employee");
@@ -33,9 +38,9 @@ public class Main {
 					employeeList.sortBySalary(employeeList);
 					Node currentNode = employeeList.headNode;
 					while (currentNode != null) {
-						System.out.println("Name- " + currentNode.data.getEmployeeName() + "  Age- "	+ currentNode.data.getEmployeeAge()
-								                    + "  Salary- " + currentNode.data.getEmployeeSalary());
-						currentNode = currentNode.next;
+						System.out.println("Name- " + currentNode.employeeData.getEmployeeName() + "  Age- "	+ currentNode.employeeData.getEmployeeAge()
+								                    + "  Salary- " + currentNode.employeeData.getEmployeeSalary());
+						currentNode = currentNode.nextLink;
 					}
 					System.out.println("Press 0 to exit or any number to continue");
 					flag = input.nextInt();

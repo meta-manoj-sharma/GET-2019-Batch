@@ -5,14 +5,14 @@ import java.util.*;
 import org.json.simple.JSONObject;
 
 public class DictionaryImp implements Dictionary {
-	BSTNode head;
+	BSTNode headNode;
 	/*
 	 * parameterized constructor
 	 * @input json object
    	 */
 	
 	public DictionaryImp(JSONObject jsonObject) throws Exception {
-		this.head = null;
+		this.headNode = null;
 		this.input(jsonObject);
 	}
 	
@@ -45,10 +45,10 @@ public class DictionaryImp implements Dictionary {
 		if (key.length() == 0 || value.length() == 0 || key == null || value == null) {
 			throw new NullPointerException("Invalid key and value");
 		}
-		if (head == null) {
-			head = new BSTNode(key, value);
+		if (headNode == null) {
+			headNode = new BSTNode(key, value);
 		} else {
-			addRec(key, value, head);
+			addRecursion(key, value, headNode);
 		}
 		return false;
 	}
@@ -60,27 +60,27 @@ public class DictionaryImp implements Dictionary {
 	 * @param node
 	 * @return
 	 */
-	private boolean addRec(String key, String value, BSTNode node) {
+	private boolean addRecursion(String key, String value, BSTNode node) {
 		// go left if key less than current node key
 		if (key.compareTo(node.getKey()) <= -1) {
-			if (node.getLeft() != null) {
+			if (node.getLeftChild() != null) {
 				// if left is present call recursive
-				addRec(key, value, node.getLeft());
+				addRecursion(key, value, node.getLeftChild());
 			} else {
 				// add value to left
-				node.setLeft(new BSTNode(key, value));
-				node.getLeft().setParent(node);
+				node.setLeftChild(new BSTNode(key, value));
+				node.getLeftChild().setParentNode(node);
 			}
 		}
 		// go right if key is greater than current node key
 		else if (key.compareTo(node.getKey()) >= 1) {
-			if (node.getRight() != null) {
+			if (node.getRightChild() != null) {
 				// if right is present call recursive
-				addRec(key, value, node.getRight());
+				addRecursion(key, value, node.getRightChild());
 			} else {
 				// add value to right
-				node.setRight(new BSTNode(key, value));
-				node.getRight().setParent(node);
+				node.setRightChild(new BSTNode(key, value));
+				node.getRightChild().setParentNode(node);
 			}
 		} else {
 			node = new BSTNode(key, value);
@@ -99,8 +99,8 @@ public class DictionaryImp implements Dictionary {
 			throw new NullPointerException("Invalid key and value");
 		}
 
-		if (head != null) {
-			return deleteRec(key, head);
+		if (headNode != null) {
+			return deleteRecursion(key, headNode);
 		}
 		return false;
 	}
@@ -111,58 +111,65 @@ public class DictionaryImp implements Dictionary {
 	 * @param node
 	 * @return
 	 */
-	private boolean deleteRec(String key, BSTNode node) {
+	private boolean deleteRecursion(String key, BSTNode node) {
 		// go left if key less than current node key
 		if (key.compareTo(node.getKey()) <= -1) {
-			if (node.getLeft() != null) {
+			if (node.getLeftChild() != null) {
 				// if left is present call recursive
-				return deleteRec(key, node.getLeft());
+				return deleteRecursion(key, node.getLeftChild());
 			}
 		}
 		// go right if key is greater than current node key
 		else if (key.compareTo(node.getKey()) >= 1) {
-			if (node.getRight() != null) {
+			if (node.getRightChild() != null) {
 				// if right is present call recursive
-				return deleteRec(key, node.getRight());
+				return deleteRecursion(key, node.getRightChild());
 			}
 		}
 		// if key is equal to node key
 		else if (key.compareTo(node.getKey()) == 0) {
 			// check if it is a leaf node
-			if (node.getLeft() == null) {
-				if (node.getRight() == null) {
-					// set parent child null if it is leaf node
-					if (node.getParent().getLeft() == node) {
-						node.getParent().setLeft(null);
-					} else {
-						node.getParent().setRight(null);
-					}
+			if (node.getLeftChild() == null && node.getRightChild() == null) {
+				if (node.getParentNode() == null) {
+					headNode = null;
+				}
+				// set parent child null if it is leaf node
+				else if (node.getParentNode().getLeftChild() == node) {
+					node.getParentNode().setLeftChild(null);
+				} else {
+					node.getParentNode().setRightChild(null);
 				}
 			}
 			// if left node is null
-			else if (node.getLeft() == null && node.getRight() != null) {
+			else if (node.getLeftChild() == null && node.getRightChild() != null) {
+				if (node.getParentNode() == null) {
+					BSTNode newNode = findMinimum(node.getRightChild());
+					node.setKey(newNode.getKey());
+					node.setValue(newNode.getValue());
+					return deleteRecursion(newNode.getKey(), newNode);
+				}
 				// if self is left than set parent left else set parent right
-				if (node.getParent().getLeft() == node) {
-					node.getParent().setLeft(node.getRight());
+				else if (node.getParentNode().getLeftChild() == node) {
+					node.getParentNode().setLeftChild(node.getRightChild());
 				} else {
-					node.getParent().setRight(node.getRight());
+					node.getParentNode().setRightChild(node.getRightChild());
 				}
 			}
 			// if right is null
-			else if (node.getRight() == null && node.getLeft() != null) {
+			else if (node.getRightChild() == null && node.getLeftChild() != null) {
 				// if self is right set parent right else set parent left
-				if (node.getParent().getRight() == node) {
-					node.getParent().setRight(node.getLeft());
+				if (node.getParentNode().getRightChild() == node) {
+					node.getParentNode().setRightChild(node.getLeftChild());
 				} else {
-					node.getParent().setLeft(node.getLeft());
+					node.getParentNode().setLeftChild(node.getLeftChild());
 				}
 			}
 
 			else {
-				BSTNode newNode = findMin(node.getRight());
+				BSTNode newNode = findMinimum(node.getRightChild());
 				node.setKey(newNode.getKey());
 				node.setValue(newNode.getValue());
-				return deleteRec(newNode.getKey(), newNode);
+				return deleteRecursion(newNode.getKey(), newNode);
 			}
 		}
 
@@ -175,9 +182,9 @@ public class DictionaryImp implements Dictionary {
 	 * @param currentNode
 	 * @return
 	 */
-	private BSTNode findMin(BSTNode currentNode) {
-		while (currentNode.getLeft() != null) {
-			currentNode = currentNode.getLeft();
+	private BSTNode findMinimum(BSTNode currentNode) {
+		while (currentNode.getLeftChild() != null) {
+			currentNode = currentNode.getLeftChild();
 		}
 		return currentNode;
 
@@ -189,11 +196,11 @@ public class DictionaryImp implements Dictionary {
 	 * @param list
 	 * @return
 	 */
-	private List<Value> inorderRec(BSTNode root, List<Value> list) {
+	private List<Value> inorderRecursion(BSTNode root, List<Value> list) {
 		if (root != null) {
-			inorderRec(root.left, list);
+			inorderRecursion(root.leftChild, list);
 			list.add(new Value(root.getKey(), root.getValue()));
-			inorderRec(root.right, list);
+			inorderRecursion(root.rightChild, list);
 		}
 		return list;
 	}
@@ -204,8 +211,8 @@ public class DictionaryImp implements Dictionary {
 	 */
 	@Override
 	public String getValue(String key) {
-		if (head != null) {
-			return getValueRec(key, head);
+		if (headNode != null) {
+			return getValueRecursion(key, headNode);
 		}
 		return null;
 	}
@@ -216,15 +223,15 @@ public class DictionaryImp implements Dictionary {
 	 * @param node
 	 * @return
 	 */
-	private String getValueRec(String key, BSTNode node) {
+	private String getValueRecursion(String key, BSTNode node) {
 		if (node == null) {
 			return null;
 		} else if (key.compareTo(node.getKey()) == 0) {
 			return node.getValue();
 		} else if (key.compareTo(node.getKey()) <= -1) {
-			return getValueRec(key, node.getLeft());
+			return getValueRecursion(key, node.getLeftChild());
 		} else if (key.compareTo(node.getKey()) >= 1) {
-			return getValueRec(key, node.getRight());
+			return getValueRecursion(key, node.getRightChild());
 		} else
 			return null;
 	}
@@ -235,8 +242,8 @@ public class DictionaryImp implements Dictionary {
 	@Override
 	public List<Value> getAll() {
 		List<Value> valueList = new ArrayList<Value>();
-		if (head != null) {
-			valueList = inorderRec(head, valueList);
+		if (headNode != null) {
+			valueList = inorderRecursion(headNode, valueList);
 		}
 		return valueList;
 	}
@@ -251,7 +258,7 @@ public class DictionaryImp implements Dictionary {
 		List<Value> list = getAll();
 		List<Value> finalList = new ArrayList<Value>();
 		for (Value v : list) {
-			if (v.getKey().compareTo(key1) >= 1 && v.getKey().compareTo(key2) <= -1) {
+			if (v.getKey().compareTo(key1) >= 0 && v.getKey().compareTo(key2) <= -1) {
 				finalList.add(v);
 			}
 		}

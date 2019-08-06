@@ -1,11 +1,11 @@
 package employee;
 
 public class Node {
-	Employee data;
-	Node next;
+	Employee employeeData;
+	Node nextLink;
 
-	Node(Employee data) {
-		this.data = data;
-		this.next = null;
+	Node(Employee employeeData) {
+		this.employeeData = employeeData;
+		this.nextLink = null;
 	}
 }

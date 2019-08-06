@@ -3,16 +3,16 @@ package dictionary;
 public class BSTNode {
 	private String key;
 	private String value;
-	BSTNode left,right,parent;
+	BSTNode leftChild,rightChild,parentNode;
 	
 	//constructor 
 	public BSTNode(String key, String value) {
 		super();
 		this.key = key;
 		this.value = value;
-		this.left = null;
-		this.right = null;
-		this.parent = null;
+		this.leftChild = null;
+		this.rightChild = null;
+		this.parentNode = null;
 	}
 
 	//getter method for key
@@ -36,32 +36,32 @@ public class BSTNode {
 	}
 
 	//getter method for left child
-	public BSTNode getLeft() {
-		return left;
+	public BSTNode getLeftChild() {
+		return leftChild;
 	}
 
 	//setter method for left child
-	public void setLeft(BSTNode left) {
-		this.left = left;
+	public void setLeftChild(BSTNode left) {
+		this.leftChild = left;
 	}
 
 	//getter method right child
-	public BSTNode getRight() {
-		return right;
+	public BSTNode getRightChild() {
+		return rightChild;
 	}
 
 	//setter method for right
-	public void setRight(BSTNode right) {
-		this.right = right;
+	public void setRightChild(BSTNode right) {
+		this.rightChild = right;
 	}
 
 	//getter method for parent
-	public BSTNode getParent() {
-		return parent;
+	public BSTNode getParentNode() {
+		return parentNode;
 	}
 
 	//setter method for parent
-	public void setParent(BSTNode parent) {
-		this.parent = parent;
+	public void setParentNode(BSTNode parent) {
+		this.parentNode = parent;
 	}	
 }

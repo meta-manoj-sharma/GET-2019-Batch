@@ -14,16 +14,16 @@ public class LinkedList {
  */
 	public LinkedList insert(LinkedList list, Employee data) {
 		Node newNode = new Node(data);
-		newNode.next = null;
+		newNode.nextLink = null;
 
 		if (list.headNode == null) {
 			list.headNode = newNode;
 		} else {
 			Node last = list.headNode;
-			while (last.next != null) {
-				last = last.next;
+			while (last.nextLink != null) {
+				last = last.nextLink;
 			}
-			last.next = newNode;
+			last.nextLink = newNode;
 		}
 		return list;
 	}
@@ -38,24 +38,24 @@ public class LinkedList {
 		Node nextNode = null;
 		Employee swapFlag;
 		while (currentNode != null) {
-			nextNode = currentNode.next;
+			nextNode = currentNode.nextLink;
 			while (nextNode != null) {
-				if (nextNode.data.getEmployeeSalary() > currentNode.data.getEmployeeSalary()) {
-					swapFlag = currentNode.data;
-					currentNode.data = nextNode.data;
-					nextNode.data = swapFlag;
+				if (nextNode.employeeData.getEmployeeSalary() > currentNode.employeeData.getEmployeeSalary()) {
+					swapFlag = currentNode.employeeData;
+					currentNode.employeeData = nextNode.employeeData;
+					nextNode.employeeData = swapFlag;
 				}
 				//for sorting on age basis when salary of two employees are equal 
-				if (nextNode.data.getEmployeeSalary() == currentNode.data.getEmployeeSalary()) {
-					if (nextNode.data.getEmployeeAge() <= currentNode.data.getEmployeeAge()) {
-						swapFlag = currentNode.data;
-						currentNode.data = nextNode.data;
-						nextNode.data = swapFlag;
+				if (nextNode.employeeData.getEmployeeSalary() == currentNode.employeeData.getEmployeeSalary()) {
+					if (nextNode.employeeData.getEmployeeAge() <= currentNode.employeeData.getEmployeeAge()) {
+						swapFlag = currentNode.employeeData;
+						currentNode.employeeData = nextNode.employeeData;
+						nextNode.employeeData = swapFlag;
 					}
 				}
-				nextNode = nextNode.next;
+				nextNode = nextNode.nextLink;
 			}
-			currentNode = currentNode.next;
+			currentNode = currentNode.nextLink;
 		}
 		return employeeList;
 	}
