@@ -6,111 +6,227 @@ import org.json.simple.JSONObject;
 
 public class DictionaryImp implements Dictionary {
 	BSTNode head;
+	/*
+	 * parameterized constructor
+	 * @input json object
+   	 */
+	
+	public DictionaryImp(JSONObject jsonObject) throws Exception {
+		this.head = null;
+		this.input(jsonObject);
+	}
+	
+	//default constructor
+	public DictionaryImp() {
+	}
+
+	/*
+	 * method for add key and value from json object
+	 * @param jsonObject
+	 */
+	private boolean input(JSONObject jsonObject) throws Exception{
+		
+		for(Object obj : jsonObject.keySet()){
+			String key = (String)obj;
+			String value = (String) jsonObject.get(key);
+			System.out.println("key"+key+"value"+value);
+			this.add(key, value);
+		}
+		return true;
+	}
+
+
 
 	/**
-	 * method for add key and value in BST 
+	 * method for add key and value in BST
 	 */
-	
+
 	@Override
 	public boolean add(String key, String value) throws Exception {
-		if(key.length()==0 || value.length() ==0 ||key==null||value==null){
+		if (key.length() == 0 || value.length() == 0 || key == null || value == null) {
 			throw new NullPointerException("Invalid key and value");
 		}
-		if(head == null){
-			head = new BSTNode(key,value);
-		}else{
-			addRec(key,value,head);
+		if (head == null) {
+			head = new BSTNode(key, value);
+		} else {
+			addRec(key, value, head);
 		}
 		return false;
 	}
-	
+
 	/**
-	 * Recursive function for adding key and value in BST 
+	 * Recursive function for adding key and value in BST
 	 * @param key
 	 * @param value
 	 * @param node
 	 * @return
 	 */
-	private boolean addRec(String key,String value,BSTNode node){
-		//go left if key less than current node key
-		if (key.compareTo(node.getKey()) <= -1){
-			if(node.getLeft() != null){
-				//if left is present call recursive
+	private boolean addRec(String key, String value, BSTNode node) {
+		// go left if key less than current node key
+		if (key.compareTo(node.getKey()) <= -1) {
+			if (node.getLeft() != null) {
+				// if left is present call recursive
 				addRec(key, value, node.getLeft());
-			}
-			else{
-				//add value to left 
-				node.setLeft(new BSTNode(key,value));
+			} else {
+				// add value to left
+				node.setLeft(new BSTNode(key, value));
 				node.getLeft().setParent(node);
 			}
 		}
-		//go right if key is greater than current node key
-		else if(key.compareTo(node.getKey()) >= 1){
-			if(node.getRight() != null){
-				//if right is present call recursive
-	            addRec(key, value, node.getRight());
-			}
-			else{
-				//add value to right
-				node.setRight(new BSTNode(key,value));
+		// go right if key is greater than current node key
+		else if (key.compareTo(node.getKey()) >= 1) {
+			if (node.getRight() != null) {
+				// if right is present call recursive
+				addRec(key, value, node.getRight());
+			} else {
+				// add value to right
+				node.setRight(new BSTNode(key, value));
 				node.getRight().setParent(node);
 			}
-		}
-		else{
-			node = new BSTNode(key,value);
+		} else {
+			node = new BSTNode(key, value);
 		}
 		return true;
 	}
-	
-	
-	
+
+	/**
+	 * method for delete a key and value form BST 0
+	 * @param key
+	 */
+	@Override
+	public boolean delete(String key) throws Exception {
+
+		if (key.length() == 0 || key == null) {
+			throw new NullPointerException("Invalid key and value");
+		}
+
+		if (head != null) {
+			return deleteRec(key, head);
+		}
+		return false;
+	}
+
+	/**
+	 * recursive function for deleting a key form BST
+	 * @param key
+	 * @param node
+	 * @return
+	 */
+	private boolean deleteRec(String key, BSTNode node) {
+		// go left if key less than current node key
+		if (key.compareTo(node.getKey()) <= -1) {
+			if (node.getLeft() != null) {
+				// if left is present call recursive
+				return deleteRec(key, node.getLeft());
+			}
+		}
+		// go right if key is greater than current node key
+		else if (key.compareTo(node.getKey()) >= 1) {
+			if (node.getRight() != null) {
+				// if right is present call recursive
+				return deleteRec(key, node.getRight());
+			}
+		}
+		// if key is equal to node key
+		else if (key.compareTo(node.getKey()) == 0) {
+			// check if it is a leaf node
+			if (node.getLeft() == null) {
+				if (node.getRight() == null) {
+					// set parent child null if it is leaf node
+					if (node.getParent().getLeft() == node) {
+						node.getParent().setLeft(null);
+					} else {
+						node.getParent().setRight(null);
+					}
+				}
+			}
+			// if left node is null
+			else if (node.getLeft() == null && node.getRight() != null) {
+				// if self is left than set parent left else set parent right
+				if (node.getParent().getLeft() == node) {
+					node.getParent().setLeft(node.getRight());
+				} else {
+					node.getParent().setRight(node.getRight());
+				}
+			}
+			// if right is null
+			else if (node.getRight() == null && node.getLeft() != null) {
+				// if self is right set parent right else set parent left
+				if (node.getParent().getRight() == node) {
+					node.getParent().setRight(node.getLeft());
+				} else {
+					node.getParent().setLeft(node.getLeft());
+				}
+			}
+
+			else {
+				BSTNode newNode = findMin(node.getRight());
+				node.setKey(newNode.getKey());
+				node.setValue(newNode.getValue());
+				return deleteRec(newNode.getKey(), newNode);
+			}
+		}
+
+		return true;
+
+	}
+
+	/**
+	 * method to find minimum value from tree
+	 * @param currentNode
+	 * @return
+	 */
+	private BSTNode findMin(BSTNode currentNode) {
+		while (currentNode.getLeft() != null) {
+			currentNode = currentNode.getLeft();
+		}
+		return currentNode;
+
+	}
+
 	/**
 	 * method to traverse tree
 	 * @param root
 	 * @param list
 	 * @return
 	 */
-	private List<Value> inorderRec(BSTNode root,List<Value> list) { 
-		if (root != null) { 
-			inorderRec(root.left,list);
-	        list.add(new Value(root.getKey(),root.getValue()));
-	        inorderRec(root.right,list); 
-	    }
-	    return list;
-	} 
-	
+	private List<Value> inorderRec(BSTNode root, List<Value> list) {
+		if (root != null) {
+			inorderRec(root.left, list);
+			list.add(new Value(root.getKey(), root.getValue()));
+			inorderRec(root.right, list);
+		}
+		return list;
+	}
+
 	/**
-	 * method to find a value with key
+	 * method to find a value with key 
 	 * @param key
 	 */
 	@Override
 	public String getValue(String key) {
-		if(head != null){
-			return getValueRec(key,head);
+		if (head != null) {
+			return getValueRec(key, head);
 		}
 		return null;
 	}
-	
+
 	/**
 	 * recursive method to find a value form tree
 	 * @param key
 	 * @param node
 	 * @return
 	 */
-	private String getValueRec(String key,BSTNode node){
-		if(node == null){
+	private String getValueRec(String key, BSTNode node) {
+		if (node == null) {
 			return null;
-		}
-		else if(key.compareTo(node.getKey()) == 0){
+		} else if (key.compareTo(node.getKey()) == 0) {
 			return node.getValue();
-		}
-		else if(key.compareTo(node.getKey()) <= -1){
+		} else if (key.compareTo(node.getKey()) <= -1) {
 			return getValueRec(key, node.getLeft());
-		}
-		else if(key.compareTo(node.getKey()) >= 1){
+		} else if (key.compareTo(node.getKey()) >= 1) {
 			return getValueRec(key, node.getRight());
-		}
-		else
+		} else
 			return null;
 	}
 
@@ -120,32 +236,31 @@ public class DictionaryImp implements Dictionary {
 	@Override
 	public List<Value> getAll() {
 		List<Value> valueList = new ArrayList<Value>();
-		if(head != null){
-			valueList = inorderRec(head,valueList);
+		if (head != null) {
+			valueList = inorderRec(head, valueList);
 		}
 		return valueList;
 	}
 
 	/**
-	 * method to find value of key between keys
+	 * method to find value of key between keys 
 	 * @param key1
 	 * @param key2
 	 */
 	@Override
-	public List<Value> getBetween(String key1 ,String key2) {
+	public List<Value> getBetween(String key1, String key2) {
 		List<Value> list = getAll();
 		List<Value> finalList = new ArrayList<Value>();
-		for(Value v : list){
-			if(v.getKey().compareTo(key1) >= 1 && v.getKey().compareTo(key2) <= -1){
+		for (Value v : list) {
+			if (v.getKey().compareTo(key1) >= 1 && v.getKey().compareTo(key2) <= -1) {
 				finalList.add(v);
 			}
 		}
 		return finalList;
 	}
-
-	@Override
-	public boolean delete(String key) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
+public void display(List<Value> valueList) {
+	for(int i = 0; i < valueList.size(); i++) {
+	System.out.println("Key-"+valueList.get(i).getKey()+" value-"+valueList.get(i).getValue());	
 	}
+}
 }

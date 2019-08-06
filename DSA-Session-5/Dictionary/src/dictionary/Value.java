@@ -1,11 +1,11 @@
 package dictionary;
 
 public class Value {
-	
+
 	private String key;
 	private String value;
-	
-	//constructor
+
+	// constructor
 	public Value(String key, String value) {
 		super();
 		this.key = key;
@@ -27,5 +27,4 @@ public class Value {
 	public void setValue(String value) {
 		this.value = value;
 	}
-	
 }
