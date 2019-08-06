@@ -29,7 +29,6 @@ public class DictionaryImp implements Dictionary {
 		for(Object obj : jsonObject.keySet()){
 			String key = (String)obj;
 			String value = (String) jsonObject.get(key);
-			System.out.println("key"+key+"value"+value);
 			this.add(key, value);
 		}
 		return true;
