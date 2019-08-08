@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class PriorityQueueArrayTest {
+
 	@Test
 	public void testEnqueue() {
 		PriorityQueueArray priorityQueueObject = new PriorityQueueArray(5);

@@ -1,4 +1,4 @@
-package virtualcommand;
+package commandprompt;
 
 import java.util.*;
 /**
@@ -175,12 +175,12 @@ public class Command {
 	private void printTree(Folder currentDirectory, int nesting) {
 		for (Folder subDirectory : currentDirectory.getSubFoldersList()) {
 			for (int i = 0; i < nesting; i++)
-				System.out.print(" --> ");
+				System.out.print("--> ");
 			if (subDirectory.getSubFoldersList().size() != 0) {
 				System.out.println("--> " + subDirectory.getFolderName());
 				printTree(subDirectory, nesting + 1);
 			} else
-				System.out.println("-->--> " + subDirectory.getFolderName());
+				System.out.println("--> " + subDirectory.getFolderName());
 		}
 	}
 
@@ -195,3 +195,4 @@ public class Command {
 		System.out.print(">");
 	}
 }
+

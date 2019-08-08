@@ -1,4 +1,5 @@
 package queue;
+
 /**
  * this program is create a priority queue
  * @author Manoj Sharma
@@ -45,7 +46,7 @@ public class PriorityQueueArray implements PriorityQueueInterface {
  */
 	public void enqueue(int element, int priority) {
 		try {
-			if (isFull() || priority>capacity) {
+			if (isFull() || priority > capacity) {
 				throw new Exception("Queue Full");
 
 			} else {
@@ -75,6 +76,7 @@ public class PriorityQueueArray implements PriorityQueueInterface {
 						if (j == priorQueue[1][i]) {
 							data = priorQueue[0][i];
 							priorQueue[1][i] = -1;
+							 priorQueue[0][i] = -1;
 							counter++;
 							break outer;
 						}
@@ -87,5 +89,10 @@ public class PriorityQueueArray implements PriorityQueueInterface {
 			System.out.println("Empty queue");
 		}
 		return data;
+	}
+	public void display(){
+		for (int i = front; i <= rear; i++) {
+			System.out.println("value- " + priorQueue[0][i] + " priority- " + priorQueue[1][i]);
+		}
 	}
 }

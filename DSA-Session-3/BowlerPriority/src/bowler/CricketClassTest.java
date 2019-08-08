@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class CricketClassTest {
-
 	@Test
 	public void testGetBowlerOrder1() {
 		// Asssuming sum of quota of each bowler is greater than ballByVirat

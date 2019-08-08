@@ -1,4 +1,4 @@
-package virtualcommand;
+package commandprompt;
 
 public class Main {
 

@@ -17,5 +17,4 @@ public class Bowler {
 	public String getNameOfBowler() {
 		return bowlerName;
 	}
-
 }
