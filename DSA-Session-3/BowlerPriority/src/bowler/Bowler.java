@@ -1,21 +1,21 @@
 package bowler;
 
 public class Bowler {
-	String bowlerName;
-	int balls;
+	private String bowlerName;
+	private int balls;
 
 	public Bowler(String bowlerName, int balls) {
 		this.bowlerName = bowlerName;
 		this.balls = balls;
 	}
-	//Getter methods 
-	public int ballsOfBowler() {
+
+	// Getter methods
+	public int getBallsOfBowler() {
 		return balls;
 	}
 
-	public String nameOfBowler() {
+	public String getNameOfBowler() {
 		return bowlerName;
 	}
 
 }
-

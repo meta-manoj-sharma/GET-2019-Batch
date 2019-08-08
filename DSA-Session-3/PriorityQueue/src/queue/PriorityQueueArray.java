@@ -1,5 +1,9 @@
 package queue;
-
+/**
+ * this program is create a priority queue
+ * @author Manoj Sharma
+ * Dated 2  august 2019
+ */
 public class PriorityQueueArray implements PriorityQueueInterface {
 	int priorQueue[][];
 	int front;
@@ -24,8 +28,8 @@ public class PriorityQueueArray implements PriorityQueueInterface {
 		}
 	}
 /**
- * This method checks whether queue is full or not
- * @return true if queue is full otherwise returns false
+ * This method checks whether queue is empty or not
+ * @return true if queue is empty otherwise returns false
  */
 	
 	public boolean isEmpty() {
