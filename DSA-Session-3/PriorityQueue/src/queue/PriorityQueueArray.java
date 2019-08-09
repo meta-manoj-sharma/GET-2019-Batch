@@ -44,53 +44,51 @@ public class PriorityQueueArray implements PriorityQueueInterface {
  * @param element is the integer value to be added
  * @param priority is the element's priority in between 1<=priority<=capacity
  */
-	public void enqueue(int element, int priority) {
-		try {
-			if (isFull() || priority > capacity) {
-				throw new Exception("Queue Full");
+	public void enqueue (int element, int priority) throws Exception {
+		if (isFull()) {
+			throw new Exception("Queue is Full");
 
+		} else if (priority > capacity || priority <= 0) {
+			throw new Exception("Priority is not valid");
+
+		} else {
+			if (front == -1 && rear == -1) {
+				front = 0;
+				rear = 0;
 			} else {
-				if (front == -1 && rear == -1) {
-					front = 0;
-					rear = 0;
-				} else {
-					rear++;
-				}
-				priorQueue[0][rear] = element;
-				priorQueue[1][rear] = priority;
+				rear++;
 			}
-		} catch (Exception e) {
-			System.out.println("Queue is Full");
+			priorQueue[0][rear] = element;
+			priorQueue[1][rear] = priority;
 		}
 	}
 /**
  * This method deletes the element in queue according to the priorities
  * @return the integer element dequeued 
+ * @throws Exception 
  */
-	public int dequeue() {
+	public int dequeue() throws Exception {
 		int data = 0;
-		try {
-			if (!isEmpty()) {
-				outer: for (int j = 1; j <= capacity; j++) {
-					for (int i = front; i <= rear; i++) {
-						if (j == priorQueue[1][i]) {
-							data = priorQueue[0][i];
-							priorQueue[1][i] = -1;
-							 priorQueue[0][i] = -1;
-							counter++;
-							break outer;
-						}
+		if (!isEmpty()) {
+			outer: for (int j = 1; j <= capacity; j++) {
+				for (int i = front; i <= rear; i++) {
+					if (j == priorQueue[1][i]) {
+						data = priorQueue[0][i];
+						priorQueue[1][i] = -1;
+						priorQueue[0][i] = -1;
+						counter++;
+						break outer;
 					}
 				}
-			} else {
-				throw new Exception("Empty Queue");
 			}
-		} catch (Exception e) {
-			System.out.println("Empty queue");
+		} else {
+			throw new Exception("Empty Queue");
+
 		}
 		return data;
 	}
-	public void display(){
+
+	public void display() {
 		for (int i = front; i <= rear; i++) {
 			System.out.println("value- " + priorQueue[0][i] + " priority- " + priorQueue[1][i]);
 		}

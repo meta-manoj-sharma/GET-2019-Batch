@@ -39,11 +39,11 @@ public class Main {
 			System.exit(0);
 			default :
 			System.out.println("enter valid choice...");
+				}
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+			main(args);
 		}
-	}
-} catch (Exception e) {
-	System.out.println(e);
-	main(args);
-}
 	}
 }

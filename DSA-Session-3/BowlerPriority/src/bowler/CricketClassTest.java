@@ -15,9 +15,9 @@ public class CricketClassTest {
 		for (int i = 0; i < nameOfBowler.length; i++) {
 			CricketClass.queueOfBowler.add(new Bowler(nameOfBowler[i], ballsOfBowler[i]));
 		}
-		String check[] = CricketClass.getBowled(ballByVirat);
-		String actual[] = { "Chahal", "Bumrah", "Chahal", "Bumrah", "Chahal", "Irfan", "Chahal", "Irfan", "Malinga","Bumrah" };
-		assertArrayEquals(check, actual);
+		String arrayOfBowlers[] = CricketClass.getBowled(ballByVirat);
+		String expectedArrayOfBowlers[] = { "Chahal", "Bumrah", "Chahal", "Bumrah", "Chahal", "Irfan", "Chahal", "Irfan", "Malinga","Bumrah" };
+		assertArrayEquals(arrayOfBowlers, expectedArrayOfBowlers);
 	}
 
 	@Test
@@ -30,8 +30,8 @@ public class CricketClassTest {
 		for (int i = 0; i < nameOfBowler.length; i++) {
 			CricketClass.queueOfBowler.add(new Bowler(nameOfBowler[i], ballsOfBowler[i]));
 		}
-		String check[] = CricketClass.getBowled(ballByVirat);
-		String actual[] = { "Malinga", "Shami", "Malinga", "Shami", "Bumrah", "Shami", "Bumrah", "Malinga" };
-		assertArrayEquals(check, actual);
+		String arrayOfBowlers[] = CricketClass.getBowled(ballByVirat);
+		String expectedArrayOfBowlers[] = { "Malinga", "Shami", "Malinga", "Shami", "Bumrah", "Shami", "Bumrah", "Malinga" };
+		assertArrayEquals(arrayOfBowlers, expectedArrayOfBowlers);
 	}
 }

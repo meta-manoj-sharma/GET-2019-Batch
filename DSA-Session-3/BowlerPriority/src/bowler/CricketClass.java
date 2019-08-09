@@ -16,20 +16,20 @@ public class CricketClass {
  */
 	public static String[] getBowled(int viratBall) {
 		int index = 0;
-		String array[] = new String[viratBall];
+		String arrayOfBowlerName[] = new String[viratBall];
 		while (viratBall != 0) {
 			// Fetching top bowler with maximum balls
 			int updatedBalls = queueOfBowler.peek().getBallsOfBowler() - 1;
 			String bowlerName = queueOfBowler.peek().getNameOfBowler();
 			// Adding to array of string
-			array[index++] = bowlerName;
+			arrayOfBowlerName[index++] = bowlerName;
 			queueOfBowler.remove();
 			if (updatedBalls != 0) {
 				queueOfBowler.add(new Bowler(bowlerName, updatedBalls));
 			}
 			viratBall--;
 		}
-		return array;
+		return arrayOfBowlerName;
 	}
 }
 

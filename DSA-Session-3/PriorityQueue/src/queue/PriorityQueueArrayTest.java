@@ -7,7 +7,7 @@ import org.junit.Test;
 public class PriorityQueueArrayTest {
 
 	@Test
-	public void testEnqueue() {
+	public void testEnqueue() throws Exception {
 		PriorityQueueArray priorityQueueObject = new PriorityQueueArray(5);
 		priorityQueueObject.enqueue(20, 4);
 		priorityQueueObject.enqueue(25, 2);
@@ -19,7 +19,7 @@ public class PriorityQueueArrayTest {
 	}
 
 	@Test
-	public void testDequeue1() {
+	public void testDequeue1() throws Exception {
 		PriorityQueueArray priorityQueueObject = new PriorityQueueArray(5);
 		priorityQueueObject.enqueue(20, 4);
 		priorityQueueObject.enqueue(25, 2);
@@ -28,7 +28,7 @@ public class PriorityQueueArrayTest {
 	}
 
 	@Test
-	public void testDequeue2() {
+	public void testDequeue2() throws Exception {
 		PriorityQueueArray priorityQueueObject = new PriorityQueueArray(5);
 		priorityQueueObject.enqueue(100, 1);
 		priorityQueueObject.enqueue(25, 2);

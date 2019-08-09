@@ -9,10 +9,10 @@ public class Main {
 		for (int i = 0; i < nameOfBowler.length; i++) {
 			CricketClass.queueOfBowler.add(new Bowler(nameOfBowler[i], ballsOfBowler[i]));
 		}
-		String check[] = CricketClass.getBowled(ballByVirat);
+		String arrayOfBowlers[] = CricketClass.getBowled(ballByVirat);
 		System.out.println("ORDER of Bowler ");
-		for (int k = 0; k < check.length; k++) {
-			System.out.println(check[k]);
+		for (int k = 0; k < arrayOfBowlers.length; k++) {
+			System.out.println(arrayOfBowlers[k]);
 		}
 		System.out.println("Remaining quota of Bowler Summary");
 		while (!CricketClass.queueOfBowler.isEmpty()) {
