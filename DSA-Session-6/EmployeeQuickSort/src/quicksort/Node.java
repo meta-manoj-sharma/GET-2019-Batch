@@ -4,11 +4,13 @@ public class Node {
 	Employee employeeObject;
 	Node nextLink;
 
-	public Employee getEmployeeObject() {
+	public Employee getEmployeeObject() 
+	{
 		return employeeObject;
 	}
 
-	public Node(Employee object) {
+	public Node(Employee object) 
+	{
 		this.employeeObject = object;
 		this.nextLink = null;
 	}

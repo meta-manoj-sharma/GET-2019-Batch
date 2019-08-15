@@ -7,8 +7,8 @@ import org.junit.Test;
 public class LinkedListOperationTest {
 	LinkedListOperation object=new LinkedListOperation();
 	@Test
-	public void testSortList1() {
-		
+	public void testSortList1() throws Exception 
+	{	
 			LinkedListOperation objectOfEmployeeList=new LinkedListOperation();
 	
 		Employee objectOfemployee1=new Employee(2,"Shamshir",10000,20);

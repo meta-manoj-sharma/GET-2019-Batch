@@ -11,21 +11,28 @@ public class LinkedListOperation {
 	 * @param list is the linked list containing head
 	 * @param data is the employee object to be inserted in list
 	 * @return the linked list with its head position
+	 * @throws Exception 
 	 */
-	public LinkedListOperation addEmployee(LinkedListOperation list, Employee data) {
-		Node newNode = new Node(data);
-		try {
-			if (data == null) {
-				throw new Exception("Invalid");
-			}
-		} catch (Exception e) {
-			System.out.println("Invalid entry !! Try Again");
+	public LinkedListOperation addEmployee(LinkedListOperation list, Employee data) throws Exception {
+		Node newNode;
+		if (data != null) 
+		{
+			newNode = new Node(data);
 		}
-		if (list.headNode == null) {
+
+		else 
+		{
+			throw new Exception("Invalid data value");
+		}
+		if (list.headNode == null) 
+		{
 			list.headNode = newNode;
-		} else {
+		} 
+		else 
+		{
 			Node pointer = list.headNode;
-			while (pointer.nextLink != null) {
+			while (pointer.nextLink != null) 
+			{
 				pointer = pointer.nextLink;
 			}
 			pointer.nextLink = newNode;
@@ -37,9 +44,11 @@ public class LinkedListOperation {
 	 * This method prints the given linked list
 	 * @param list is the linked list to be printed
 	 */
-	public void printEmployeeList(LinkedListOperation list) {
+	public void printEmployeeList(LinkedListOperation list) 
+	{
 		Node pointer = list.headNode;
-		while (pointer != null) {
+		while (pointer != null) 
+		{
 			System.out.println("ID " + pointer.employeeObject.getEmployeeId()
 					+ "  Name - " + pointer.employeeObject.getEmployeeName()
 					+ "  Salary - " + pointer.employeeObject.getEmployeeSalary()
@@ -53,7 +62,8 @@ public class LinkedListOperation {
 	 * @param head is the starting node's reference
 	 * @return head reference of sorted List
 	 */
-	public Node quickSort(Node headNode) {
+	public Node quickSort(Node headNode)
+	{
 		if (headNode == null || headNode.nextLink == null)
 			return headNode;
 		Node pivot = findEnd(headNode);// pointing pivot
@@ -74,9 +84,11 @@ public class LinkedListOperation {
 	 * @param sortedLeft is the left side reference
 	 * @param pivot is the reference of pivot node
 	 */
-	private void addLast(Node sortedLeft, Node pivot) {
+	private void addLast(Node sortedLeft, Node pivot) 
+	{
 		Node temporary = sortedLeft;
-		while (temporary.nextLink != null) {
+		while (temporary.nextLink != null) 
+		{
 			temporary = temporary.nextLink;
 		}
 		temporary.nextLink = pivot;
@@ -86,12 +98,14 @@ public class LinkedListOperation {
 	 * Cuts pivot into half nodes  
 	 * @param leftHalf
 	 */
-	private void dividePivot(Node leftHalf) {
+	private void dividePivot(Node leftHalf) 
+	{
 		if (leftHalf == null || leftHalf.nextLink == null)
 			return;
 		Node temporary = leftHalf;
 		Node previous = null;
-		while (temporary.nextLink != null) {
+		while (temporary.nextLink != null)
+		{
 			previous = temporary;
 			temporary = temporary.nextLink;
 		}
@@ -102,7 +116,8 @@ public class LinkedListOperation {
  * @param head is the head of Linked list
  * @return the reference of end node
  */
-	private Node findEnd(Node head) {
+	private Node findEnd(Node head)
+	{
 		Node temporary = head;
 		while (temporary.nextLink != null)
 			temporary = temporary.nextLink;
@@ -116,30 +131,38 @@ public class LinkedListOperation {
 	 * @param end is end end reference
 	 * @return the Node reference of the pivot correct position
 	 */
-	private Node partition(Node head, Node end) {
+	private Node partition(Node head, Node end) 
+	{
 		Node actualHead = head;
 		Node newEnd = end;
 		Node previous = null;
-		if (head == end) {
+		if (head == end) 
+		{
 			return head;
 		}
 		// end node is pivot
-		while (head != end) {
+		while (head != end) 
+		{
 			// all the nodes should be left of pivot which are less than pivot
-			if (head.employeeObject.getEmployeeSalary() > end.employeeObject.getEmployeeSalary()) {
+			if (head.employeeObject.getEmployeeSalary() > end.employeeObject.getEmployeeSalary()) 
+			{
 				previous = head;
 				head = head.nextLink;
 			}
-			else if ((head.employeeObject.getEmployeeSalary() == end.employeeObject.getEmployeeSalary()) && (head.employeeObject.getEmployeeAge() < end.employeeObject.getEmployeeAge())) {
+			else if ((head.employeeObject.getEmployeeSalary() == end.employeeObject.getEmployeeSalary()) && (head.employeeObject.getEmployeeAge() < end.employeeObject.getEmployeeAge())) 
+			{
 				previous = head;
 				head = head.nextLink;
 			}
 			// all the nodes should be right of pivot
-			else {
+			else 
+			{
 				// remove head node and add at end
-				if (previous != null) {
+				if (previous != null) 
+				{
 					previous.nextLink = head.nextLink;
-				} else {
+				} else 
+				{
 					actualHead = head.nextLink;
 				}
 				// adding at end
@@ -159,10 +182,12 @@ public class LinkedListOperation {
 	 * @param list is the linked list
 	 * @return the result containing array list of the object
 	 */
-	public List<Employee> resultList(LinkedListOperation list) {
+	public List<Employee> resultList(LinkedListOperation list) 
+	{
 		List<Employee> result = new ArrayList<Employee>();
 		Node pointer = list.headNode;
-		while (pointer != null) {
+		while (pointer != null) 
+		{
 			result.add(pointer.employeeObject);
 			pointer = pointer.nextLink;
 		}

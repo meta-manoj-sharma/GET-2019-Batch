@@ -13,7 +13,7 @@ public interface Graph {
     public List<Integer> reachable(int source);
 
     //method for find minimum spanning tree
-    public int[] mst();
+    public List<Node> mst();
 
     //method to find shortest path
     public int shotestPath(int source, int destiination);

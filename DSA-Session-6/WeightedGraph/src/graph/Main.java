@@ -5,15 +5,18 @@ import java.util.*;
 public class Main {
 
 	public static void main(String[] args) {
-		try {
+		try 
+		{
 			Scanner input = new Scanner(System.in);
 			UndirectedGraph undirectedGraph;
 			List<Integer> reachableNodes = new ArrayList<Integer>();
-			int capacity, source, destination, weight, choice, mst[];
+			int capacity, source, destination, weight, choice;
+			List<Node> mst = new ArrayList<>();;
 			System.out.println("Enter number of vertex in graph");
 			capacity = input.nextInt();
 			undirectedGraph = new UndirectedGraph(capacity);
-			while (true) {
+			while (true) 
+			{
 				System.out.println("Enter 1 for add edges in graph");
 				System.out.println("Enter 2 to check connected graph");
 				System.out.println("Enter 3 to get reachable nodes");
@@ -21,7 +24,8 @@ public class Main {
 				System.out.println("Enter 5 to get shortest path");
 				System.out.println("Enter 6 for Exit");
 				choice = input.nextInt();
-				switch (choice) {
+				switch (choice) 
+				{
 				case 1:
 					System.out.println("Enter source");
 					source = input.nextInt();
@@ -32,9 +36,12 @@ public class Main {
 					undirectedGraph.addEdge(source, destination, weight);
 					break;
 				case 2:
-					if (undirectedGraph.isConnected()) {
+					if (undirectedGraph.isConnected()) 
+					{
 						System.out.println("graph is connected");
-					} else {
+					} 
+					else 
+					{
 						System.out.println("graph is not  connected");
 					}
 					break;
@@ -43,15 +50,17 @@ public class Main {
 					int node = input.nextInt();
 					reachableNodes = undirectedGraph.reachable(node);
 					System.out.println("reachable nodes are");
-					for (int reach : reachableNodes) {
+					for (int reach : reachableNodes) 
+					{
 						System.out.print(reach + " ");
 					}
 					break;
 				case 4:
 					mst = undirectedGraph.mst();
 					System.out.println("mst is");
-					for (int index = 0; index < mst.length; index++) {
-						System.out.print(mst[index] + " ");
+					for (int index = 0; index < mst.size(); index++) 
+					{
+						System.out.println(mst.get(index).getVertex() + " ----- " + mst.get(index).getDestination());
 					}
 					break;
 				case 5:
@@ -68,7 +77,9 @@ public class Main {
 					System.out.println("enter valid choice...");
 				}
 			}
-		} catch (Exception e) {
+		} 
+		catch (Exception e) 
+		{
 			System.out.println(e);
 			main(args);
 		}
