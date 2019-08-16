@@ -2,7 +2,11 @@ use store;
 
 
 
-select shopper.ShopperID, shopper.ShopperName, shopper.Contact, shopper.Email,
+select shopper.ShopperID, (select user.name 
+from user 
+where shopper.shopperId=user.userId),
+(select user.phone from user where shopper.shopperId=user.userId),
+(select user.email from user where shopper.shopperId=user.userId),
 count(orders.orderID) as NoOfProducts
 
 from shopper
@@ -24,24 +28,28 @@ group by shopper.ShopperID;
 /*Part-3(b)*/
 
 
-select orders.shoppperIDR,shopper.shoppername,shopper.contact,shopper.email,orders.orderid, sum(cart.Amount*cart.Quantity) as Amount
+select orders.shopperID,
+(select user.name from user where shopper.shopperId=user.userId),
+(select user.phone from user where shopper.shopperId=user.userId),
+(select user.email from user where shopper.shopperId=user.userId),
+orders.orderid, sum(cart.Amount*cart.Quantity) as Amount
 
 from Orders
 
 right join shopper on
 
-shopper.shopperID=orders.shoppperIDR
+shopper.shopperID=orders.shopperID
 
 inner join cart on
 
 orders.OrderID=cart.OrderID
 
-where cart.shipped=true 
-AND  DATEDIFF(CURRENT_DATE(),orders.Date)<30
+where cart.orderstatus='shipped' AND  DATEDIFF(CURRENT_DATE(),orders.Date)<30
 
-group by orders.shoppperIDR
+group by orders.shopperID
 
 order by amount desc
+
 limit 10;
 
 
@@ -57,7 +65,7 @@ inner join products on
 
 products.productid=cart.productid
 
-where shipped=true
+where orderstatus='shipped'
 
 group by productid
 
@@ -69,17 +77,17 @@ limit 3;
 
 
 
-
 /*Part-3(d)*/
 
 SELECT DATE_FORMAT(orders.date, "%m-%Y") AS Month,sum(cart.Amount*cart.Quantity) as MonthlySales
+
 FROM orders
 
 inner join cart on
 
 orders.orderid=cart.orderid
 
-where cart.shipped=true
+where cart.orderstatus='shipped'
 
 GROUP BY DATE_FORMAT(orders.date, "%m-%Y") ;
 
@@ -95,27 +103,46 @@ SET SQL_SAFE_UPDATES = 0;
 
 
 update products
+
 left join cart on
+
 cart.productid=products.productid
-set products.stockstatus=false
+
+set products.isInstock=false
+
 where cart.orderid is null;
+
+
+
+select * from products;
 
 
 
 
 
 /*Part-3(f)*/
+
 select products.productid,products.productname 
+
 from products
+
 where categoryname like 'M%';
 
 
 
 
+
+
 /*Part-3(g)*/
+
 select products.productname
+
 from products
+
 inner join cart on
+
 products.productid=cart.productid
-where cart.cancelled=true
-limit 1;
+
+where cart.orderstatus='cancelled'
+
+limit 3;

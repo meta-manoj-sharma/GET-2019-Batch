@@ -3,11 +3,12 @@ use store;
 
 
 
-/*Part-5(a)*
+/*Part-5(a)*/
 
-create view orderview as
- 
-select cart.itemid,cart.orderid,products.productname,products.price,shopper.email,orders.date,cart.orderstatus
+create view orderview as 
+select cart.itemid,cart.orderid,products.productname,products.price,
+(select user.email from user where shopper.shopperId=user.userId),
+orders.date,cart.orderstatus
 
 from cart
 
@@ -23,9 +24,11 @@ inner join products on
 
 products.productid=cart.productid
 
-where DATEDIFF(CURRENT_DATE(),orders.Date)<60;
+where DATEDIFF(CURRENT_DATE(),orders.Date)<6;
 
 
+
+select * from orderview;
 
 
 
@@ -37,16 +40,15 @@ from orderview
 
 where orderstatus='shipped';
 
+/
 
-
-/*Part-5(c)*/
+*Part-5(c)*/
 
 select productname,count(productname) as NoOfProductsSold
 
 from orderview
 
 group by productname
-
 order by NoOfProductsSold desc
 
 limit 5;

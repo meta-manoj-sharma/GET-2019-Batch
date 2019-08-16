@@ -74,6 +74,6 @@ select zip.zipcode,citystate.city,citystate.state
 
 from citystate
 
-inner join zip on
+inner join zip on 
 
 zip.zipid=citystate.id;

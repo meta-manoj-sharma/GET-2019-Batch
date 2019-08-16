@@ -22,16 +22,15 @@ having count(CategoryID)>1;
 /*Part-2(b)*/
 
 SELECT ProductID as NoOfProducts,
-
 (CASE
     WHEN Price > 500 THEN "Range (> 500)"
-WHEN Price > 100
-AND Price <= 500 THEN "Range (101-500)"
-  ELSE "Range < 100 "
+    
+WHEN Price > 100 AND Price <= 500 THEN "Range (101-500)"
+   
+ELSE "Range < 100 "
     END)
+
 FROM Products;
-
-
 
 
 SELECT
@@ -53,10 +52,10 @@ FROM Products;
 /*Part-2(c)*/
 
 select category.CategoryName,count(products.categoryID) as NoOfProducts
+
 from category
 
 inner join products on 
-
 category.CategoryID=Products.CategoryID
 
 group by products.categoryID;
