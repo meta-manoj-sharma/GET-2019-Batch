@@ -89,4 +89,18 @@ public class GraphTest {
 		undirectedGraph.addEdge(3, 4, 8);
 		assertEquals(9, undirectedGraph.shotestPath(1, 4));	
 	}
+	
+	/**
+	 * test case for is connected
+	 * @throws Exception
+	 */
+	@Test
+	public void isConnectedTestNegative() throws Exception
+	{
+		UndirectedGraph undirectedGraph = new UndirectedGraph(5);
+		undirectedGraph.addEdge(0, 1, 5);
+		undirectedGraph.addEdge(0, 2, 7);
+		undirectedGraph.addEdge(2, 3, 2);
+		assertEquals(false, undirectedGraph.isConnected());
+	}
 }
