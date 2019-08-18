@@ -26,20 +26,20 @@ where (cart.orderStatus != 'shipped')
 AND DATEDIFF(CURRENT_DATE(),orders.date)>10;
 
 
-select user.userName
+select user.Name
 from user
 left join shopper on
-Shopper.userID=user.userID
+Shopper.shopperID=user.userID
 left join orders on
 orders.ShopperID=Shopper.ShopperID
 where orders.ShopperID IS NULL
 || DATEDIFF(CURRENT_DATE(),orders.date)>30;
 
 
-select (select user.userName
+select (select user.Name
 from user
 where
-Shopper.userID =user.userID),orders.OrderID
+Shopper.shopperID =user.userID),orders.OrderID
 from Shopper
 left join orders on
 orders.ShopperID=Shopper.ShopperID

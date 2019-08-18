@@ -1,34 +1,46 @@
 CREATE DATABASE store;
+
 USE store;
 CREATE TABLE user (
-    userId INT(8) NOT NULL PRIMARY KEY,
-    userName VARCHAR(100)
-);
-CREATE TABLE Admin (
-    AdminId INT(8) NOT NULL PRIMARY KEY,
-    userId INT(8) NOT NULL,
-    Password VARCHAR(15) NOT NULL,
-    FOREIGN KEY (userID)
-        references user (userID)
-);
+			UserId varchar(10) NOT NULL,
+			Name varchar(255) NOT NULL,
+			Email varchar(40) UNIQUE NOT NULL,
+			Password varchar(20) NOT NULL,
+			Phone VARCHAR(10) NOT NULL,
+  			UserType varchar(7) NOT NULL DEFAULT 'Shopper',
+  			PRIMARY KEY (UserId)
+			);
+CREATE TABLE shopper (
+		ShopperId varchar(10) NOT NULL,
+			PRIMARY KEY (ShopperId),
+			FOREIGN KEY (ShopperId) REFERENCES user (userId)
+			);
 
+CREATE TABLE admin (
+  			AdminId varchar(10) NOT NULL,
+  			AdminKey VARCHAR(10) NOT NULL,
+  			PRIMARY KEY (AdminId),
+  			FOREIGN KEY (AdminId) REFERENCES user (UserId)
+	);
+    
 CREATE TABLE Category (
     CategoryId VARCHAR(20) NOT NULL PRIMARY KEY,
     CategoryName VARCHAR(50),
-    ParentCategoryTitle varchar(25)
+    ParentCategoryTitle varchar(25) references category
 );
 /* to create product table*/
+drop table products;
 CREATE TABLE Products (
     ProductId VARCHAR(20) NOT NULL PRIMARY KEY,
     CategoryId VARCHAR(20) NOT NULL,
-    categoryName VARCHAR(100) NOT NULL,
+    CategoryName VARCHAR(20) NOT NULL,
     ProductName VARCHAR(50),
     Description VARCHAR(100),
     Price INT,
     Quantity INT,
-    StockStatus BOOLEAN,
-    FOREIGN KEY (CategoryID)
-        references Category (CategoryID)
+    isInStock BOOLEAN,
+    instockDate date,
+    FOREIGN KEY (CategoryID) references Category (CategoryID)
 );
 
 CREATE TABLE Images (
@@ -37,19 +49,22 @@ CREATE TABLE Images (
     ImageData blob,
     ProductID varchar(6) NOT NULL,
     PRIMARY KEY (ImageID),
-    FOREIGN KEY (ProductID)
-        references Products (ProductID)
-);
-CREATE TABLE Shopper (
-    ShopperId VARCHAR(20) NOT NULL PRIMARY KEY,
-    userId INT(8) NOT NULL,
-    Password VARCHAR(50) NOT NULL,
-    Contact VARCHAR(20) NOT NULL,
-    Email VARCHAR(100),
-    FOREIGN KEY (userID)
-        references user (userID)
+    FOREIGN KEY (ProductID) references Products (ProductID)
 );
 
+CREATE TABLE Address (
+    AddressId varchar(10),
+    ShopperID varchar(10) NOT NULL,
+    OrderID varchar(10),
+    houseNo varchar(10),
+    colony varchar(100),
+    city varchar(20),
+    state varchar(20),
+    country varchar(20) default 'INDIA',
+    ZipCode VARCHAR(6) NOT NULL,
+    PRIMARY KEY (AddressId),
+    FOREIGN KEY (ShopperID) references Shopper(ShopperID)
+);
 
 CREATE TABLE Orders (
     OrderID varchar(10),
@@ -59,10 +74,8 @@ CREATE TABLE Orders (
     ShopperID varchar(10),
     Amount INT NOT NULL,
     PRIMARY KEY (OrderID),
-    FOREIGN KEY (ShopperID)
-        references Shopper (ShopperID),
-    FOREIGN KEY (addressID)
-        references Address (addressID)
+    FOREIGN KEY (ShopperID) references Shopper (ShopperID),
+    FOREIGN KEY (addressID) references Address (addressID)
 );
 
 CREATE TABLE Payment (
@@ -72,10 +85,8 @@ CREATE TABLE Payment (
     PaymentId VARCHAR(20) NOT NULL PRIMARY KEY,
     Amount INT NOT NULL,
     Date DATE NOT NULL,
-    FOREIGN KEY (ShopperId)
-        REFERENCES Shopper (ShopperId),
-    FOREIGN KEY (OrderId)
-        REFERENCES Orders (OrderId)
+    FOREIGN KEY (ShopperId) REFERENCES Shopper (ShopperId),
+    FOREIGN KEY (OrderId) REFERENCES Orders (OrderId)
 );
 
 
@@ -87,26 +98,10 @@ CREATE TABLE Cart (
     Amount int,
     OrderStatus varchar(20) CHECK (OrderStatus IN ('SHIPPED' , 'CANCELLED', 'RETURNED')),
     PRIMARY KEY (ItemID),
-    FOREIGN KEY (OrderID)
-        references Orders (OrderID),
-    FOREIGN KEY (ProductID)
-        references Products (ProductID)
+    FOREIGN KEY (OrderID) references Orders (OrderID),
+    FOREIGN KEY (ProductID) references Products (ProductID)
 );
-CREATE TABLE Address (
-    AddressId varchar(10),
-    ShopperID varchar(20) NOT NULL,
-    OrderID varchar(10),
-    houseNo varchar(10),
-    colony varchar(100),
-    city varchar(20),
-    state varchar(20),
-    country varchar(20) default 'INDIA',
-    PRIMARY KEY (AddressId),
-    FOREIGN KEY (ShopperID)
-        references Shopper (ShopperID),
-    FOREIGN KEY (orderID)
-        references orders (orderID)
-);
+
 /* to show tables*/
 SHOW tables;
 
@@ -123,8 +118,7 @@ CREATE TABLE Products (
     Description VARCHAR(100),
     Price INT,
     Quantity INT,
-    StockStatus BOOLEAN,
-    FOREIGN KEY (CategoryID)
-        references Category (CategoryID)
+    isInStock BOOLEAN,
+    FOREIGN KEY (CategoryID) references Category (CategoryID)
 );
 
