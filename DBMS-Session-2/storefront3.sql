@@ -22,38 +22,35 @@ select orders.OrderID
 from Orders
 inner join cart on
 orders.OrderID=cart.OrderID
-where (cart.orderStatus != 'shipped')
+where (cart.itemshippingStatus != 'shipped')
 AND DATEDIFF(CURRENT_DATE(),orders.date)>10;
 
 
 select user.Name
-from user
-left join shopper on
-Shopper.shopperID=user.userID
+from user 
 left join orders on
-orders.ShopperID=Shopper.ShopperID
-where orders.ShopperID IS NULL
-|| DATEDIFF(CURRENT_DATE(),orders.date)>30;
+orders.userID=user.userID
+where (orders.userID IS NULL
+|| DATEDIFF(CURRENT_DATE(),orders.date)>30)
+and  user.usertype != 'Admin';
 
 
-select (select user.Name
+select user.Name,orders.OrderID
 from user
-where
-Shopper.shopperID =user.userID),orders.OrderID
-from Shopper
 left join orders on
-orders.ShopperID=Shopper.ShopperID
-where DATEDIFF(CURRENT_DATE(),orders.Date)>15;
+orders.userID=user.userID
+where DATEDIFF(CURRENT_DATE(),orders.Date)>15
+and  user.usertype != 'Admin';
 
 
 select orders.OrderID,orders.Date
 from Orders
 inner join cart on
 orders.OrderID=cart.OrderID
-where cart.orderstatus = 'shipped'
+where cart.itemshippingstatus = 'shipped'
 and cart.OrderID = 'o004';
 
-select orders.OrderID,orders.date,orders.shopperId
+select orders.OrderID,orders.date,orders.userId
 from Orders
 inner join cart on
 orders.OrderID=cart.OrderID
