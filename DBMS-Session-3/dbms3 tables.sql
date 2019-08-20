@@ -1,5 +1,4 @@
 CREATE DATABASE store;
-
 USE store;
 
 CREATE TABLE user (
@@ -20,39 +19,13 @@ PRIMARY KEY (UserId)
 			
 );
 
-
-CREATE TABLE shopper (
-		
-ShopperId varchar(10) NOT NULL,
-			
-PRIMARY KEY (ShopperId),
-			
-FOREIGN KEY (ShopperId) REFERENCES user (userId)
-			
-);
-
-
-
-CREATE TABLE admin (
-  			
-AdminId varchar(10) NOT NULL,
-  			
-AdminKey VARCHAR(10) NOT NULL,
-  			
-PRIMARY KEY (AdminId),
-  			
-FOREIGN KEY (AdminId) REFERENCES user (UserId)
-	);
-    
-
-
 CREATE TABLE Category (
     
 CategoryId VARCHAR(20) NOT NULL PRIMARY KEY,
     
 CategoryName VARCHAR(50),
     
-ParentCategoryTitle varchar(25) references category
+ParentCategoryTitle varchar(25)
 );
 
 
@@ -73,6 +46,8 @@ Price INT,
 Quantity INT,
     
 isInStock BOOLEAN,
+
+instockDate date,
     
 FOREIGN KEY (CategoryID) references Category (CategoryID)
 );
@@ -83,9 +58,9 @@ CREATE TABLE Images (
     
 ImageID varchar(10),
     
-ImageCategory varchar(20),
+Imagetype varchar(20),
     
-ImageData blob,
+ImageUrl varchar(100),
     
 ProductID varchar(6) NOT NULL,
     
@@ -100,9 +75,7 @@ CREATE TABLE Address (
     
 AddressId varchar(10),
     
-ShopperID varchar(10) NOT NULL,
-    
-OrderID varchar(10),
+userID varchar(10) NOT NULL,
     
 houseNo varchar(10),
     
@@ -118,7 +91,7 @@ ZipCode VARCHAR(6) NOT NULL,
     
 PRIMARY KEY (AddressId),
     
-FOREIGN KEY (ShopperID) references Shopper(ShopperID)
+FOREIGN KEY (userID) references user(userID)
 );
 
 
@@ -127,19 +100,17 @@ CREATE TABLE Orders (
     
 OrderID varchar(10),
     
-OrderStatus varchar(20) CHECK (OrderStatus IN ('PLACED' , 'CANCELLED')),
+ordershippingstatus varchar(20) CHECK (Ordershippingstatus IN ('PLACED' , 'CANCELLED')),
     
 Date DATE,
     
 AddressId varchar(100),
     
-ShopperID varchar(10),
-    
-Amount INT NOT NULL,
+userID varchar(10),
     
 PRIMARY KEY (OrderID),
     
-FOREIGN KEY (ShopperID) references Shopper (ShopperID),
+FOREIGN KEY (userID) references user(userID),
     
 FOREIGN KEY (addressID) references Address (addressID)
 );
@@ -148,7 +119,7 @@ FOREIGN KEY (addressID) references Address (addressID)
 
 CREATE TABLE Payment (
     
-ShopperId VARCHAR(20) NOT NULL,
+userId VARCHAR(20) NOT NULL,
     
 OrderId VARCHAR(20) NOT NULL,
     
@@ -156,11 +127,9 @@ Type VARCHAR(50) NOT NULL,
     
 PaymentId VARCHAR(20) NOT NULL PRIMARY KEY,
     
-Amount INT NOT NULL,
-    
 Date DATE NOT NULL,
     
-FOREIGN KEY (ShopperId) REFERENCES Shopper (ShopperId),
+FOREIGN KEY (userId) REFERENCES user (userId),
     
 FOREIGN KEY (OrderId) REFERENCES Orders (OrderId)
 );
@@ -180,7 +149,7 @@ Quantity int,
     
 Amount int,
     
-OrderStatus varchar(20) CHECK (OrderStatus IN ('SHIPPED' , 'CANCELLED', 'RETURNED')),
+itemshippingstatus varchar(20) CHECK (OrderStatus IN ('SHIPPED' , 'CANCELLED', 'RETURNED')),
     
 PRIMARY KEY (ItemID),
     
@@ -196,36 +165,4 @@ FOREIGN KEY (ProductID) references Products (ProductID)
 SHOW tables;
 
 
-
-SET FOREIGN_KEY_CHECKS = 0;
-
-
-
-/* to delete product table*/
-
-DROP TABLE Products;
-
-
-/* to create product table again*/
-
-CREATE TABLE Products (
-    
-ProductId VARCHAR(20) NOT NULL PRIMARY KEY,
-    
-CategoryId VARCHAR(20) NOT NULL,
-    
-categoryName VARCHAR(100) NOT NULL,
-    
-ProductName VARCHAR(50),
-    
-Description VARCHAR(100),
-    
-Price INT,
-    
-Quantity INT,
-    
-isInStock BOOLEAN,
-    
-FOREIGN KEY (CategoryID) references Category (CategoryID)
-);
 

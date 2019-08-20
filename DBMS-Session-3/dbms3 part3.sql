@@ -2,22 +2,18 @@ use store;
 
 
 
-select shopper.ShopperID, (select user.name 
-from user 
-where shopper.shopperId=user.userId),
-(select user.phone from user where shopper.shopperId=user.userId),
-(select user.email from user where shopper.shopperId=user.userId),
-count(orders.orderID) as NoOfProducts
+select user.userID,user.name, user.phone,user.email,count(orders.orderID) as NoOfProducts
 
-from shopper
+from user
 
 inner join orders on
 
-orders.ShopperID = shopper.ShopperID
+orders.userID = user.userID
 
 where DATEDIFF(CURRENT_DATE(),orders.Date)<30
+and usertype != 'Admin'
 
-group by shopper.ShopperID;
+group by user.userID;
 
 
 
@@ -28,25 +24,23 @@ group by shopper.ShopperID;
 /*Part-3(b)*/
 
 
-select orders.shopperID,
-(select user.name from user where shopper.shopperId=user.userId),
-(select user.phone from user where shopper.shopperId=user.userId),
-(select user.email from user where shopper.shopperId=user.userId),
+select user.userID,user.name ,user.phone,user.email,
 orders.orderid, sum(cart.Amount*cart.Quantity) as Amount
 
-from Orders
+from orders
 
-right join shopper on
+left join user on
 
-shopper.shopperID=orders.shopperID
+user.userID=orders.userID
 
 inner join cart on
 
 orders.OrderID=cart.OrderID
 
-where cart.orderstatus='shipped' AND  DATEDIFF(CURRENT_DATE(),orders.Date)<30
+where cart.itemshippingstatus='shipped' AND  DATEDIFF(CURRENT_DATE(),orders.Date)<30
+and user.usertype != 'admin'
 
-group by orders.shopperID
+group by orders.userID
 
 order by amount desc
 
@@ -65,7 +59,7 @@ inner join products on
 
 products.productid=cart.productid
 
-where orderstatus='shipped'
+where itemshippingstatus='shipped'
 
 group by productid
 
@@ -87,7 +81,7 @@ inner join cart on
 
 orders.orderid=cart.orderid
 
-where cart.orderstatus='shipped'
+where cart.itemshippingstatus='shipped'
 
 GROUP BY DATE_FORMAT(orders.date, "%m-%Y") ;
 
@@ -108,10 +102,14 @@ left join cart on
 
 cart.productid=products.productid
 
+left join orders on
+
+cart.orderid=orders.orderid
+
 set products.isInstock=false
 
-where cart.orderid is null;
-
+where cart.orderid is null
+ or DATEDIFF(CURRENT_DATE(),orders.Date)<30;
 
 
 select * from products;
@@ -125,8 +123,10 @@ select * from products;
 select products.productid,products.productname 
 
 from products
+inner join category on
+category.categoryid = products.categoryid
 
-where categoryname like 'M%';
+where category.categoryname like 'M%';
 
 
 
@@ -135,7 +135,7 @@ where categoryname like 'M%';
 
 /*Part-3(g)*/
 
-select products.productname
+select products.productname,count(cart.productid) as no_of_cancellation
 
 from products
 
@@ -143,6 +143,7 @@ inner join cart on
 
 products.productid=cart.productid
 
-where cart.orderstatus='cancelled'
-
+where cart.itemShippingstatus='cancelled'
+group by cart.productid
+order by no_of_cancellation desc
 limit 3;
