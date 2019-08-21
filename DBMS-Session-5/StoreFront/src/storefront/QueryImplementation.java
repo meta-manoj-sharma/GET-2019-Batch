@@ -35,10 +35,11 @@ public class QueryImplementation {
 		List<Orders> orderDetailList = new ArrayList<>();
 		try {
 			PreparedStatement statement = (PreparedStatement) ConnectionClass.connect.prepareStatement(QueryClass.getQueryFirst(userId));
+			ConnectionClass.connect.setAutoCommit(false);
 			ResultSet resultSet = statement.executeQuery();
-
+			ConnectionClass.connect.commit();
 			while (resultSet.next()) {
-				orderDetailList.add(new Orders(resultSet.getInt(1), resultSet.getDate(2), resultSet.getDouble(3)));
+				orderDetailList.add(new Orders(resultSet.getString(1), resultSet.getDate(2), resultSet.getDouble(3)));
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -52,22 +53,26 @@ public class QueryImplementation {
 	 * This method inserts the images of the given product
 	 * @param productIds is the product ids
 	 * @param imageURLs is the urls of the image
+	 * @param imageIds 
 	 * @return length of the resultant table
 	 * @throws SQLException
 	 */
-	int insertImagesOfProduct(int[] productIds, String[] imageURLs) throws SQLException {
-		if (productIds == null || imageURLs == null) {
+	int insertImagesOfProduct(String[] productIds, String[] imageURLs, String[] imageIds) throws SQLException {
+		if (productIds == null || imageURLs == null || imageIds == null) {
 			System.out.println("Id or Images Can't be Null");
 			return -1;
 		}
 		try {
 			PreparedStatement statement = (PreparedStatement) ConnectionClass.connect.prepareStatement(QueryClass.getQuerySecond());
+			ConnectionClass.connect.setAutoCommit(false);
 			for (int i = 0; i < productIds.length; i++) {
-				statement.setInt(1, productIds[i]);
+				statement.setString(1, productIds[i]);
 				statement.setString(2, imageURLs[i]);
+				statement.setString(3, imageIds[i]);
 				statement.addBatch();
 			}
 			int[] result = statement.executeBatch();
+			ConnectionClass.connect.commit();
 			return result.length;
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -85,9 +90,11 @@ public class QueryImplementation {
 	int deleteProductsNotOrdered() throws SQLException {
 		int deletedProducts = 0;
 		try {
+			ConnectionClass.connect.setAutoCommit(false);
 			checkForeignKeyConstraints();
 			PreparedStatement statement = (PreparedStatement) ConnectionClass.connect.prepareStatement(QueryClass.getQueryThird());
 			deletedProducts = statement.executeUpdate();
+			ConnectionClass.connect.commit();
 		} catch (SQLException ex) {
 			System.out.println(ex.getMessage());
 			ConnectionClass.connect.rollback();
@@ -125,7 +132,7 @@ public class QueryImplementation {
 			PreparedStatement statement = (PreparedStatement) ConnectionClass.connect.prepareStatement(QueryClass.getSelectQuery(table));
 			ResultSet resultSet = statement.executeQuery();
 			while (resultSet.next()) {
-				System.out.println(resultSet.getInt(1) + " " + resultSet.getString(2));
+				System.out.println(resultSet.getString(1) + " " + resultSet.getString(2) + " " + resultSet.getString(3) );
 			}
 		} catch (SQLException ex) {
 			System.out.println(ex.getMessage());
@@ -135,7 +142,7 @@ public class QueryImplementation {
 	/**
 	 * This method executes the query of foreign key check
 	 */
-	void checkForeignKeyConstraints() {
+	static void  checkForeignKeyConstraints() {
 		try {
 			PreparedStatement statement = (PreparedStatement) ConnectionClass.connect.prepareStatement(QueryClass.correctForeignConstraint());
 			statement.executeQuery();

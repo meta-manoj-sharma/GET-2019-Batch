@@ -12,7 +12,7 @@ public class QueryClass {
 	 * @param userID is the user id
 	 */
 	public static String getQueryFirst(String userId) {
-		return "select orders.orderid,orders.date, sum(cart.amount * cart.quantity) as amount "
+		return " select orders.orderid,orders.date, sum(cart.amount * cart.quantity) as amount "
 				+ " from orders inner join cart on " + " orders.orderid = cart.orderid "
 				+ " where cart.itemshippingStatus = 'shipped' and orders.userid='" + userId
 				+ "' group by orders.orderid order by orders.date asc;";
@@ -22,26 +22,30 @@ public class QueryClass {
 	 * Assignment 2 query
 	 */
 	public static String getQuerySecond() {
-		return "INSERT INTO images(productId, imageUrl) VALUES(?,?);";
+		QueryImplementation.checkForeignKeyConstraints();
+		return "INSERT INTO images(productId, imageUrl, imageId) VALUES(?,?,?);";
 	}
 
 	/**
 	 * Assignment 3 query
 	 */
 	public static String getQueryThird() {
-		return "delete from products\r\n" + "where products.productname in (select * from(select products.productname "
-				+ "from products where products.productname not in(select products.productname "
-				+ "from products inner join cart on" + "cart.productid = products.productid" + "left join orders on"
-				+ "orders.orderid = cart.orderid" + "where datediff(current_date(),orders.date)>365)) as t);";
+		return "delete from products" + " where products.productname in (select * from("
+				+ " select products.productname" + " from products"
+				+ " where products.productname not in("
+				+ " select products.productname" + " from products"
+				+ " inner join cart on" + " cart.productid = products.productid"
+				+ " left join orders on" + " orders.orderid = cart.orderid"
+				+ " where datediff(current_date(),orders.date)>20)) as t);";
 	}
 
 	/**
 	 * Assignment 4 query
 	 */
 	public static String getQueryFourth() {
-		return "select parentcategorytitle , count(categoryname) as count" + "from category"
-				+ "where parentcategorytitle in(" + "select categoryname " + "from category"
-				+ "where parentcategorytitle = 'Topcategory')" + "group by parentcategorytitle;";
+		return "select parentcategorytitle , count(categoryname) as count" + " from category"
+				+ " where parentcategorytitle in(" + " select categoryname " + " from category"
+				+ " where parentcategorytitle = 'Topcategory')" + " group by parentcategorytitle;";
 	}
 
 	/**

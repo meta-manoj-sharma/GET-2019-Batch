@@ -15,15 +15,8 @@ public class QueryImplementationTest {
 	public void testGetOrderDetailsOfShippedOrders() throws SQLException, ClassNotFoundException {
 		QueryImplementation queryObject = new QueryImplementation();
 		List<Orders> orders = new ArrayList<>();
-		orders = queryObject.getOrderDetails("s001");
-		assertEquals(4, orders.get(0).getOrderId());
-		assertEquals(1, orders.get(1).getOrderId());
-	}
-
-	// Test for deleting products
-	@Test
-	public void testDeleteProductsNotOrdered() throws SQLException, ClassNotFoundException {
-		QueryImplementation queryObject = new QueryImplementation();
-		assertEquals(8, queryObject.deleteProductsNotOrdered());
+		orders = queryObject.getOrderDetails("s004");
+		assertEquals("o001", orders.get(0).getOrderId());
+		assertEquals("o004", orders.get(1).getOrderId());
 	}
 }

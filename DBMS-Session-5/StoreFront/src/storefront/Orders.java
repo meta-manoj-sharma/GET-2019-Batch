@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Orders {
 	
-	private int orderId;
+	private String orderId;
 	private Date orderDate;
 	private double orderAmount;
 	
@@ -14,15 +14,15 @@ public class Orders {
 	 * @param order date is the order date
 	 * @param order amount is the order amount
 	 */
-	Orders(int orderId, Date orderDate, double orderAmount)
+	Orders(String string, Date orderDate, double orderAmount)
 	{
-		this.orderId = orderId;
+		this.orderId = string;
 		this.orderDate = orderDate;
 		this.orderAmount = orderAmount;
 	}
 
 	//Getter methods
-	public int getOrderId() {
+	public String getOrderId() {
 		return orderId;
 	}
 

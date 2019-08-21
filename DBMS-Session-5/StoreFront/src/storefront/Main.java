@@ -23,20 +23,12 @@ public class Main {
 			System.out.println();
 		}
 
-		System.out.println("Enter 5 images of 2 products : ");
-		int[] productIds = new int[10];
-		String[] imageURLS = new String[10];
-		System.out.println("Enter the image URLS for product \"MI note 8\" : ");
-		for (int i = 0; i < 5; i++) {
-			productIds[i] = 1;
-			imageURLS[i] = inputScanner.next();
-		}
-		System.out.println("\nEnter the image URLS for product \"Acer mouse\" : ");
-		for (int i = 5; i < 10; i++) {
-			productIds[i] = 2;
-			imageURLS[i] = inputScanner.next();
-		}
-		if (queryObject.insertImagesOfProduct(productIds, imageURLS) > 0)
+		System.out.println("Enter 5 images of products : ");
+		String[] imageIds = new String[]{"i006","i007","i008","i009","i010"};
+		String[] productIds = new String[]{"p006","p007","p008","p009","p010"};
+		String[] imageURLS = new String[]{"c/:images/frog.png","c/:images/img1.png","c/:images/img2.png","c/:images/img3.png","c/:images/img4.png","c/:images/img5.png"};
+		
+		if (queryObject.insertImagesOfProduct(productIds, imageURLS,imageIds) > 0)
 			System.out.println("Images inserted");
 		else
 			System.out.println("There was a error while inserting the images");
