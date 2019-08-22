@@ -36,7 +36,8 @@ public class Main {
 		System.out.println("\nThe images table is : ");
 		queryObject.printTable("images");
 
-		queryObject.deleteProductsNotOrdered();
+		int noOfDeletedProducts = queryObject.deleteProductsNotOrdered();
+		System.out.println("no. of deleted products : " + noOfDeletedProducts);
 		System.out.println("\nThe products table afer operation is : ");
 		queryObject.printTable("products");
 

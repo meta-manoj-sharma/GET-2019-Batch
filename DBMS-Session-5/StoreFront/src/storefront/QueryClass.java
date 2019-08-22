@@ -36,7 +36,7 @@ public class QueryClass {
 				+ " select products.productname" + " from products"
 				+ " inner join cart on" + " cart.productid = products.productid"
 				+ " left join orders on" + " orders.orderid = cart.orderid"
-				+ " where datediff(current_date(),orders.date)>20)) as t);";
+				+ " where datediff(current_date(),orders.date)>15)) as t);";
 	}
 
 	/**
