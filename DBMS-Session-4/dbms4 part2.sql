@@ -29,7 +29,7 @@ DELIMITER //
  CREATE PROCEDURE getOrderStatus(in startDate date,in endDate date)
 BEGIN
 if(startDate>endDate) then
-SET startDate= DATE_ADD(DATE_ADD(LAST_DAY(startDate),INTERVAL 1 DAY),INTERVAL - 1 MONTH);/* Put startdate as 1st day of month if its greater than end date*/
+SET startDate= DATE_ADD(DATE_ADD(LAST_DAY(endDate),INTERVAL 1 DAY),INTERVAL - 1 MONTH);/* Put startdate as 1st day of month if its greater than end date*/
 end if;
 select orders.date,orders.orderid,cart.itemid,cart.itemshippingstatus
 from cart 
@@ -40,4 +40,4 @@ where orders.date>=startDate and orders.date<=endDate;
  DELIMITER ;
 
 
-call getOrderStatus('2019-07-12','2019-07-30');/*Calling */
+call getOrderStatus('2019-07-12','2019-07-27');/*Calling */
