@@ -9,7 +9,8 @@ public class LinkedListOperationTest {
 	@Test
 	public void testSortList1() throws Exception 
 	{	
-			LinkedListOperation objectOfEmployeeList=new LinkedListOperation();
+	public void testSortList1() {
+		LinkedListOperation objectOfEmployeeList=new LinkedListOperation();
 	
 		Employee objectOfemployee1=new Employee(2,"Shamshir",10000,20);
 		Employee objectOfemployee2=new Employee(1,"Vikrant",21600,23);

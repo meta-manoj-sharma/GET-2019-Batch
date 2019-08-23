@@ -8,6 +8,7 @@ public class Employee {
 
 	public Employee(int employeeId, String name, int salary, int age) 
 	{
+	public Employee(int employeeId, String name, int salary, int age) {
 		this.employeeId = employeeId;
 		this.employeeName = name;
 		this.employeeSalary = salary;
@@ -32,6 +33,19 @@ public class Employee {
 
 	public int getEmployeeAge() 
 	{
+	public int getEmployeeId() {
+		return employeeId;
+	}
+
+	public String getEmployeeName() {
+		return employeeName;
+	}
+
+	public int getEmployeeSalary() {
+		return employeeSalary;
+	}
+
+	public int getEmployeeAge() {
 		return employeeAge;
 	}
 }

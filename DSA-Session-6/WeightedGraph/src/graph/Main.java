@@ -17,6 +17,15 @@ public class Main {
 			undirectedGraph = new UndirectedGraph(capacity);
 			while (true) 
 			{
+		try {
+			Scanner input = new Scanner(System.in);
+			UndirectedGraph undirectedGraph;
+			List<Integer> reachableNodes = new ArrayList<Integer>();
+			int capacity, source, destination, weight, choice, mst[];
+			System.out.println("Enter number of vertex in graph");
+			capacity = input.nextInt();
+			undirectedGraph = new UndirectedGraph(capacity);
+			while (true) {
 				System.out.println("Enter 1 for add edges in graph");
 				System.out.println("Enter 2 to check connected graph");
 				System.out.println("Enter 3 to get reachable nodes");
@@ -26,7 +35,8 @@ public class Main {
 				choice = input.nextInt();
 				switch (choice) 
 				{
-				case 1:
+				switch (choice) {
+  			case 1:
 					System.out.println("Enter source");
 					source = input.nextInt();
 					System.out.println("Enter destination");
@@ -42,6 +52,9 @@ public class Main {
 					} 
 					else 
 					{
+					if (undirectedGraph.isConnected()) {
+						System.out.println("graph is connected");
+					} else {
 						System.out.println("graph is not  connected");
 					}
 					break;
@@ -52,6 +65,7 @@ public class Main {
 					System.out.println("reachable nodes are");
 					for (int reach : reachableNodes) 
 					{
+					for (int reach : reachableNodes) {
 						System.out.print(reach + " ");
 					}
 					break;
@@ -61,6 +75,8 @@ public class Main {
 					for (int index = 0; index < mst.size(); index++) 
 					{
 						System.out.println(mst.get(index).getVertex() + " ----- " + mst.get(index).getDestination());
+					for (int index = 0; index < mst.length; index++) {
+						System.out.print(mst[index] + " ");
 					}
 					break;
 				case 5:
@@ -80,6 +96,7 @@ public class Main {
 		} 
 		catch (Exception e) 
 		{
+		} catch (Exception e) {
 			System.out.println(e);
 			main(args);
 		}

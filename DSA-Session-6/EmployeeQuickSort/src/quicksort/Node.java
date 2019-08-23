@@ -11,6 +11,11 @@ public class Node {
 
 	public Node(Employee object) 
 	{
+	public Employee getEmployeeObject() {
+		return employeeObject;
+	}
+
+	public Node(Employee object) {
 		this.employeeObject = object;
 		this.nextLink = null;
 	}

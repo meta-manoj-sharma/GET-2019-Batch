@@ -33,6 +33,20 @@ public class LinkedListOperation {
 			Node pointer = list.headNode;
 			while (pointer.nextLink != null) 
 			{
+	public LinkedListOperation addEmployee(LinkedListOperation list, Employee data) {
+		Node newNode = new Node(data);
+		try {
+			if (data == null) {
+				throw new Exception("Invalid");
+			}
+		} catch (Exception e) {
+			System.out.println("Invalid entry !! Try Again");
+		}
+		if (list.headNode == null) {
+			list.headNode = newNode;
+		} else {
+			Node pointer = list.headNode;
+			while (pointer.nextLink != null) {
 				pointer = pointer.nextLink;
 			}
 			pointer.nextLink = newNode;
@@ -49,6 +63,9 @@ public class LinkedListOperation {
 		Node pointer = list.headNode;
 		while (pointer != null) 
 		{
+	public void printEmployeeList(LinkedListOperation list) {
+		Node pointer = list.headNode;
+		while (pointer != null) {
 			System.out.println("ID " + pointer.employeeObject.getEmployeeId()
 					+ "  Name - " + pointer.employeeObject.getEmployeeName()
 					+ "  Salary - " + pointer.employeeObject.getEmployeeSalary()
@@ -64,6 +81,7 @@ public class LinkedListOperation {
 	 */
 	public Node quickSort(Node headNode)
 	{
+	public Node quickSort(Node headNode) {
 		if (headNode == null || headNode.nextLink == null)
 			return headNode;
 		Node pivot = findEnd(headNode);// pointing pivot
@@ -89,6 +107,9 @@ public class LinkedListOperation {
 		Node temporary = sortedLeft;
 		while (temporary.nextLink != null) 
 		{
+	private void addLast(Node sortedLeft, Node pivot) {
+		Node temporary = sortedLeft;
+		while (temporary.nextLink != null) {
 			temporary = temporary.nextLink;
 		}
 		temporary.nextLink = pivot;
@@ -100,12 +121,14 @@ public class LinkedListOperation {
 	 */
 	private void dividePivot(Node leftHalf) 
 	{
+	private void dividePivot(Node leftHalf) {
 		if (leftHalf == null || leftHalf.nextLink == null)
 			return;
 		Node temporary = leftHalf;
 		Node previous = null;
 		while (temporary.nextLink != null)
 		{
+		while (temporary.nextLink != null) {
 			previous = temporary;
 			temporary = temporary.nextLink;
 		}
@@ -118,6 +141,7 @@ public class LinkedListOperation {
  */
 	private Node findEnd(Node head)
 	{
+	private Node findEnd(Node head) {
 		Node temporary = head;
 		while (temporary.nextLink != null)
 			temporary = temporary.nextLink;
@@ -151,6 +175,21 @@ public class LinkedListOperation {
 			}
 			else if ((head.employeeObject.getEmployeeSalary() == end.employeeObject.getEmployeeSalary()) && (head.employeeObject.getEmployeeAge() < end.employeeObject.getEmployeeAge())) 
 			{
+	private Node partition(Node head, Node end) {
+		Node actualHead = head;
+		Node newEnd = end;
+		Node previous = null;
+		if (head == end) {
+			return head;
+		}
+		// end node is pivot
+		while (head != end) {
+			// all the nodes should be left of pivot which are less than pivot
+			if (head.employeeObject.getEmployeeSalary() > end.employeeObject.getEmployeeSalary()) {
+				previous = head;
+				head = head.nextLink;
+			}
+			else if ((head.employeeObject.getEmployeeSalary() == end.employeeObject.getEmployeeSalary()) && (head.employeeObject.getEmployeeAge() < end.employeeObject.getEmployeeAge())) {
 				previous = head;
 				head = head.nextLink;
 			}
@@ -163,6 +202,11 @@ public class LinkedListOperation {
 					previous.nextLink = head.nextLink;
 				} else 
 				{
+			else {
+				// remove head node and add at end
+				if (previous != null) {
+					previous.nextLink = head.nextLink;
+				} else {
 					actualHead = head.nextLink;
 				}
 				// adding at end
@@ -188,6 +232,10 @@ public class LinkedListOperation {
 		Node pointer = list.headNode;
 		while (pointer != null) 
 		{
+	public List<Employee> resultList(LinkedListOperation list) {
+		List<Employee> result = new ArrayList<Employee>();
+		Node pointer = list.headNode;
+		while (pointer != null) {
 			result.add(pointer.employeeObject);
 			pointer = pointer.nextLink;
 		}

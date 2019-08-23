@@ -5,8 +5,8 @@ import java.util.*;
 public class Main {
 	public static void main(String args[])
 	{
-		try 
-		{
+	
+		try {
 			LinkedListOperation employeeList; 
 			Employee employeeObject;
 			Scanner input = new Scanner(System.in);
@@ -21,6 +21,13 @@ public class Main {
 				{
 					while (noOfEmployee != 0) 
 					{
+			while (true) {
+				System.out.println("enter no. of employee");
+				noOfEmployee = input.nextInt();
+				employeeList = new LinkedListOperation();
+				if (noOfEmployee > 0) {
+
+					while (noOfEmployee != 0) {
 						input.nextLine();
 						System.out.println("enter Name of employee");
 						employeeName = input.nextLine();
@@ -34,6 +41,7 @@ public class Main {
 						employeeAge = input.nextInt();
 						if(employeeAge >= 18)
 						{
+						if(employeeAge >= 18){
 						System.out.println("enter Salary of employee");
 						employeeSalary = input.nextInt();
 						employeeObject = new Employee(employeeId, employeeName, employeeSalary, employeeAge);
@@ -42,6 +50,7 @@ public class Main {
 						}
 						else
 						{
+						else{
 							System.out.println("Employee age should be 18 or greater than 18...");
 							System.out.println("Enter data again");
 						}
@@ -67,6 +76,14 @@ public class Main {
 		} 
 		catch (Exception e) 
 		{
+					if (flag == 0) {
+						System.out.println("Program exit....");
+						System.exit(0);
+					}
+				} else
+					System.out.println("Employees number can't be null or negative");
+			}
+		} catch (Exception e) {
 			System.out.println("Invalid data....  program restart");
 			main(args);
 		}
