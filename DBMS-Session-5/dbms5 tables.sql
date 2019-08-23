@@ -1,3 +1,4 @@
+drop database store;
 CREATE DATABASE store;
 USE store;
 CREATE TABLE user (

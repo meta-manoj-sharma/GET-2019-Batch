@@ -92,7 +92,7 @@ VALUES
 
 
 select * from orders;
-
+set foreign_key_checks=0;
 
 INSERT INTO cart(ItemID,OrderID,ProductID,Quantity,Amount,itemshippingstatus)
 VALUES
