@@ -19,12 +19,22 @@ public class UndirectedGraph implements Graph {
 	}
 
 	/**
+	 * method to add an edge in graph
 	 * method to add an edge in graph 
 	 * @param source
 	 * @param destination
 	 * @param weight
 	 */
 	public void addEdge(int source, int destination, int weight) throws Exception {
+		if (source < 0 || source >= noOfVertices || destination < 0 || destination >= noOfVertices || weight < 0)
+		{
+			throw new Exception("Invalid values");
+		}
+		// node to add link from source to destination
+		Node nodeSource = new Node(destination, weight, source);
+		adjacentList[source].add(nodeSource);
+		// node to add link from destination to source
+		Node nodeDest = new Node(source, weight, destination);
 		if (source < 0 || source >= noOfVertices || destination < 0 || destination >= noOfVertices || weight < 0) {
 			throw new Exception("Invalid values");
 		}
@@ -82,6 +92,68 @@ public class UndirectedGraph implements Graph {
 	 * method to return minimum spanning tree
 	 */
 	@Override
+	public List<Node> mst() {
+		PriorityQueue<Node> queueOfEdges = new PriorityQueue<>(adjacentList.length, new Comaparision());
+		// add all the edges to priority queue, //sort the edges on weights
+		for (int i = 0; i < noOfVertices; i++) {
+			LinkedList<Node> list = adjacentList[i];
+			for (int j = 0; j < list.size(); j++) {
+				queueOfEdges.add(list.get(j));
+			}
+		}
+		// System.out.println("Here size"+pq.size());
+		int[] parent = new int[noOfVertices]; // create a parent []
+		makeSet(parent);// Creating set of parent
+		ArrayList<Node> mstList = new ArrayList<>();
+		// process vertices - 1 edges
+		int index = 0;
+		while (index < noOfVertices - 1 && queueOfEdges.size() != 0) {
+			Node edgeOfGraph = queueOfEdges.remove(); // check if adding this edge creates a
+			int xSet = find(parent, edgeOfGraph.getVertex());
+			int ySet = find(parent, edgeOfGraph.getDestination());
+
+			if (xSet == ySet) {
+				// ignore, will create cycle
+			} else {
+				mstList.add(edgeOfGraph); // add it to our final result
+				index++;
+				union(parent, xSet, ySet);
+			}
+		}
+		return mstList;
+	}
+
+	/**
+	 * creating a new element with a parent pointer to itself.
+	 * @param parent is the parent element
+	 */
+	public void makeSet(int[] parent) {
+		for (int i = 0; i < noOfVertices; i++) {
+			parent[i] = i;
+		}
+	}
+
+	/**
+	 * chain of parent pointers from x upwards through the tree until an
+	 * element is reached whose parent is itself
+	 * @param parent is the parent vertex
+	 * @param vertex
+	 * @return vertex found
+	 */
+	public int find(int[] parent, int vertex) {
+		if (parent[vertex] != vertex)
+			return find(parent, parent[vertex]);
+		return vertex;
+	}
+
+	/**
+	 * This method finds union
+	 */
+	public void union(int[] parent, int x, int y) {
+		int x_set_parent = find(parent, x);
+		int y_set_parent = find(parent, y);
+		// make x as parent of y
+		parent[y_set_parent] = x_set_parent;
 	public int[] mst() {
 
 		Boolean[] visited = new Boolean[this.noOfVertices];
@@ -130,7 +202,6 @@ public class UndirectedGraph implements Graph {
 
 	/**
 	 * method to find the shortest path
-	 * 
 	 * @param source
 	 * @param destination
 	 */
@@ -164,6 +235,7 @@ public class UndirectedGraph implements Graph {
 			// Update distance value of the adjacent vertices of the picked vertex.
 			for (Node edge : adjacentList[minDistanceVertex]) {
 				int vertex = edge.getVertex();
+				// Update distance[v] only if is not in shortestPath, there is an edge from u to v, and
 				// Update distance[v] only if is not in shortestPath, there is an edge from u to
 				// v, and
 				// total weight of path from src to v through u is smaller than current value of

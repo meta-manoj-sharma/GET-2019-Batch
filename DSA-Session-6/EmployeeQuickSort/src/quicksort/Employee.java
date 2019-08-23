@@ -6,6 +6,8 @@ public class Employee {
 	private int employeeSalary;
 	private int employeeAge;
 
+	public Employee(int employeeId, String name, int salary, int age) 
+	{
 	public Employee(int employeeId, String name, int salary, int age) {
 		this.employeeId = employeeId;
 		this.employeeName = name;
@@ -14,6 +16,23 @@ public class Employee {
 	}
 
 	// Getters
+	public int getEmployeeId() 
+	{
+		return employeeId;
+	}
+
+	public String getEmployeeName() 
+	{
+		return employeeName;
+	}
+
+	public int getEmployeeSalary()
+	{
+		return employeeSalary;
+	}
+
+	public int getEmployeeAge() 
+	{
 	public int getEmployeeId() {
 		return employeeId;
 	}
