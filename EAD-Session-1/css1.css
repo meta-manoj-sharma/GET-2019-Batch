@@ -1,0 +1,16 @@
+#main
+{
+	text-align:center;
+	
+}
+.divisionTwo textarea{
+ vertical-align: top;
+}
+.divisionTwo{
+	
+display:none;
+}
+#motorCyclePass,#cyclePass,#fourWheelerPass,#cyclePassUSD,#cyclePassYEN,#motorCyclePassUSD,#motorCyclePassYEN,#fourWheelerPassUSD,#fourWheelerPassYEN
+{
+	display:none;
+}
