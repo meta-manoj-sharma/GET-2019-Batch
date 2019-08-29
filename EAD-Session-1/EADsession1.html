@@ -73,7 +73,7 @@ Vehicle Registration Form
 <br><br>
 
 <label><b>Identification</b></label>
-<textarea rows="6"> 
+<textarea rows="6" cols="50" value=""> 
 </textarea>
 <br><br>
 <input type="submit" value="Register Vehicle & Select Pass">
@@ -235,7 +235,7 @@ Vehicle Registration Form
 <input type="radio" name="fourWheelerPass" value="6.94$">Monthly - 6.94$ <br><br>
 </label>
 <label>
-<input type="radio" name="fourWheelerPass" value="48.60$">Yearly - 48.60 <br><br>
+<input type="radio" name="fourWheelerPass" value="48.60$">Yearly - 48.60$ <br><br>
 </label>
 </div>
 
@@ -380,7 +380,7 @@ var email=document.forms["employee"]["email"].value;
 var passwordObtained=document.forms["employee"]["password"].value;
 var contact=document.forms["employee"]["contact"].value;
 var confirmPassword=document.forms["employee"]["confirm"].value;
- var letterNumber = /[0-9]+$/;
+ var letterNumber =  /^[a-zA-Z]+ [a-zA-Z]+$/;
  var passwordCheck= /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
  var mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 if(name.length<2 )
@@ -388,9 +388,9 @@ if(name.length<2 )
 alert("Name length less than 2 ");
 return false;
 } 
-else if(name.match(letterNumber))
+else if(!name.match(letterNumber))
 {
-alert("Name contains numbers");
+alert("Please enter valid name with surname containing only valid characters");
 return false;
 } 
 else if (!email.match(mailFormat))                 
@@ -403,9 +403,9 @@ else if (!passwordObtained.match(passwordCheck))
  window.alert("Password should contain atleast one lowercase,one uppercase and one number and minimum length 8"); 
  return false; 
  }
-	else if(contact.length<=8)
+	else if(contact.length<=8 || contact.length>=11)
 {
-alert("Contact length should be greater than 8");
+alert("Contact length should be greater than 8 and not more than 10");
 return false;
 }
 else if(confirmPassword!=passwordObtained)
