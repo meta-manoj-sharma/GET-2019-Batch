@@ -45,7 +45,7 @@ public class ShowStudents extends HttpServlet
 			ResultSet resultSet = statement.executeQuery();
 			show.print("<html><head><title>Students</title></head><body>");
 			show.print("<table border = '1'>");
-			show.print("<tr><th>FirstName</th><th>LastName</th><th>Father'sName</th><th>Email</th><th>Class</th><th>Age</th></tr" + ">");
+			show.print("<tr><th>FirstName</th><th>LastName</th><th>Father'sName</th><th>Email</th><th>Age</th><th>Class</th></tr" + ">");
 			while (resultSet.next()) 
 			{
 				show.print("<tr><form action = './UpdateStudentDetails'><td>" + resultSet.getString(1) + "</td><td>"
