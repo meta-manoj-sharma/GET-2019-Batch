@@ -7,12 +7,12 @@ import com.metacube.demo.model.Element;
 /**
  * This is service class for operations
  * This is Singleton class to prevent for duplicate objects and Maintain List Of Elemets 
- * @author Manoj Sharma
+ * @author Manoj Sharma 
  * @since Sept 4, 2019
  *
  */
 public class Service {
-	private static Service singleInstance = null; 
+	private static Service single_instance = null; 
 	private static List<Element> elements;
    
     private Service() 
@@ -22,10 +22,10 @@ public class Service {
  
     public static Service getInstance() 
     { 
-        if (singleInstance == null) {
-        	singleInstance = new Service(); 
-        }
-        return singleInstance; 
+        if (single_instance == null) 
+            single_instance = new Service(); 
+  
+        return single_instance; 
     } 
     
     public static boolean addElement(Element element){
