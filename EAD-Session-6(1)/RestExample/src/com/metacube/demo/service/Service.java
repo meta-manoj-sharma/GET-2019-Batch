@@ -9,7 +9,6 @@ import com.metacube.demo.model.Element;
  * This is Singleton class to prevent for duplicate objects and Maintain List Of Elemets 
  * @author Manoj Sharma
  * @since Sept 4, 2019
- *
  */
 public class Service {
 	private static Service singleInstance = null; 
@@ -40,6 +39,5 @@ public class Service {
     	String name = element.getName();
     	elements.remove(element);
     	return name+" Deleted Successfully ";
-    }
-    
+    }  
 }

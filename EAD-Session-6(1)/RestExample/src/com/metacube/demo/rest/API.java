@@ -48,12 +48,11 @@ public class API {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("{name}")
-	public Element  getElements(@PathParam("name") String name){
-		//addElements();
+	public Element getElements(@PathParam("name") String name) {
 		List<Element> elements = Service.getInstance().getElements();
 		Element result = new Element();
-		for(Element element : elements){
-			if(element.getName().equals(name)){
+		for (Element element : elements) {
+			if (element.getName().equals(name)) {
 				result = element;
 			}
 		}
@@ -66,13 +65,12 @@ public class API {
 	 * @return String as message
 	 */
 	@POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    public String addSingleElement(Element element) {
+	@Consumes(MediaType.APPLICATION_JSON)
+	public String addSingleElement(Element element) {
 		Service.getInstance().addElement(element);
-        String result = element.getName()+" Saved";
-        //return Response.status(201).entity(result).build();
-        return result;
-    }
+		String result = element.getName() + " Saved";
+		return result;
+	}
 	
 	/**
 	 *  This function is used to insert a JASON Array Objects 
@@ -80,20 +78,19 @@ public class API {
 	 * @return String message
 	 */
 	@POST
-    @Consumes(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/addAll")
-    public String addElements(String element) {
-		Gson gson=new Gson();
+	public String addElements(String element) {
+		Gson gson = new Gson();
 		TypeToken<List<Element>> token = new TypeToken<List<Element>>() {};
 		List<Element> elements = gson.fromJson(element, token.getType());
-		String inserted="";
-		for(Element e: elements){
+		String inserted = "";
+		for (Element e : elements) {
 			Service.getInstance().addElement(e);
-			inserted += e.getName()+" Saved\n";
+			inserted += e.getName() + " Saved\n";
 		}
-        //return Response.status(201).entity(inserted).build();
 		return inserted;
-    }
+	}
 	
 	/**
 	 * this Function is used to delete elements from records, this will remove all records
@@ -101,11 +98,11 @@ public class API {
 	 */
 	@DELETE
 	@Produces(MediaType.APPLICATION_JSON)
-	public String deleteAllElements(){
+	public String deleteAllElements() {
 		List<Element> elements = Service.getInstance().getElements();
-		String result="";
-		for(Element element: elements){
-			result += Service.getInstance().deleteElement(element)+" Deleted \n";
+		String result = "";
+		for (Element element : elements) {
+			result += Service.getInstance().deleteElement(element) + " Deleted \n";
 		}
 		return result;
 	}
@@ -118,12 +115,12 @@ public class API {
 	@DELETE
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("{element}")
-	public String deleteElement(@PathParam("element") String name){
+	public String deleteElement(@PathParam("element") String name) {
 		List<Element> elements = Service.getInstance().getElements();
-		String result="";
-		for(Element element : elements){
-			if(element.getName().equals(name)){
-				result += Service.getInstance().deleteElement(element)+" Deleted \n";
+		String result = "";
+		for (Element element : elements) {
+			if (element.getName().equals(name)) {
+				result += Service.getInstance().deleteElement(element) + " Deleted \n";
 			}
 		}
 		return result;
@@ -139,14 +136,14 @@ public class API {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("{name}")
-	public String  updateQantity(@PathParam("name") String name, Element element){
+	public String updateQantity(@PathParam("name") String name, Element element) {
 		List<Element> elements = Service.getInstance().getElements();
-		String result="";
-		for(Element current: elements){
-			if(current.getName().equals(name)){
+		String result = "";
+		for (Element current : elements) {
+			if (current.getName().equals(name)) {
 				current.setQuantity(element.getQuantity());
 				result = "Updated Succesfully";
-			}else{
+			} else {
 				result = "Error Occured";
 			}
 		}
