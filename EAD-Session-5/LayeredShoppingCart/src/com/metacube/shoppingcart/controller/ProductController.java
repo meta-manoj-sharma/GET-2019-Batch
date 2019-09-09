@@ -11,19 +11,18 @@ import com.metacube.shoppingcart.model.Product;
 	 */
 public class ProductController {
 
-	private ProductDao product;
-	// contstructor of product controller
-	public ProductController() {
-		product = new ProductDao();
-	}
+	private ProductDao product;	
+		
 	/**
 	 * @return all products available in database 
 	 * @throws SQLException
 	 * @throws Exception
 	 */
 	public ArrayList<Product> getStoreProduct() throws SQLException, Exception {
+		product = new ProductDao();
 		return product.executeGetAllProducts();
 	}
+	
 	/**
 	 * @param productID of product id 
 	 * @return details of product of specific id
@@ -31,6 +30,7 @@ public class ProductController {
 	 * @throws Exception
 	 */
 	public Product getProductById(String productID) throws SQLException,Exception {
+		product = new ProductDao();
 		return product.executeGetProductDetails(productID);
 	}
 }

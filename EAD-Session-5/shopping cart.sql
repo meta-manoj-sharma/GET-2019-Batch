@@ -50,5 +50,4 @@ CREATE TABLE cart (
   ProductCode varchar(50) NOT NULL,
   Quantity int(50) NOT NULL,
   FOREIGN KEY (ProductCode) REFERENCES Product(ProductCode),
- FOREIGN KEY (userId) REFERENCES user(userId),
-  PRIMARY KEY (ProductCode) ) ;
+ FOREIGN KEY (userId) REFERENCES user(userId)) ;

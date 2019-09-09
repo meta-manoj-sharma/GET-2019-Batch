@@ -13,15 +13,13 @@ import com.metacube.shoppingcart.model.User;
 public class UserDao {
 	private Query query;
 
-	public UserDao() {
-		query = new Query();
-	}
 	/**
 	 * @param userName to be add in database
 	 * @throws SQLException
 	 * @throws Exception
 	 */
-	public void addUser(String userName) throws SQLException, Exception {
+	public void addUser(String userName) throws Exception {
+		query = new Query();
 		Connection connect = null;
 		PreparedStatement statement = null;
 		try {
@@ -29,9 +27,8 @@ public class UserDao {
 			statement = connect.prepareStatement(query.getAddUserQuery());
 			statement.setString(1, userName);
 			statement.executeUpdate();
-			} catch (SQLException e) {
-				throw e;
-			} catch (Exception e) {
+			}
+			 catch (Exception e) {
 				throw e;
 			} finally {
 				statement.close();
@@ -44,7 +41,8 @@ public class UserDao {
 	 * @throws SQLException
 	 * @throws Exception
 	 */
-	public String getUserByID(int userId) throws SQLException, Exception {
+	public String getUserByID(int userId) throws Exception {
+		query = new Query();
 		Connection connect = null;
 		PreparedStatement statement = null;
 		ResultSet result = null;
@@ -55,8 +53,6 @@ public class UserDao {
 			result = statement.executeQuery();
 			result.next();
 			return result.getString(1);
-			} catch (SQLException e) {
-				throw e;
 			} catch (Exception e) {
 				throw e;
 			} finally {
@@ -69,7 +65,8 @@ public class UserDao {
 	 * @throws SQLException
 	 * @throws Exception
 	 */
-	public List<User> getUserList() throws SQLException, Exception {
+	public List<User> getUserList() throws Exception {
+		query = new Query();
 		Connection connect = null;
 		PreparedStatement statement = null;
 		ResultSet result = null;
@@ -86,9 +83,7 @@ public class UserDao {
 				listUser.add(userObject);
 			}
 			return listUser;
-			} catch (SQLException e) {
-				throw e;
-			} catch (Exception e) {
+		    } catch (Exception e) {
 				throw e;
 			} finally {
 			statement.close();

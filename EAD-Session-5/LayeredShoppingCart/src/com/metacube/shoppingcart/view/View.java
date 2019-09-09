@@ -81,9 +81,12 @@ public class View {
 								String productID = input.next();
 								System.out.println("Enter the quantity of the product...");
 								int productQuantity = input.nextInt();
-
-								cartController.addProductToCart(userID,productID, productQuantity);
-								System.out.println("Added the products");
+								if (productQuantity > 0) {
+									cartController.addProductToCart(userID, productID, productQuantity);
+									System.out.println("Added the products");
+								} else {
+									System.out.println("Quantity should be greater than 0");
+								}
 								break;
 
 							case 2:
@@ -98,8 +101,11 @@ public class View {
 								String productID1 = input.next();
 								System.out.println("Enter the Quantity of the product...");
 								int productQTY = input.nextInt();
-
-								cartController.updateCartItem(userID, productID1, productQTY);
+								if (productQTY > 0) {
+									cartController.updateCartItem(userID, productID1, productQTY);
+								} else {
+									System.out.println("Quantity should be greater than 0");
+								}
 								break;
 
 							// show the user cart

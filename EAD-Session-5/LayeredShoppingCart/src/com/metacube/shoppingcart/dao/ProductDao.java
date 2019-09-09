@@ -13,16 +13,13 @@ public class ProductDao {
 
 	private Query query;
 
-	public ProductDao() {
-		query = new Query();
-	}
-
 	/**
 	 * @return list of all products
 	 * @throws SQLException
 	 * @throws Exception
 	 */
-	public ArrayList<Product> executeGetAllProducts() throws SQLException, Exception {
+	public ArrayList<Product> executeGetAllProducts() throws Exception {
+		query = new Query();
 		Connection connect = null;
 		PreparedStatement statement = null;
 		ResultSet result = null;
@@ -41,8 +38,6 @@ public class ProductDao {
 				list.add(productObject);
 			}
 			return list;
-		} catch (SQLException e) {
-			throw e;
 		} catch (Exception e) {
 			throw e;
 		} finally {
@@ -57,7 +52,8 @@ public class ProductDao {
 	 * @throws SQLException
 	 * @throws Exception
 	 */
-	public Product executeGetProductDetails(String productCode) throws SQLException, Exception {
+	public Product executeGetProductDetails(String productCode) throws Exception {
+		query = new Query();
 		Connection connect = null;
 		PreparedStatement statement = null;
 		ResultSet result = null;
@@ -74,8 +70,6 @@ public class ProductDao {
 				cartProduct.setPrice(result.getDouble(4));
 			}
 			return cartProduct;
-		} catch (SQLException e) {
-			throw e;
 		} catch (Exception e) {
 			throw e;
 		} finally {

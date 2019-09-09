@@ -11,6 +11,8 @@ import com.metacube.shoppingcart.model.Cart;
 	 * Dated 6 sept 2019
 	 */
 public class CartController {
+	private CartDao cart;
+	
 	/**
 	 * @param userID for user to add product in cart
 	 * @param productID of product which is to be add in cart
@@ -19,9 +21,10 @@ public class CartController {
 	 * @throws Exception
 	 */
 	public void addProductToCart(int userID, String productID, int quantity) throws SQLException, Exception {
-		CartDao cart = new CartDao();
+	    cart = new CartDao();
 		cart.executeAddProductToCartQuery(userID, productID, quantity);
 	}
+	
 	/**
 	 * @param userID for user to update product in cart
 	 * @param productID of product which is to update add in cart
@@ -30,10 +33,11 @@ public class CartController {
 	 * @throws Exception
 	 */
 	public void updateCartItem(int userID, String productID, int quantity) throws SQLException, Exception {
-		CartDao cart = new CartDao();
+		cart = new CartDao();
 		cart.executeUpdateQuantityQuery(userID, productID, quantity);
 
 	}
+	
 	/**
 	 * @param userID for user to get cart
 	 * @return cart of user 
@@ -41,7 +45,7 @@ public class CartController {
 	 * @throws Exception
 	 */
 	public List<Cart> getCartList(int userID) throws SQLException, Exception {
-		CartDao cart = new CartDao();
+		cart = new CartDao();
 		return cart.executeViewCartQuery();
 	}
 }

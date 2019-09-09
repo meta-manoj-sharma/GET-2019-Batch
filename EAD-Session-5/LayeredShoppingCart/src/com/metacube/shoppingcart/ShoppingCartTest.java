@@ -13,30 +13,7 @@ import com.metacube.shoppingcart.model.Product;
 import com.metacube.shoppingcart.model.User;
 
 public class ShoppingCartTest {
-	/**
-	 * test case to test user in user list
-	 * @throws SQLException
-	 * @throws Exception
-	 */
-	@Test
-	public void testGetUserList() throws SQLException, Exception {
-
-		UserController userController = new UserController();
-		List<User> userList = userController.getUserList();
-		assertEquals("Aryan", userList.get(0).getUserName());
-	}
-	/**
-	 * test case to test user by user id 
-	 * @throws SQLException
-	 * @throws Exception
-	 */
-	@Test
-	public void testGetUserById() throws SQLException, Exception {
-
-		UserController userController = new UserController();
-
-		assertEquals("MANOJ", userController.getUserByID(2));
-	}
+	
 	/**
 	 * test case to test product by product id 
 	 * @throws SQLException
@@ -59,17 +36,5 @@ public class ShoppingCartTest {
 		ProductController productController = new ProductController();
 		List<Product> productList = productController.getStoreProduct();
 		assertEquals("P1", productList.get(0).getProductCode());
-	}
-	/**
-	 * test case to test cart list
-	 * @throws SQLException
-	 * @throws Exception
-	 */
-	@Test
-	public void testGetCartList() throws SQLException, Exception {
-
-		CartController cartController = new CartController();
-		List<Cart> cartList = cartController.getCartList(2);
-		assertEquals("P2", cartList.get(0).getProductCode());
-	}
+	}	
 }

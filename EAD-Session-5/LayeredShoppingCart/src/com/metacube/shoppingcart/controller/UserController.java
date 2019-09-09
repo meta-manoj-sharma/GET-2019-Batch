@@ -11,13 +11,14 @@ import com.metacube.shoppingcart.model.User;
 	 * Dated 6 sept 2019
 	 */
 public class UserController {
-	UserDao userDaoObject = new UserDao();
+	private UserDao userDaoObject; 
 	/** 
 	 * @param user name to be add in user list
 	 * @throws SQLException
 	 * @throws Exception
 	 */
 	public void addUser(String user) throws SQLException, Exception {
+		userDaoObject = new UserDao();
 		userDaoObject.addUser(user);
 	}
 	/**
@@ -27,6 +28,7 @@ public class UserController {
 	 * @throws Exception
 	 */
 	public String getUserByID(int userID) throws SQLException, Exception {
+		userDaoObject = new UserDao();
 		return userDaoObject.getUserByID(userID);
 	}
 	/**
@@ -35,6 +37,7 @@ public class UserController {
 	 * @throws Exception
 	 */
 	public List<User> getUserList() throws SQLException, Exception {
+		userDaoObject = new UserDao();
 		return userDaoObject.getUserList();
 	}
 }

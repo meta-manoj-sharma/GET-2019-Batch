@@ -14,10 +14,7 @@ import java.util.ArrayList;
 	 */
 public class CartDao {
 	private Query query;
-	// constructor to get query object
-	public CartDao() {
-		query = new Query();
-	}
+
 	/**
 	 * @param userId at which product to be added
 	 * @param productCode to be added
@@ -26,20 +23,18 @@ public class CartDao {
 	 * @throws SQLException
 	 * @throws Exception
 	 */
-	public boolean executeAddProductToCartQuery(int userId, String productCode, int quantity) throws SQLException, Exception {
+	public boolean executeAddProductToCartQuery(int userId, String productCode, int quantity) throws Exception {
+		query = new Query();
 		Connection connect = null;
 		PreparedStatement statement = null;
 		try {
 			connect = ConnectionClass.getConnection();
-			statement = connect.prepareStatement(query
-					.getAddProductToCartQuery());
+			statement = connect.prepareStatement(query.getAddProductToCartQuery());
 			statement.setInt(1, userId);
 			statement.setString(2, productCode);
 			statement.setInt(3, quantity);
 			statement.executeUpdate();
 			return true;
-		} catch (SQLException e) {
-			throw e;
 		} catch (Exception e) {
 			throw e;
 		} finally {
@@ -52,7 +47,8 @@ public class CartDao {
 	 * @throws SQLException
 	 * @throws Exception
 	 */
-	public ArrayList<Cart> executeViewCartQuery() throws SQLException, Exception {
+	public ArrayList<Cart> executeViewCartQuery() throws Exception {
+		query = new Query();
 		Connection connect = null;
 		PreparedStatement statement = null;
 		ResultSet result = null;
@@ -71,8 +67,6 @@ public class CartDao {
 			}
 
 			return list;
-		} catch (SQLException e) {
-			throw e;
 		} catch (Exception e) {
 			throw e;
 		} finally {
@@ -89,7 +83,8 @@ public class CartDao {
 	 * @throws SQLException
 	 * @throws Exception
 	 */
-	public int executeGetProductQuantity(int userId, String productCode) throws SQLException, Exception {
+	public int executeGetProductQuantity(int userId, String productCode) throws Exception {
+		query = new Query();
 		Connection connect = null;
 		PreparedStatement statement = null;
 		ResultSet result = null;
@@ -101,8 +96,6 @@ public class CartDao {
 			result = statement.executeQuery();
 			result.next();
 			return result.getInt(1);
-		} catch (SQLException e) {
-			throw e;
 		} catch (Exception e) {
 			throw e;
 		} finally {
@@ -119,7 +112,8 @@ public class CartDao {
 	 * @throws SQLException
 	 * @throws Exception
 	 */
-	public boolean executeUpdateQuantityQuery(int userId, String productCode, int quantity) throws SQLException, Exception {
+	public boolean executeUpdateQuantityQuery(int userId, String productCode, int quantity) throws Exception {
+		query = new Query();
 		Connection connect = null;
 		PreparedStatement statement = null;
 		try {
@@ -131,8 +125,6 @@ public class CartDao {
 			statement.setInt(3, userId);
 			statement.executeUpdate();
 			return true;
-		} catch (SQLException e) {
-			throw e;
 		} catch (Exception e) {
 			throw e;
 		} finally {
