@@ -38,9 +38,9 @@ public class View {
 		ProductController productController = new ProductController();
 		CartController cartController = new CartController();
 		Scanner input = new Scanner(System.in);
-		int menuChoice, cartChoice;
-		menuChoice = input.nextInt();
+		int menuChoice, cartChoice;	
 		try {
+			menuChoice = input.nextInt();
 			while (menuChoice > 0 && menuChoice < 4) {
 				switch (menuChoice) {
 				case 1:
