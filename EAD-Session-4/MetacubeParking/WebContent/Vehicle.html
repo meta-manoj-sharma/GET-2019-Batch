@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Vehicle form</title>
+</head>
+<body>
+<body>
+	<h1 align="center" id="main">Parking System</h1>
+	<hr>
+	<div align="center" id="thirdForm">
+		<form name="vehicle" action="./VehicleResistration">
+			<h2>Employee vehicle Registration Form</h2>
+			<br> <label><b>Name</b></label> <input name="name" type="text" placeholder="Enter vehicle name" Required> <br>
+			<br> <label><b>Type</b></label> <select name="vehicle">
+				<option value="cycle">Cycle</option>
+				<option value="bike">bike</option>
+				<option value="car" selected>Car</option>
+			</select><br>
+			<br> <label><b>Number</b></label> 
+			<input type="number" name="number" placeholder="Enter vehicle Number" Required> <br>
+			<br> <label><b>Employee Id</b></label> 
+			<input type="number" name="empId" placeholder="Enter Employee Id" Required> <br>
+			<br> <label><b>Identification</b></label>
+			<textarea name="identification" rows="6" cols="50">
+      </textarea>
+			<br>
+			<br> <input type="submit" value="Register"> <br>
+			<br>
+		</form>
+	</div>
+</body>
+</html>
