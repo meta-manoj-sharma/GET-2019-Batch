@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 //@Primary
 //@Qualifier
 //@Component
-public class SmtpMailSender implements MailSender {
 
+public class SmtpMailSender implements MailSender {
 
 	public String emailService() {
 		return "Send Smtp mail";
