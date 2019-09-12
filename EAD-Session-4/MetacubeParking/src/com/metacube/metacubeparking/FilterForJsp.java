@@ -40,7 +40,6 @@ public class FilterForJsp implements Filter {
 		
 		HttpServletRequest request1 = (HttpServletRequest) request;
 		HttpServletResponse response1 = (HttpServletResponse) response;
-		System.out.println("HELLO I AM IN FiLTER2");
 		HttpSession session = request1.getSession();
 		String email = (String) session.getAttribute("Email");
 		if (email != null) {

@@ -28,7 +28,6 @@ public class EmployeeLogin extends HttpServlet {
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public EmployeeLogin() {
-		super();
 		ConnectionClass.connectionQuery();
 	}
 
@@ -47,7 +46,7 @@ public class EmployeeLogin extends HttpServlet {
 		try {
 			HttpSession session = request.getSession();
 			PreparedStatement statement = (PreparedStatement) ConnectionClass.connect
-					.prepareStatement("select Email,password from employeeData where Email='" + email + "';");
+					.prepareStatement("SELECT Email,password FROM employeeData WHERE Email='" + email + "';");
 			ResultSet resultSet;
 
 			resultSet = statement.executeQuery();
@@ -69,8 +68,8 @@ public class EmployeeLogin extends HttpServlet {
 					} else {
 
 						session.setAttribute("Email", email);
-						RequestDispatcher rd = request.getRequestDispatcher("/HomePage.jsp");
-						rd.include(request, response);
+						RequestDispatcher dispatcherObject = request.getRequestDispatcher("/HomePage.jsp");
+						dispatcherObject.include(request, response);
 					}
 				}
 			}

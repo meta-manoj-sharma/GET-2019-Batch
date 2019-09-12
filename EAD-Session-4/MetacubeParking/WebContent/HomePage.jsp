@@ -17,7 +17,7 @@
 	<%
 ConnectionClass.connectionQuery();
 String email = (String)session.getAttribute("Email");
-PreparedStatement statement = (PreparedStatement) ConnectionClass.connect.prepareStatement("select * from employeeData where email = '"+email+"' ;");
+PreparedStatement statement = (PreparedStatement) ConnectionClass.connect.prepareStatement("SELECT * FROM employeeData WHERE email = '"+email+"' ;");
 ResultSet resultSet = statement.executeQuery();
 
 %>

@@ -14,7 +14,7 @@
 <%
 ConnectionClass.connectionQuery();
 String friendEmail = (String)request.getParameter("id");
-PreparedStatement statement1 = (PreparedStatement) ConnectionClass.connect.prepareStatement("select * from employeeData where email = '"+friendEmail+"' ;");
+PreparedStatement statement1 = (PreparedStatement) ConnectionClass.connect.prepareStatement("SELECT * FROM employeeData WHERE email = '"+friendEmail+"' ;");
 ResultSet resultSet1 = statement1.executeQuery();
 %>
 	<table border="1">

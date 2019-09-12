@@ -32,7 +32,6 @@ public class FilterForAll implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest request1 = (HttpServletRequest) request;
 		HttpServletResponse response1 = (HttpServletResponse) response;
-		System.out.println("HELLO I AM IN FiLTER1");
 		HttpSession session = request1.getSession();
 		String email = (String) session.getAttribute("Email");
 		if (email != null) {

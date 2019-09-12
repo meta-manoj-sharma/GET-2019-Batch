@@ -30,7 +30,6 @@ public class EmployeeResistration extends HttpServlet {
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public EmployeeResistration() {
-		super();
 		ConnectionClass.connectionQuery();
 	}
 
@@ -69,7 +68,7 @@ public class EmployeeResistration extends HttpServlet {
 				statement.executeUpdate();
 				// commit the data into database
 				ConnectionClass.connect.commit();
-				statement = (PreparedStatement) ConnectionClass.connect.prepareStatement("select employeeId from employeeData where Email='" + email + "';");
+				statement = (PreparedStatement) ConnectionClass.connect.prepareStatement("SELECT employeeId FROM employeeData WHERE Email='" + email + "';");
 				ResultSet resultSet = statement.executeQuery();
 				show.print("<html><head><title>Confirmation Page</title></head><body>");
 				show.print("<h4>Data Inserted Successfully....Employee Id : ");
@@ -79,8 +78,8 @@ public class EmployeeResistration extends HttpServlet {
 				show.print("</h4><br><br>");
 				HttpSession session = request.getSession();
 				session.setAttribute("Email", email);
-				RequestDispatcher rd = request.getRequestDispatcher("/Vehicle.html");
-				rd.include(request, response);
+				RequestDispatcher dispatcherObject = request.getRequestDispatcher("/Vehicle.html");
+				dispatcherObject.include(request, response);
 				show.print("</table></body></html>");
 			} catch (SQLIntegrityConstraintViolationException e) {
 				error = "Email Address Already Exists";
@@ -94,17 +93,17 @@ public class EmployeeResistration extends HttpServlet {
 				e.printStackTrace();
 			} finally {
 				if (error.equals("Email Address Already Exists")) {
-					RequestDispatcher rd = null;
+					RequestDispatcher dispatcherObject = null;
 					show.println("<div align='center'><p><b><font color=red>" + error + "</font></b></p><br></div>");
-					rd = request.getRequestDispatcher("/Registration.html");
-					rd.include(request, response);
+					dispatcherObject = request.getRequestDispatcher("/Registration.html");
+					dispatcherObject.include(request, response);
 				}
 			}
 		} else {
-			RequestDispatcher rd = null;
+			RequestDispatcher dispatcherObject = null;
 			show.println("<div align='center'><p><b><font color=red>" + error + "</font></b></p><br></div>");
-			rd = request.getRequestDispatcher("/Resistration.html");
-			rd.include(request, response);
+			dispatcherObject = request.getRequestDispatcher("/Resistration.html");
+			dispatcherObject.include(request, response);
 		}
 	}
 	/**
@@ -131,12 +130,12 @@ public class EmployeeResistration extends HttpServlet {
 		if (error == "") {
 			try {
 				PreparedStatement statement = (PreparedStatement) ConnectionClass.connect
-						.prepareStatement("update employeeData set employeeData.Name = '"
+						.prepareStatement("UPDATE employeeData SET employeeData.Name = '"
 								+ name + "', employeeData.gender = '"
 								+ gender + "', employeeData.password = '"
 								+ password + "', employeeData.contactNumber = '"
 								+ contact + "', employeeData.organization = '"
-								+ orgnization + "' where employeeData.Email = '"
+								+ orgnization + "' WHERE employeeData.Email = '"
 								+ email + "';");
 				ConnectionClass.connect.setAutoCommit(false);
 				statement.executeUpdate();
@@ -145,8 +144,8 @@ public class EmployeeResistration extends HttpServlet {
 				show.print("</h4><br><br>");
 				HttpSession session = request.getSession();
 				session.setAttribute("Email", email);
-				RequestDispatcher rd = request.getRequestDispatcher("/LoginPage.html");
-				rd.include(request, response);
+				RequestDispatcher dispatcherObject = request.getRequestDispatcher("/LoginPage.html");
+				dispatcherObject.include(request, response);
 				ConnectionClass.connect.commit();
 			} catch (SQLIntegrityConstraintViolationException e) {
 				error = "Email Address Already Exists";
@@ -161,17 +160,17 @@ public class EmployeeResistration extends HttpServlet {
 				e.printStackTrace();
 			} finally {
 				if (error.equals("Email Address Already Exists")) {
-					RequestDispatcher rd = null;
+					RequestDispatcher dispatcherObject = null;
 					show.println("<div align='center'><p><b><font color=red>" + error + "</font></b></p><br></div>");
-					rd = request.getRequestDispatcher("//Update.jsp");
-					rd.include(request, response);
+					dispatcherObject = request.getRequestDispatcher("//Update.jsp");
+					dispatcherObject.include(request, response);
 				}
 			}
 		} else {
-			RequestDispatcher rd = null;
+			RequestDispatcher dispatcherObject = null;
 			show.println("<div align='center'><p><b><font color=red>" + error + "</font></b></p><br></div>");
-			rd = request.getRequestDispatcher("/Update.jsp");
-			rd.include(request, response);
+			dispatcherObject = request.getRequestDispatcher("/Update.jsp");
+			dispatcherObject.include(request, response);
 		}
 	}
 }

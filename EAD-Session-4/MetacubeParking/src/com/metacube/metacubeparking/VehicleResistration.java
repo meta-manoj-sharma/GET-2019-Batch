@@ -27,7 +27,6 @@ public class VehicleResistration extends HttpServlet {
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public VehicleResistration() {
-		super();
 		ConnectionClass.connectionQuery();
 	}
 
@@ -67,8 +66,8 @@ public class VehicleResistration extends HttpServlet {
 				show.print("<h2>Data Inserted Successfully...</h2>");
 				session.setAttribute("Number", number);
 				session.setAttribute("Type", type);
-				RequestDispatcher rd = request.getRequestDispatcher("/GetPass.jsp");
-				rd.include(request, response);
+				RequestDispatcher dispatcherObject = request.getRequestDispatcher("/GetPass.jsp");
+				dispatcherObject.include(request, response);
 			} catch (Exception e) {
 				System.out.println(e);
 				try {
@@ -80,10 +79,10 @@ public class VehicleResistration extends HttpServlet {
 			}
 			show.print("</table></body></html>");
 		} else {
-			RequestDispatcher rd = null;
+			RequestDispatcher dispatcherObject = null;
 			show.println("<div align='center'><p><b><font color=red>" + error + "</font></b></p><br></div>");
-			rd = request.getRequestDispatcher("/Vehicle.html");
-			rd.include(request, response);
+			dispatcherObject = request.getRequestDispatcher("/Vehicle.html");
+			dispatcherObject.include(request, response);
 		}
 	}
 }

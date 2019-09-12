@@ -27,7 +27,6 @@ public class SetPass extends HttpServlet {
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public SetPass() {
-		super();
 		ConnectionClass.connectionQuery();
 	}
 
@@ -61,8 +60,8 @@ public class SetPass extends HttpServlet {
 			show.print("<html><head><title>Confirmation Page</title></head><body>");
 			show.print("<h4>Plan Activated Successfully");
 			show.print("</h4><br><br>");
-			RequestDispatcher rd = request.getRequestDispatcher("LoginPage.html");
-			rd.include(request, response);
+			RequestDispatcher dispatcherObject = request.getRequestDispatcher("LoginPage.html");
+			dispatcherObject.include(request, response);
 		} catch (SQLException e) {
 			show.print("<h4>" + e.getMessage() + "</h4><br><br>");
 			System.out.println(e.getMessage());

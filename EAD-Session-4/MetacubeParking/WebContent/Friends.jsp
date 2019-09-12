@@ -14,7 +14,7 @@
 <%
 ConnectionClass.connectionQuery();
 String email = (String)session.getAttribute("Email");
-PreparedStatement statement = (PreparedStatement) ConnectionClass.connect.prepareStatement("select employeeId, name, email from employeeData where email != '"+email+"' and organization in (select organization from employeeData where email = '"+email+"'); ;");
+PreparedStatement statement = (PreparedStatement) ConnectionClass.connect.prepareStatement("SELECT employeeId, name, email FROM employeeData WHERE email != '"+email+"' AND organization IN (SELECT organization FROM employeeData WHERE email = '"+email+"'); ;");
 ResultSet resultSet = statement.executeQuery();
 %>
 	<table border="1">

@@ -19,8 +19,8 @@ public class VehicleValidation {
 	public String validate(String name, String type, int number, int employeeId) {
 		if (name.trim().equals("")) {
 			this.error = "Vehicle Name Cannnot be blank";
-		} else if (number <= 0) {
-			this.error = "Vehicle Number Cannnot be blank";
+		} else if (number < 0 || number > 9999) {
+			this.error = "Please enter valid vehicle number";
 		} else if (type.equals("")) {
 			this.error = "Vehicle Type Cannnot be blank";
 		} else if (employeeId <= 0) {
