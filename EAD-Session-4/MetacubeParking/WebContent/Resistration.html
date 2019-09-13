@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Parking System</title>
+</head>
+<body>
+	<h1 align="center" id="main">Parking System</h1>
+	<hr>
+	<div align="center" class="divisionOne" id="firstForm">
+		<form name="employee" action="Resistration">
+			<h2>Employee Registration Form</h2>
+			<br> <label><b>Name</b></label> 
+			<input name="name" type="text" placeholder="Enter full name" Required> <br>
+			<br> <label><b>Gender</b></label> 
+			<label> <input type="radio" name="gender" value="Male" checked>Male
+			</label> <label> <input type="radio" name="gender" value="Female">Female
+			</label> <br>
+			<br> <label><b>Email - ID</b></label> 
+			<input name="email" type="email" placeholder="Enter Email" Required> <br>
+			<br> <label><b>Password</b></label> 
+			<input name="password" type="password" placeholder="Enter Password" Required> <br>
+			<br> <label><b>Confirm Password</b></label> 
+			<input type="password" name="confirm" placeholder="Confirm Password" Required> <br>
+			<br> <label><b>Contact Number</b></label> 
+			<input type="number" name="contact" placeholder="Enter Contact Number" Required>
+			<br>
+			<br> <label><b>Organization</b></label> 
+			<select id="opted"name="Organization">
+				<option value="Metacube">Metacube</option>
+				<option value="Celebal">Celebal</option>
+				<option value="Cyntexa" selected>Cyntexa</option>
+				<option value="Paratham Software" selected>ParathamSoftware</option>
+			</select><br>
+			<br> <input type="submit" value="Register"> <br>
+			<br>
+		</form>
+	</div>
+	<div align="center" id="loginForm">
+		<form name="employee" action="LoginPage.html">
+			<label><b>If existing user then login</b></label> <input
+				type="submit" value="login">
+		</form>
+	</div>
+</body>
+</html>
