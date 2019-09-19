@@ -28,7 +28,7 @@ public class Student {
 	private String fatherName;
 
 	@NotBlank(message = "{emailBlank}")
-	@Email(message="{emailPattern}")
+	@Pattern(regexp="^[a-zA-Z0-9.!#$%&'*+=?^_`{|}~-]+@[a-z0-9.-]+\\.[a-z]{2,}$",message="{emailPattern}")
 	private String email;
 
 	@NotBlank(message = "{classBlank}")
