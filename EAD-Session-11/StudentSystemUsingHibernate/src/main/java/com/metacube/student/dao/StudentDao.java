@@ -28,7 +28,7 @@ public class StudentDao {
 	public boolean addStudent(Student student) {
 		boolean value = false;
 		try {
-			System.out.println(student.getEmail());
+			template.save(Student);
 			value = true;
 		} catch (Exception e) {
 			e.getMessage();
