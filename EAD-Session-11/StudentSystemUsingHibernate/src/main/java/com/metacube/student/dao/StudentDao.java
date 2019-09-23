@@ -28,7 +28,7 @@ public class StudentDao {
 	public boolean addStudent(Student student) {
 		boolean value = false;
 		try {
-			template.save(Student);
+			template.save(student);
 			value = true;
 		} catch (Exception e) {
 			e.getMessage();
