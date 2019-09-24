@@ -2,22 +2,22 @@
 <html>
 <head>
 <title>Metacube Parking System</title>
-<link rel="stylesheet" type="text/css" href="css1.css">
 </head>
 <body style="background-image: url('pattern.jpg');">
 	<h1 id="main" align="center">Metacube Parking System</h1>
 	<hr>
 	<nav>
-		<a href="#employeeForm">Employee Registration</a>&nbsp;&nbsp; <a
-			href="#vehicleForm">Vehicle Registration </a>&nbsp;&nbsp; <a
-			href="#feedbackForm">Feedback Form</a>&nbsp;&nbsp; <a
-			href="#PlanForm">Plan form</a>
+		<a href="#employeeForm">Employee Registration</a>&nbsp;&nbsp; 
+		<a href="#vehicleForm">Vehicle Registration </a>&nbsp;&nbsp; 
+		<a href="#feedbackForm">Feedback Form</a>&nbsp;&nbsp; 
+	 	<a href="#PlanForm">Plan form</a>
 	</nav>
+	<br>
 	<div>
 		<img src="parking.jpg" alt="parking" width="100%">
 	</div>
-	<div align="center" class="divisionOne" id="employeeForm">
-		<form name="employee" action="">
+	<div align="center" id="employeeForm">
+		<form >
 			<h2>Employee Registration Form</h2>
 			<br>
 			<table>
@@ -51,120 +51,122 @@
 		</form>
 	</div>
 
-	<div align="center" class="divisionTwo" id="vehicleForm">
-		<form action="">
+	<div align="center" id="vehicleForm">
+		<form>
 			<h2>Vehicle Registration Form</h2>
-      <br>
-      <table>
-			<tr>
-				<td><label><b>Vehicle Make</b></label></td>
-				<td><input type="text" placeholder="Enter vehicle make" required> </td>
-			</tr>
-			<tr>
-				<td><label><b>Vehicle Model</b></label></td>
-				<td><input type="text" placeholder="Enter vehicle model" required> </td>
-			</tr>
-			<tr>
-				<td><label><b>Type</b></label></td>
-				<td><select id="opted" name="option">
-						<option value="cycle">Cycle</option>
-						<option value="motorCycle">MotorCycle</option>
-						<option value="car" selected>Four Wheeler</option>
-				    </select>
-        </td>
-			</tr>
-			<tr>
-				<td><label><b>Vehicle Number</b></label></td>
-				<td><input type="text" placeholder="Enter Vehicle Number" required> </td>
-			</tr>
-			<tr>
-				<td><label><b>Employee ID</b></label></td>
-				<td><input id="employee" type="text" required> </td>
-			</tr>
-			<tr>
-				<td><label><b>Identification</b></label></td>
-				<td><textarea rows="3" cols="22" value=""> </textarea> </td>
-      </tr>
-    </table>
+			<br>
+			<table>
+				<tr>
+					<td><label><b>Vehicle Make</b></label></td>
+					<td><input type="text" placeholder="Enter vehicle make" required> </td>
+				</tr>
+				<tr>
+					<td><label><b>Vehicle Model</b></label></td>
+					<td><input type="text" placeholder="Enter vehicle model" required> </td>
+				</tr>
+				<tr>
+					<td><label><b>Type</b></label></td>
+					<td><select id="opted" name="option">
+							<option value="cycle">Cycle</option>
+							<option value="motorCycle">MotorCycle</option>
+							<option value="car" selected>Four Wheeler</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td><label><b>Vehicle Number</b></label></td>
+					<td><input type="text" placeholder="Enter Vehicle Number" required> </td>
+				</tr>
+				<tr>
+					<td><label><b>Employee ID</b></label></td>
+					<td><input id="employee" type="text" required> </td>
+				</tr>
+				<tr>
+					<td><label><b>Identification</b></label></td>
+					<td><textarea rows="3" cols="22" value=""> </textarea> </td>
+				</tr>
+			</table>
 			<input type="submit"> <br>
 			<br>
 		</form>
 	</div>
 
-	<div align="center" class="divisionThree" id="feedbackForm">
-		<form action="">
+	<div align="center" id="feedbackForm">
+		<form >
 			<h2>Feedback Form</h2>
-      <br>
-      <table>
-			<tr>
-				<td><label><b>Employee ID</b></label></td>
-				<td><input id="employee" type="text" required></td>
-			</tr>
-			<tr>
-				<td><label><b>Subject</b></label></td>
-				<td><input type="text" placeholder="Enter subject here" required></td>
-			</tr>
-			<tr>
-				<td><label><b>Message</b></label></td>
-				<td><textarea rows="3" cols="22" value=""> </textarea> </td>
-      </tr>
-    </table>
-			<input type="submit"> <br>
 			<br>
+			<table>
+				<tr>
+					<td><label><b>Employee ID</b></label></td>
+					<td><input id="employee" type="text" required></td>
+				</tr>
+				<tr>
+					<td><label><b>Subject</b></label></td>
+					<td><input type="text" placeholder="Enter subject here" required></td>
+				</tr>
+				<tr>
+					<td><label><b>Message</b></label></td>
+					<td><textarea rows="3" cols="22" value=""> </textarea> </td>
+				</tr>
+				</table>
+				<input type="submit"> <br>
+				<br>
 		</form>
 	</div>
 	<div id="PlanForm" class="divisionFour" align="center">
 		<div id="cyclePass" align="center">
 			<h3>The pass prices for the Cycle are as follows</h3>
 			<h4>Select any one of the following</h4>
-			<div id="cyclePassINR" align="center">
-        <table>
+			<table>
 				<tr>
-          <td><label> <input type="radio" name="cyclePass" value="Rs.5">Daily- Rs.5</label></td>
+					<td><label> <input type="radio" name="cyclePass" value="Rs.5">Daily- Rs.5</label></td>
 				</tr>
 				<tr>
-          <td><label> <input type="radio" name="cyclePass" value="Rs.100">Monthly- Rs.100</label></td>
+					<td><label> <input type="radio" name="cyclePass" value="Rs.100">Monthly- Rs.100</label></td>
 				</tr>
 				<tr>
-          <td><label> <input type="radio" name="cyclePass" value="Rs.500">Yearly- Rs.500</label></td>
-        </tr>
-      </table>
-			</div>
+					<td><label> <input type="radio" name="cyclePass" value="Rs.500">Yearly- Rs.500</label></td>
+				</tr>
+			</table>
+			<input type="submit" value="Get Plan"> <br>
+			<br>
 		</div>
 
 		<div id="motorCyclePass" align="center">
 			<h3>The pass prices for the MotorCycle are as follows</h3>
 			<h4>Select any one of the following</h4>
-			<div id="motorCyclePassINR" align="center">
-        <table>
+        	<table>
 				<tr>
-          <td><label> <input type="radio" name="motorCyclePass" value="Rs.10">Daily - Rs.10</label></td>
+          			<td><label> <input type="radio" name="motorCyclePass" value="Rs.10">Daily - Rs.10</label></td>
 				</tr>
 				<tr>
-          <td><label> <input type="radio" name="motorCyclePass" value="Rs.200">Monthly - Rs.200 </label></td>	
+          			<td><label> <input type="radio" name="motorCyclePass" value="Rs.200">Monthly - Rs.200 </label></td>	
 				</tr>
 				<tr>
-          <td>	<label> <input type="radio" name="motorCyclePass" value="Rs.1000">Yearly - Rs.1000 </label></td>
-        </tr>
-      </table>
-			</div>
+          			<td>	<label> <input type="radio" name="motorCyclePass" value="Rs.1000">Yearly - Rs.1000 </label></td>
+        		</tr>
+	  		</table>
+	  		<input type="submit" value="Get Plan"> <br>
+	  		<br>
 		</div>
 
 		<div id="fourWheelerPass" align="center">
 			<h3>The pass prices for the Four-Wheeler are as follows</h3>
 			<h4>Select any one of the following</h4>
 	
-        <table>
+			<table>
 				<tr>
-          <td><label> <input type="radio" name="fourWheelerPass" value="Rs.20">Daily - Rs.20 </label></td>
-        </tr>
+					<td><label> <input type="radio" name="fourWheelerPass" value="Rs.20">Daily - Rs.20 </label></td>
+				</tr>
 				<tr>
-          <td><label> <input type="radio" name="fourWheelerPass" value="Rs.500">Monthly - Rs.500 </label></td>
-        </tr>
+					<td><label> <input type="radio" name="fourWheelerPass" value="Rs.500">Monthly - Rs.500 </label></td>
+				</tr>
 				<tr>
-          <td><label> <input type="radio" name="fourWheelerPass" value="Rs.3500">Yearly - Rs.3500 </label></td>
-        </tr>
-      </table>
+					<td><label> <input type="radio" name="fourWheelerPass" value="Rs.3500">Yearly - Rs.3500 </label></td>
+				</tr>
+			</table>
+			<input type="submit" value="Get Plan"> <br>
+			<br>
 		</div>
 	</div>
 </body>
