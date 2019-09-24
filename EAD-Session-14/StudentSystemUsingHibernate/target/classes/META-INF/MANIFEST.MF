@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: StudentSystemUsingHibernate
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Manoj
+Implementation-Vendor-Id: com.metacube
+Build-Jdk: 1.8.0_11
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/StudentSystemHibernate
+Created-By: Maven Integration for Eclipse
+
