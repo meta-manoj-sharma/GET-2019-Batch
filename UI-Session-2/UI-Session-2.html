@@ -1,0 +1,287 @@
+<!doctype html>
+<html>
+<head>
+	<style>
+		a
+		{
+			text-decoration: none;
+			display: inline-block;
+			color: white;
+			text-align: center;
+			padding: 8px 10px;
+			text-decoration: none;
+		}
+
+		body
+		{
+			margin: 0px;
+		}
+		nav
+		{
+			background-color:#111; 
+			padding: 12px 14px;	
+			margin-bottom: 0px;
+		}
+		nav a:hover 
+		{
+			background-color: rgb(13, 102, 236);
+	    }
+		
+		.collapsible 
+		{
+			background-color: rgb(37, 12, 177);
+			color: white;
+			cursor: pointer;
+			padding: 25px;
+			width: 100%;
+			border: none;
+			text-align: left;
+			outline: none;
+			font-size: 15px;
+			margin: 2px;
+		}
+		td
+		{
+		padding-bottom: 20px;
+		}
+		.active, .collapsible:hover 
+		{
+			background-color:white;
+			color:  rgb(37, 12, 177);
+		}
+		.collapsible:after 
+		{
+			content: '\002B'; /* Unicode character for "plus" sign (+) */
+			font-size: 13px;
+			color: white;
+			float: right;
+			margin-left: 5px;
+		}
+
+		.active:after 
+		{
+			content: "\2212"; /* Unicode character for "minus" sign (-) */
+			color: rgb(37, 12, 177);
+		}
+		.content 
+		{
+			padding: 0 18px;
+			display: none;
+			overflow: hidden;
+			background-color: #f1f1f1;
+		}
+		.tagCircle
+		{
+			border-radius: 1cm;
+			border: 3px solid rgb(16, 18, 175);
+		}
+		#passDiv 
+		{
+		display:inline-block;
+		width: 100px;
+		height: 100%;
+		}
+		input
+		{
+		border-radius: 2cm;
+		}
+	</style>
+<title>Metacube Parking System</title>
+</head>
+<body>
+	<nav>
+		<a href="#employeeForm">Employee Registration</a>&nbsp;&nbsp; 
+		<a href="#vehicleForm">Vehicle Registration </a>&nbsp;&nbsp; 
+		<a href="#feedbackForm">Feedback Form</a>&nbsp;&nbsp; 
+	 	<a href="#PlanForm">Plan form</a>
+	</nav>
+	<div style="background-image: url('parking.jpg'); background-size: auto; height:800px; background-position: center; margin-top: ">
+		<h1 id="main" align="center" style="margin-top: 0px">Metacube Parking System</h1>
+		<!-- <img src="parking.jpg" alt="parking" width="100%"> -->
+	</div>
+	<button type="button" class="collapsible" id="employeeForm" >Employee</button>
+	<div align="center" id="employeeForm" class = "content">
+		<form >
+			<h2>Employee Registration Form</h2>
+			<br>
+			<table >
+				<tr>
+					<td><label><b>Name</b></label></td>
+					<td><input name="name" type="text" placeholder="Enter full name" required></td>
+				</tr>
+				<tr>
+					<td><label><b>Gender</b></label></td>
+					<td><label> <input type="radio" name="gender" value="Male" checked>Male</label> 
+					<label> <input type="radio" name="gender" value="Female">Female</label> </td>
+				</tr>
+				<tr>
+					<td><label><b>Email - ID</b></label></td>
+					<td><input name="email" type="email" placeholder="Enter Email" required> </td>
+				</tr>
+				<tr>
+					<td><label><b>Password</b></label></td>
+					<td><input name="password" type="password" placeholder="Enter Password" required> </td>
+				</tr>
+				<tr>
+					<td><label><b>Confirm Password</b></label></td>
+					<td><input type="password" name="confirm" placeholder="Confirm Password" required> </td>
+				</tr>
+				<tr>
+					<td><label><b>Contact Number</b></label></td>
+					<td><input type="number" name="contact" placeholder="Enter Contact Number" required> </td>
+				</tr>
+			</table>
+			<input type="submit" value="Register"> <br> <br>
+		</form>
+	</div>
+	<button type="button" class="collapsible" id = "vehicleForm">Vehicle</button>
+	<div align="center" id="vehicleForm" class = "content">
+		<form>
+			<h2>Vehicle Registration Form</h2>
+			<br>
+			<table>
+				<tr>
+					<td><label><b>Vehicle Make</b></label></td>
+					<td><input type="text" placeholder="Enter vehicle make" required> </td>
+				</tr>
+				<tr>
+					<td><label><b>Vehicle Model</b></label></td>
+					<td><input type="text" placeholder="Enter vehicle model" required> </td>
+				</tr>
+				<tr>
+					<td><label><b>Type</b></label></td>
+					<td><select id="opted" name="option">
+							<option value="cycle">Cycle</option>
+							<option value="motorCycle">MotorCycle</option>
+							<option value="car" selected>Four Wheeler</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td><label><b>Vehicle Number</b></label></td>
+					<td><input type="text" placeholder="Enter Vehicle Number" required> </td>
+				</tr>
+				<tr>
+					<td><label><b>Employee ID</b></label></td>
+					<td><input id="employee" type="text" required> </td>
+				</tr>
+				<tr>
+					<td><label><b>Identification</b></label></td>
+					<td><textarea rows="3" cols="22" value=""> </textarea> </td>
+				</tr>
+			</table>
+			<input type="submit"> <br>
+			<br>
+		</form>
+	</div>
+	<button type="button" class="collapsible" id="feedbackForm">Feedback</button>
+	<div align="center" id="feedbackForm" class = "content">
+		<form >
+			<h2>Feedback Form</h2>
+			<br>
+			<table>
+				<tr>
+					<td><label><b>Employee ID</b></label></td>
+					<td><input id="employee" type="text" required></td>
+				</tr>
+				<tr>
+					<td><label><b>Subject</b></label></td>
+					<td><input type="text" placeholder="Enter subject here" required></td>
+				</tr>
+				<tr>
+					<td><label><b>Message</b></label></td>
+					<td><textarea rows="3" cols="22" value=""> </textarea> </td>
+				</tr>
+				</table>
+				<input type="submit"> <br>
+				<br>
+		</form>
+	</div>
+	<button type="button" class="collapsible" id="PlanForm">Plan</button>
+	<div id="PlanForm" class = "content" align="center">
+		<div id="passDiv" align="center" class="tagCircle" style="width: 250px;">
+			<h3>CYCLE</h3>
+			<div class="tagCircle" style="width: 75px;">
+				<strong>$100</strong><br>
+				<span>/Month</span>
+			</div>
+			<table>
+				<tr>
+					<td><label>$5 Daily</label></td>
+				</tr>
+				<tr>
+					<td><label> $100 Monthly</label></td>
+				</tr>
+				<tr>
+					<td><label>$500 Yearly</label></td>
+				</tr>
+			</table>
+			<input type="submit" value="PURCHASE NOW"> <br>
+			<br>
+		</div>
+
+		<div id="passDiv" align="center"  class="tagCircle" style="width: 250px;">
+			<h3>MOTORCYCLE</h3>
+			<div class="tagCircle" style="width: 75px;">
+					<strong>$200</strong><br>
+					<span>/Month</span>
+				</div>
+        	<table>
+				<tr>
+          			<td><label>$10 Daily</label></td>
+				</tr>
+				<tr>
+          			<td><label>$200 Monthly </label></td>	
+				</tr>
+				<tr>
+          			<td><label> $1000 Yearly</label></td>
+        		</tr>
+	  		</table>
+	  		<input type="submit" value="PURCHASE NOW"> <br>
+	  		<br>
+		</div>
+
+		<div id="passDiv" align="center"  class="tagCircle" style="width: 250px;" >
+			<h3>FOURWHEELERS</h3>
+			<div class="tagCircle" style="width: 75px;">
+					<strong>$500</strong><br>
+					<span>/Month</span>
+				</div>
+			<table>
+				<tr>
+					<td><label> $20 Daily</label></td>
+				</tr>
+				<tr>
+					<td><label> $500 Monthly</label></td>
+				</tr>
+				<tr>
+					<td><label> $3500 Yearly</label></td>
+				</tr>
+			</table>
+			<input type="submit" value="PURCHASE NOW"> <br>
+			<br>
+		</div>
+	</div>
+	<script>
+			var collapsible = document.getElementsByClassName("collapsible");
+			var row;
+			
+			for (row = 0; row < collapsible.length; row++) 
+			{
+				collapsible[row].addEventListener("click", function() 
+				{
+				this.classList.toggle("active");
+				var content = this.nextElementSibling;
+				if (content.style.display === "block") 
+				{
+				  content.style.display = "none";
+				} 
+				else 
+				{
+				  content.style.display = "block";
+				}
+			  });
+			}
+	</script>
+</body>
+</html>
