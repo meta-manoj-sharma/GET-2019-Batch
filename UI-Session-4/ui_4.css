@@ -1,0 +1,264 @@
+#homeImage
+{
+    background-image:url("images/homebg.png");
+    background-size: 100% 100%; 
+}
+#header
+{
+    display: flex;
+    justify-content: space-around;
+    padding-top: 25px; 
+}
+body
+{
+    background-image: url("./images/bodybg.png");
+    background-size: 100% 100%;
+    margin: 0px;
+}
+a
+{
+    text-decoration: none;
+    padding: 15px;
+    color: white;
+    font-weight: bold;
+}
+#text
+{
+    color: white;
+    font-size: 70px;
+    margin-bottom: 1px;
+}
+#home
+{
+    width: 500px;
+    margin-top: 100px;
+    margin-left: 70px;
+}
+#homeSection
+{
+    display: flex;
+    justify-content: space-around;
+}
+#phone1
+{
+    height: 800px;
+    margin-top: 100px;
+    margin-right: 80px;
+}
+#buttonDownload
+{
+    background-color: rgb(219, 67, 12);
+    padding: 15px 35px;
+    margin: 3px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+}
+#buttonFeatures
+{
+    background-color: rgb(10, 9, 80);
+    padding: 15px 35px;
+    margin: 3px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+}
+#home p
+{
+    margin-bottom: 60px;
+}
+#footer
+{
+    background-color: rgb(61, 61, 99);
+    background-size: 100% 100%;
+    margin: 0px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+#textFooter p
+{
+    color: white;
+    text-align: center;
+    margin: 20px;
+}
+#footerNav
+{
+    display: flex;
+    justify-content: space-around;
+}
+#footerLineImage
+{
+    margin: 20px 160px;
+    overflow:hidden;
+}
+#download
+{
+    display: flex;
+    justify-content: space-around;
+    background-color: rgb(68, 106, 228);
+    padding-left: 45px;
+}
+#downloadLocation
+{
+    display: flex;
+}
+#headingDownload
+{
+    font-size: 50px;
+    font-weight: bold;
+    color: white;
+   
+}
+#downloadSectionPhone 
+{
+    padding-top: 100px;
+    display: flex;
+    justify-content: space-around;
+    margin-right: 20px;
+}
+#textDownloadSection
+{
+    font-size: 21px;
+    font-weight: bold;
+    color: white;
+    width: 415px;
+}
+#downloadLocation img
+{
+    margin: 4px;
+}
+.splitImage
+{
+    padding-left: 200px;
+}
+#rainy
+{
+    display: flex;
+     margin-left: 350px;
+}
+#rainyAllText
+{
+    margin: 200px;
+    margin-top: 140px;
+}
+#headingRainy
+{
+    font-size: 26px;
+    font-weight: bold;
+    color: rgb(7, 7, 7);
+}
+#textRainy
+{
+    font-size: 18px;
+    color: rgb(100, 98, 98);
+    width: 415px;
+}
+#featuresExplore
+{
+    display: flex;
+    justify-content: space-around;
+   
+}
+#featuresHeading
+{
+   font-size: 22px;
+   font-weight: bold; 
+}
+#parent
+{
+    display: flex;
+    justify-content: space-around;
+}
+.featuresLogo
+{
+    display: flex;
+    width: 400px;
+    margin-bottom: 40px;
+    margin-top: 0px;
+
+}
+.featuresText
+{
+    font-size: 18px;
+    color: rgb(100, 98, 98);
+}
+.featuresImage
+{
+    height: 60px;
+    margin-top: 20px;
+    
+}
+
+.article
+{
+    padding: 5%;
+}
+.heading
+{
+    text-align: center;
+    color: #6388FB;
+    font-size: 2em;
+    margin: 10px;
+}
+.subheading
+{
+   color: gray;
+   font-size: 0.6em;
+}
+
+.featurearticle
+{
+    margin: 15px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.imagearticle
+{
+    width:40%;
+}
+.descriptionarticle
+{
+    width:60%;
+    text-align: left;
+}
+.iconimage
+{
+    margin-top:10%;
+    margin-bottom:5%;
+}
+.title
+{
+    font-size: 2em;
+}
+.desc
+{
+    font-size: 1.5em;
+    color: gray;
+    width: 550px;
+}
+.commentdiv
+{
+    width: 40%;
+    text-align: left;
+    margin-left: 5%;
+}
+.openquotes
+{
+    text-align: left;
+}
+.comment
+{
+    font-size: 1.4em;
+}
+.closequotes
+{
+    text-align: right;
+}
+.download
+{
+    width: 40%;
+}
+.fas 
+{
+    color: rgb(87, 74, 197);
+}
