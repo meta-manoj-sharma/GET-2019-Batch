@@ -1,15 +1,22 @@
-#main
+body
 {
-	text-align:center;	
+  background-color: rgb(102, 154, 233);
 }
-	.divisionTwo textarea{
- 	vertical-align: top;
+#field{
+  font-size:xx-large;
+  margin:20% auto;
+  width:70%;
+  text-align: center;
 }
-.divisionTwo
-{	
-	display:none;
+
+input,select,textarea{
+  border:none;
+  border-radius: 4px;
+  line-height: 200%;
+  margin-left: 30px;
+  font-size:30px;
 }
-#motorCyclePass,#cyclePass,#fourWheelerPass,#cyclePassUSD,#cyclePassYEN,#motorCyclePassUSD,#motorCyclePassYEN,#fourWheelerPassUSD,#fourWheelerPassYEN
+h1
 {
-	display:none;
+  margin-left: 45%;
 }
