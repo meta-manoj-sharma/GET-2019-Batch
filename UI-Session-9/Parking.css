@@ -1,0 +1,22 @@
+body
+{
+  background-color: rgb(102, 154, 233);
+}
+#field{
+  font-size:xx-large;
+  margin:20% auto;
+  width:70%;
+  text-align: center;
+}
+
+input,select,textarea{
+  border:none;
+  border-radius: 4px;
+  line-height: 200%;
+  margin-left: 30px;
+  font-size:30px;
+}
+h1
+{
+  margin-left: 45%;
+}
