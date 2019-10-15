@@ -1,0 +1,21 @@
+<html>
+
+<head>
+    <script>
+
+        String.prototype.removeConsecutive = function () {
+            var word = this;
+            for (var index = 1; index <= word.length-1; index++){
+                if(word.charAt(index) == word.charAt(index-1)){
+                    word = word.substring(0,index-1)+word.substring(index+1);
+                    index=0;
+                }
+            }
+            return (word);
+        };
+
+    </script>
+</head>
+<body>
+</body>
+</html>

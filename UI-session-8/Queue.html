@@ -1,0 +1,45 @@
+<html>
+
+<head>
+    <script>
+        class Queue {
+            // Array is used to implement a Queue 
+            constructor() {
+                this.items = [];
+            }
+
+            // enqueue function 
+            enqueue(element) {
+                // adding element to the queue 
+                this.items.push(element);
+            }
+
+            // dequeue function 
+            dequeue() {
+                if (this.isEmpty()){
+                    return "Underflow";
+                }
+                return this.items.shift();
+            }
+            // printQueue function 
+            printQueue() {
+                var string = "";
+                for (var index = 0; index < this.items.length; index++)
+                    string += this.items[index] + " ";
+                return string;
+            }
+
+            // isEmpty function 
+            isEmpty() {
+                // return true if the queue is empty. 
+                return this.items.length == 0;
+            }
+        } 
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
