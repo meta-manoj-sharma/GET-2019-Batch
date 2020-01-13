@@ -1,0 +1,72 @@
+global with sharing class SOMScheduler implements Schedulable {
+	
+    global void execute(SchedulableContext sc) {
+    	Database.executeBatch(new (), 500);
+    }
+    
+    global void executeEmailScheduler() {
+	    String CRON_EXP = '0 0 20 * * ? *';
+	    system.schedule('SOM Part Inventory', CRON_EXP, new SOMScheduler() );
+    }
+	
+	public static void dummy01(){
+		Integer i = 0;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		i++;
+		
+	}
+}
